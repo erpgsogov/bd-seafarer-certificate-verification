@@ -1,16 +1,17 @@
-.result-box {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 5px;
-    display: none;
-}
-.result-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-.result-error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
+document.getElementById('verificationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const certNo = document.getElementById('certificateNo').value;
+    const dob = document.getElementById('dateOfBirth').value;
+    const resultBox = document.getElementById('resultBox');
+
+    if (certNo === 'CO-2026-001' && dob === '1990-05-15') {
+        resultBox.style.display = 'block';
+        resultBox.className = 'result-box result-success';
+        resultBox.innerHTML = '<strong>SUCCESS:</strong> Certificate is Valid!<br>Name: MD KHALILUR RAHMAN<br>Rank: Chief Officer';
+    } else {
+        resultBox.style.display = 'block';
+        resultBox.className = 'result-box result-error';
+        resultBox.innerHTML = '<strong>ERROR:</strong> Certificate not found or Invalid details.';
+    }
+});
