@@ -8,30 +8,52 @@
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1>Bangladesh Seafarer Certificate Verification</h1>
-            <p>Government of the People's Republic of Bangladesh</p>
+    <header class="gov-header">
+        <div class="container header-content">
+            <div class="header-text">
+                <h1>Bangladesh Seafarer Certificate Verification</h1>
+                <p>Government of the People's Republic of Bangladesh</p>
+            </div>
         </div>
     </header>
 
-    <section class="container">
-        <form id="verificationForm">
-            <div class="form-group">
-                <label for="certificateNo">Certificate Number</label>
-                <input type="text" id="certificateNo" class="form-control" placeholder="Enter Certificate No" required>
+    <nav class="gov-nav">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Verification</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="verification-card">
+                <h2>Verify Certificate</h2>
+                <form id="verificationForm">
+                    <div class="form-group">
+                        <label for="certificateNo">Certificate Number</label>
+                        <input type="text" id="certificateNo" class="form-control" placeholder="Enter Certificate No" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input type="date" id="dateOfBirth" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">VERIFY</button>
+                </form>
+
+                <div id="resultBox" class="result-box"></div>
             </div>
-
-            <div class="form-group">
-                <label for="dateOfBirth">Date of Birth</label>
-                <input type="date" id="dateOfBirth" class="form-control" required>
-            </div>
-
-            <button type="submit" class="btn-submit">VERIFY</button>
-        </form>
-
-        <div id="resultBox" class="result-box"></div>
+        </div>
     </section>
+
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Department of Shipping, Bangladesh. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
