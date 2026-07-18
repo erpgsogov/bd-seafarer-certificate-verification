@@ -1,2 +1,2 @@
-# bd-seafarer-certificate-verification
-Bangladeshi seafarer certificate Verification system
+# Bangladesh Seafarer Certificate Verification System
+A simple web-based project to verify seafarer certificates using HTML, CSS, and JavaScript.
