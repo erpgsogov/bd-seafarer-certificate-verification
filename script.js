@@ -6,7 +6,7 @@ document.getElementById('verificationForm').addEventListener('submit', function(
     const resultBox = document.getElementById('resultBox');
 
     // আপডেট করা ডেটাবেজ তথ্য
-    if (certNo === 'C/O/6628' && dob === '1990-05-04') {
+    if (certNo === 'C/O/6628' && dob === '1990-04-05) {
         resultBox.style.display = 'block';
         resultBox.className = 'result-box result-success';
         resultBox.innerHTML = '<strong>SUCCESS:</strong> Certificate is Valid!<br>Name: MD KHALILUR RAHMAN<br>Rank: Chief Officer';
