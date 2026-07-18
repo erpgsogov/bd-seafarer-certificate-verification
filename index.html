@@ -1,89 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bangladesh Seafarer Certificate Verification</title>
-
-<style>
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f4f7fb;
-}
-
-header{
-background:#006a4e;
-color:white;
-padding:20px;
-text-align:center;
-}
-
-.container{
-width:90%;
-max-width:700px;
-margin:40px auto;
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,.2);
-text-align:center;
-}
-
-input{
-width:90%;
-padding:12px;
-font-size:18px;
-margin:15px 0;
-}
-
-button{
-background:#006a4e;
-color:white;
-padding:12px 30px;
-border:none;
-font-size:18px;
-cursor:pointer;
-}
-
-button:hover{
-background:#004d39;
-}
-
-footer{
-margin-top:40px;
-text-align:center;
-padding:20px;
-background:#eee;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangladesh Seafarer Certificate Verification</title>
+    <!-- নতুন CSS ফাইল কানেক্ট করা -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-<h1>🇧🇩 Bangladesh Seafarer Certificate Verification</h1>
-<p>Verify Seafarer Certificate Online</p>
-</header>
+    <!-- Header Section -->
+    <header class="gov-header">
+        <div class="container header-content">
+            <div class="header-text">
+                <h1>Bangladesh Seafarer Certificate Verification</h1>
+                <p>Government of the People's Republic of Bangladesh</p>
+            </div>
+        </div>
+    </header>
 
-<div class="container">
+    <!-- Navigation -->
+    <nav class="gov-nav">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Verification</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<h2>Certificate Verification</h2>
+    <!-- Verification Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="verification-card">
+                <h2>Verify Certificate</h2>
+                <form id="verificationForm">
+                    <div class="form-group">
+                        <label for="certificateNo">Certificate Number</label>
+                        <input type="text" id="certificateNo" class="form-control" placeholder="Enter Certificate No" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <input type="date" id="dateOfBirth" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn-submit">VERIFY</button>
+                </form>
+                <div id="resultBox" class="result-box"></div>
+            </div>
+        </div>
+    </section>
 
-<input type="text" placeholder="Enter Certificate Number">
+    <!-- Footer -->
+    <footer class="gov-footer">
+        <div class="container">
+            <p>&copy; 2026 Department of Shipping, Bangladesh. All rights reserved.</p>
+        </div>
+    </footer>
 
-<br>
-
-<button>VERIFY</button>
-
-</div>
-
-<footer>
-
-© 2026 Bangladesh Seafarer Certificate Verification
-
-</footer>
-
+    <!-- নতুন JS ফাইল কানেক্ট করা -->
+    <script src="script.js"></script>
 </body>
 </html>
