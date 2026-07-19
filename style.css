@@ -8,6 +8,7 @@
 body {
     background-color: #f4f6f9;
     color: #333;
+    padding-bottom: 80px;
 }
 
 .container {
@@ -59,7 +60,7 @@ body {
 
 /* Verification Card */
 .hero-section {
-    padding: 50px 0;
+    padding: 40px 0;
 }
 
 .verification-card {
@@ -76,6 +77,7 @@ body {
     color: #006a4e;
     margin-bottom: 20px;
     font-size: 22px;
+    text-align: center;
 }
 
 .form-group {
@@ -149,4 +151,5 @@ footer {
 footer p {
     font-size: 14px;
     color: #666;
+    text-align: center;
 }
