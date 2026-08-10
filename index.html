@@ -1,62 +1,201 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
     <title>Bangladesh Seafarer Certificate Verification</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase JavaScript Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
+
 <body>
 
+    <!-- ==================================================
+         GOVERNMENT HEADER
+    ================================================== -->
+
     <header class="gov-header">
-        <img src="images.jpeg" alt="Logo" class="gov-logo">
+
         <div class="container header-content">
+
+            <img
+                src="images.jpeg"
+                alt="Bangladesh Department of Shipping Logo"
+                class="gov-logo"
+            >
+
             <div class="header-text">
-                <h1>Bangladesh Seafarer Certificate Verification</h1>
-                <p>Government of the People's Republic of Bangladesh</p>
+
+                <h1>
+                    Bangladesh Seafarer Certificate Verification
+                </h1>
+
+                <p>
+                    Government of the People's Republic of Bangladesh
+                </p>
+
             </div>
+
         </div>
+
     </header>
 
+
+    <!-- ==================================================
+         NAVIGATION
+    ================================================== -->
+
     <nav class="gov-nav">
+
         <div class="container">
+
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Verification</a></li>
+
+                <li>
+                    <a href="#">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        Verification
+                    </a>
+                </li>
+
             </ul>
+
         </div>
+
     </nav>
 
+
+    <!-- ==================================================
+         VERIFICATION SECTION
+    ================================================== -->
+
     <section class="hero-section">
+
         <div class="container">
+
             <div class="verification-card">
-                <h2>Verify Certificate</h2>
-                
+
+                <h2>
+                    Verify Certificate
+                </h2>
+
+
+                <!-- ==================================================
+                     VERIFICATION FORM
+                ================================================== -->
+
                 <form id="verificationForm">
-                    <div class="form-group">
-                        <label for="certificateNo">CDC No.</label>
-<input type="text" id="certificateNo" class="form-control" placeholder="Enter CDC No." required>
-                    </div>
+
+                    <!-- CDC NUMBER -->
 
                     <div class="form-group">
-                        <label for="dateOfBirth">Date of Birth</label>
-                        <input type="date" id="dateOfBirth" class="form-control" required>
+
+                        <label for="certificateNo">
+                            CDC No.
+                        </label>
+
+                        <input
+                            type="text"
+                            id="certificateNo"
+                            class="form-control"
+                            placeholder="Enter CDC No."
+                            autocomplete="off"
+                            required
+                        >
+
                     </div>
 
-                    <button type="submit" class="btn-submit">VERIFY</button>
+
+                    <!-- DATE OF BIRTH -->
+
+                    <div class="form-group">
+
+                        <label for="dateOfBirth">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- VERIFY BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="btn-submit"
+                    >
+                        VERIFY
+                    </button>
+
                 </form>
 
-                <div id="resultBox" class="result-box"></div>
+
+                <!-- ==================================================
+                     RESULT BOX
+                ================================================== -->
+
+                <div
+                    id="resultBox"
+                    class="result-box"
+                    style="display:none;"
+                ></div>
+
             </div>
+
         </div>
+
     </section>
 
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
     <footer>
+
         <div class="container text-center">
-            <p>&copy; 2026 Department of Shipping, Bangladesh. All rights reserved.</p>
+
+            <p>
+                &copy; 2026 Department of Shipping, Bangladesh.
+                All rights reserved.
+            </p>
+
         </div>
+
     </footer>
 
+
+    <!-- ==================================================
+         SUPABASE LIBRARY
+         Must load before script.js
+    ================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Your Verification Script -->
     <script src="script.js"></script>
+
 </body>
+
 </html>
+```
