@@ -1,21 +1,21 @@
-// ======================================================
-// SUPABASE TEST
-// ======================================================
+const SUPABASE_URL = "https://zwpcswfrpzpyccdksspi.supabase.co";
 
-const SUPABASE_URL =
-    "https://zwpcswfrpzpyccdksspi.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5";
 
-const SUPABASE_ANON_KEY =
-    "sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5";
 
-const resultBox =
-    document.getElementById("resultBox");
+document.addEventListener("DOMContentLoaded", async function () {
 
-async function testSupabase() {
+    const resultBox = document.getElementById("resultBox");
+
+    if (!resultBox) {
+        console.error("resultBox not found.");
+        return;
+    }
 
     resultBox.style.display = "block";
     resultBox.className = "result-box";
     resultBox.innerHTML = "Testing database...";
+
 
     try {
 
@@ -26,89 +26,126 @@ async function testSupabase() {
             );
         }
 
-        const db =
-            supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_ANON_KEY
-            );
 
-        const { data, error } =
-            await db
-                .from("certificates")
-                .select("*")
-                .limit(5);
+        const db = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_ANON_KEY
+        );
 
-        console.log("DATA:", data);
-        console.log("ERROR:", error);
+
+        const { data, error } = await db
+            .from("certificates")
+            .select("*")
+            .limit(5);
+
+
+        console.log("SUPABASE DATA:", data);
+        console.log("SUPABASE ERROR:", error);
+
 
         if (error) {
 
             resultBox.className =
                 "result-box result-error";
 
-            resultBox.innerHTML =
-                "<strong>DATABASE ERROR</strong><br><br>" +
-                escapeHTML(error.message);
+            resultBox.innerHTML = `
+                <strong>DATABASE ERROR</strong>
+                <br><br>
+                ${escapeHTML(error.message || "Unknown error")}
+            `;
 
             return;
         }
+
 
         if (!data || data.length === 0) {
 
             resultBox.className =
                 "result-box result-error";
 
-            resultBox.innerHTML =
-                "<strong>NO DATA FOUND</strong><br><br>" +
-                "Supabase connected, but no records were returned.";
+            resultBox.innerHTML = `
+                <strong>NO DATA FOUND</strong>
+                <br><br>
+                Supabase connected successfully,
+                but no certificate records were returned.
+            `;
 
             return;
         }
 
+
+        const certificate = data[0];
+
+
         resultBox.className =
             "result-box result-success";
 
+
         resultBox.innerHTML = `
             <strong>✓ DATABASE CONNECTED</strong>
+
             <br><br>
 
-            <b>Records found:</b> ${data.length}
+            <b>Records Found:</b>
+            ${data.length}
+
             <br><br>
 
-            <b>First CDC:</b>
-            ${escapeHTML(data[0].certificate_no || "")}
+            <b>CDC No.:</b>
+            ${escapeHTML(certificate.certificate_no || "")}
+
             <br>
 
             <b>Name:</b>
-            ${escapeHTML(data[0].name || "")}
+            ${escapeHTML(certificate.name || "")}
+
             <br>
 
             <b>Rank:</b>
-            ${escapeHTML(data[0].rank || "")}
+            ${escapeHTML(certificate.rank || "")}
+
             <br>
 
             <b>Date of Birth:</b>
-            ${escapeHTML(data[0].date_of_birth || "")}
+            ${escapeHTML(certificate.date_of_birth || "")}
+
+            <br>
+
+            <b>Date of Issue:</b>
+            ${escapeHTML(certificate.issue_date || "")}
+
+            <br>
+
+            <b>Date of Expiry:</b>
+            ${escapeHTML(certificate.expiry_date || "")}
+
             <br>
 
             <b>Status:</b>
-            ${escapeHTML(data[0].status || "")}
+            ${escapeHTML(certificate.status || "")}
         `;
+
 
     } catch (error) {
 
-        console.error("TEST ERROR:", error);
+        console.error("SUPABASE TEST ERROR:", error);
+
 
         resultBox.className =
             "result-box result-error";
 
-        resultBox.innerHTML =
-            "<strong>ERROR</strong><br><br>" +
-            escapeHTML(
+
+        resultBox.innerHTML = `
+            <strong>ERROR</strong>
+            <br><br>
+            ${escapeHTML(
                 error.message || String(error)
-            );
+            )}
+        `;
     }
-}
+
+});
+
 
 function escapeHTML(value) {
 
@@ -119,8 +156,3 @@ function escapeHTML(value) {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
-
-document.addEventListener(
-    "DOMContentLoaded",
-    testSupabase
-);
