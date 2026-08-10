@@ -1,7 +1,7 @@
 ```javascript
 // ======================================================
 // BANGLADESH SEAFARER CERTIFICATE VERIFICATION
-// SUPABASE
+// DIAGNOSTIC VERSION
 // ======================================================
 
 const SUPABASE_URL =
@@ -12,49 +12,10 @@ const SUPABASE_ANON_KEY =
 
 
 // ======================================================
-// START APPLICATION
+// START
 // ======================================================
 
 document.addEventListener("DOMContentLoaded", function () {
-
-    // --------------------------------------------------
-    // CHECK SUPABASE LIBRARY
-    // --------------------------------------------------
-
-    if (typeof supabase === "undefined") {
-
-        console.error(
-            "Supabase library was not loaded."
-        );
-
-        showResult(
-            "error",
-            `
-            <strong>ERROR</strong>
-            <br><br>
-            Supabase library could not be loaded.
-            <br><br>
-            Please check your internet connection.
-            `
-        );
-
-        return;
-    }
-
-
-    // --------------------------------------------------
-    // CREATE SUPABASE CLIENT
-    // --------------------------------------------------
-
-    const db = supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
-
-
-    // --------------------------------------------------
-    // GET HTML ELEMENTS
-    // --------------------------------------------------
 
     const form =
         document.getElementById("verificationForm");
@@ -69,32 +30,51 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("resultBox");
 
 
-    // --------------------------------------------------
-    // CHECK HTML
-    // --------------------------------------------------
+    if (!form || !certificateInput || !dobInput || !resultBox) {
 
-    if (
-        !form ||
-        !certificateInput ||
-        !dobInput ||
-        !resultBox
-    ) {
-
-        console.error(
-            "Verification HTML elements are missing."
-        );
+        console.error("HTML elements missing.");
 
         return;
     }
 
 
+    // --------------------------------------------------
+    // CHECK SUPABASE
+    // --------------------------------------------------
+
+    if (typeof supabase === "undefined") {
+
+        resultBox.style.display = "block";
+        resultBox.className =
+            "result-box result-error";
+
+        resultBox.innerHTML = `
+            <strong>SUPABASE LIBRARY ERROR</strong>
+            <br><br>
+            Supabase JavaScript library was not loaded.
+        `;
+
+        return;
+    }
+
+
+    // --------------------------------------------------
+    // CREATE CLIENT
+    // --------------------------------------------------
+
+    const db = supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
     console.log(
-        "Bangladesh Seafarer Verification System Loaded."
+        "SUPABASE CLIENT CREATED"
     );
 
 
     // ==================================================
-    // FORM SUBMIT
+    // FORM
     // ==================================================
 
     form.addEventListener(
@@ -104,64 +84,37 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
 
 
-            // ------------------------------------------
-            // GET VALUES
-            // ------------------------------------------
-
             const certNo =
-                certificateInput.value.trim();
+                certificateInput.value
+                    .trim();
 
             const dob =
                 dobInput.value;
 
 
-            // ------------------------------------------
-            // CHECK CDC
-            // ------------------------------------------
-
             if (!certNo) {
 
                 showResult(
                     "error",
-                    `
-                    <strong>ERROR</strong>
-                    <br><br>
-                    Please enter CDC No.
-                    `
+                    "Please enter CDC No."
                 );
-
-                certificateInput.focus();
 
                 return;
             }
 
-
-            // ------------------------------------------
-            // CHECK DOB
-            // ------------------------------------------
 
             if (!dob) {
 
                 showResult(
                     "error",
-                    `
-                    <strong>ERROR</strong>
-                    <br><br>
-                    Please select Date of Birth.
-                    `
+                    "Please select Date of Birth."
                 );
-
-                dobInput.focus();
 
                 return;
             }
 
 
-            // ------------------------------------------
-            // VERIFY
-            // ------------------------------------------
-
-            await verifyCertificate(
+            await verify(
                 db,
                 certNo,
                 dob
@@ -172,12 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // ==================================================
-    // URL AUTO VERIFICATION
-    //
-    // Example:
-    //
-    // ?certNo=TEST001&dob=1990-01-01
-    //
+    // URL VERIFICATION
     // ==================================================
 
     const params =
@@ -186,28 +134,24 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-    const urlCertNo =
+    const urlCert =
         params.get("certNo");
 
     const urlDob =
         params.get("dob");
 
 
-    if (
-        urlCertNo &&
-        urlDob
-    ) {
+    if (urlCert && urlDob) {
 
         certificateInput.value =
-            urlCertNo;
+            urlCert;
 
         dobInput.value =
             urlDob;
 
-
-        verifyCertificate(
+        verify(
             db,
-            urlCertNo.trim(),
+            urlCert,
             urlDob
         );
     }
@@ -216,36 +160,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // ======================================================
-// VERIFY CERTIFICATE
+// VERIFY
 // ======================================================
 
-async function verifyCertificate(
+async function verify(
     db,
     certNo,
     dob
 ) {
 
-    // --------------------------------------------------
-    // LOADING
-    // --------------------------------------------------
-
     showResult(
         "loading",
         `
-        <strong>Checking certificate...</strong>
+        <strong>Checking database...</strong>
         <br><br>
-        Please wait.
+        CDC: ${escapeHTML(certNo)}
+        <br>
+        DOB: ${escapeHTML(dob)}
         `
     );
 
 
     console.log(
-        "Searching CDC:",
+        "================================"
+    );
+
+    console.log(
+        "CDC:",
         certNo
     );
 
     console.log(
-        "Searching DOB:",
+        "DOB:",
         dob
     );
 
@@ -253,71 +199,62 @@ async function verifyCertificate(
     try {
 
         // ==================================================
-        // DATABASE QUERY
+        // TEST 1
+        // GET ALL RECORDS
         // ==================================================
 
-        const {
-            data,
-            error
-        } = await db
-            .from("certificates")
-            .select(
-                "certificate_no,name,rank,date_of_birth,issue_date,expiry_date,status"
-            )
-            .eq(
-                "certificate_no",
-                certNo
-            )
-            .eq(
-                "date_of_birth",
-                dob
-            )
-            .maybeSingle();
-
-
         console.log(
-            "SUPABASE DATA:",
-            data
-        );
-
-        console.log(
-            "SUPABASE ERROR:",
-            error
+            "TEST 1: Reading certificates table..."
         );
 
 
-        // ==================================================
-        // DATABASE ERROR
-        // ==================================================
+        const test1 =
+            await db
+                .from("certificates")
+                .select("*")
+                .limit(10);
 
-        if (error) {
 
-            console.error(
-                "SUPABASE DATABASE ERROR:",
-                error
-            );
+        console.log(
+            "TEST 1 DATA:",
+            test1.data
+        );
 
+        console.log(
+            "TEST 1 ERROR:",
+            test1.error
+        );
+
+
+        if (test1.error) {
 
             showResult(
                 "error",
                 `
-                <strong>DATABASE ERROR</strong>
+                <strong>DATABASE ACCESS ERROR</strong>
 
                 <br><br>
 
                 ${escapeHTML(
-                    error.message ||
-                    "Unable to connect to database."
+                    test1.error.message ||
+                    "Unknown database error"
                 )}
 
                 <br><br>
 
-                <small>
-                Code:
+                <b>Error Code:</b>
                 ${escapeHTML(
-                    error.code || "N/A"
+                    test1.error.code ||
+                    "N/A"
                 )}
-                </small>
+
+                <br><br>
+
+                <b>Details:</b>
+                ${escapeHTML(
+                    test1.error.details ||
+                    "N/A"
+                )}
                 `
             );
 
@@ -326,36 +263,199 @@ async function verifyCertificate(
 
 
         // ==================================================
-        // NOT FOUND
+        // CHECK WHETHER ANY ROWS ARE VISIBLE
         // ==================================================
 
-        if (!data) {
-
-            console.log(
-                "Certificate not found."
-            );
-
+        if (
+            !test1.data ||
+            test1.data.length === 0
+        ) {
 
             showResult(
                 "error",
                 `
+                <strong>DATABASE CONNECTED</strong>
+
+                <br><br>
+
+                But the website cannot see any rows
+                from the certificates table.
+
+                <br><br>
+
+                This is most likely an
+                <strong>RLS / SELECT POLICY</strong>
+                problem.
+                `
+            );
+
+            return;
+        }
+
+
+        console.log(
+            "VISIBLE RECORDS:",
+            test1.data.length
+        );
+
+
+        // ==================================================
+        // TEST 2
+        // FIND CDC
+        // ==================================================
+
+        console.log(
+            "TEST 2: Searching CDC..."
+        );
+
+
+        const test2 =
+            await db
+                .from("certificates")
+                .select("*")
+                .eq(
+                    "certificate_no",
+                    certNo
+                )
+                .limit(10);
+
+
+        console.log(
+            "TEST 2 DATA:",
+            test2.data
+        );
+
+        console.log(
+            "TEST 2 ERROR:",
+            test2.error
+        );
+
+
+        if (test2.error) {
+
+            showResult(
+                "error",
+                `
+                <strong>CDC SEARCH ERROR</strong>
+
+                <br><br>
+
+                ${escapeHTML(
+                    test2.error.message ||
+                    "Unknown error"
+                )}
+                `
+            );
+
+            return;
+        }
+
+
+        if (
+            !test2.data ||
+            test2.data.length === 0
+        ) {
+
+            showResult(
+                "error",
+                `
+                <strong>CDC NOT FOUND</strong>
+
+                <br><br>
+
+                The database is accessible,
+                but CDC:
+
+                <br><br>
+
                 <strong>
-                    ✗ CERTIFICATE NOT FOUND
+                ${escapeHTML(certNo)}
                 </strong>
 
                 <br><br>
 
-                CDC No. or Date of Birth is incorrect.
+                was not returned.
+                `
+            );
+
+            return;
+        }
+
+
+        // ==================================================
+        // TEST 3
+        // CHECK DOB
+        // ==================================================
+
+        const record =
+            test2.data[0];
+
+
+        console.log(
+            "DATABASE RECORD:",
+            record
+        );
+
+
+        console.log(
+            "DATABASE DOB:",
+            record.date_of_birth
+        );
+
+        console.log(
+            "INPUT DOB:",
+            dob
+        );
+
+
+        // ==================================================
+        // COMPARE DOB
+        // ==================================================
+
+        const databaseDOB =
+            String(
+                record.date_of_birth
+            ).substring(0, 10);
+
+
+        if (
+            databaseDOB !== dob
+        ) {
+
+            showResult(
+                "error",
+                `
+                <strong>CDC FOUND — DOB DOES NOT MATCH</strong>
 
                 <br><br>
 
-                Please check:
+                <b>CDC No.:</b>
+                ${escapeHTML(
+                    record.certificate_no
+                )}
 
-                <br>
-                • CDC No.
+                <br><br>
 
-                <br>
-                • Date of Birth
+                <b>Name:</b>
+                ${escapeHTML(
+                    record.name
+                )}
+
+                <br><br>
+
+                <b>Database DOB:</b>
+                ${escapeHTML(
+                    formatDate(
+                        databaseDOB
+                    )
+                )}
+
+                <br><br>
+
+                <b>You entered:</b>
+                ${escapeHTML(
+                    formatDate(dob)
+                )}
                 `
             );
 
@@ -366,12 +466,6 @@ async function verifyCertificate(
         // ==================================================
         // VERIFIED
         // ==================================================
-
-        console.log(
-            "CERTIFICATE VERIFIED:",
-            data
-        );
-
 
         showResult(
             "success",
@@ -384,21 +478,21 @@ async function verifyCertificate(
 
             <b>CDC No.:</b>
             ${escapeHTML(
-                data.certificate_no || ""
+                record.certificate_no
             )}
 
             <br>
 
             <b>Name:</b>
             ${escapeHTML(
-                data.name || ""
+                record.name
             )}
 
             <br>
 
             <b>Rank:</b>
             ${escapeHTML(
-                data.rank || ""
+                record.rank
             )}
 
             <br>
@@ -406,7 +500,7 @@ async function verifyCertificate(
             <b>Date of Birth:</b>
             ${escapeHTML(
                 formatDate(
-                    data.date_of_birth
+                    record.date_of_birth
                 )
             )}
 
@@ -415,7 +509,7 @@ async function verifyCertificate(
             <b>Date of Issue:</b>
             ${escapeHTML(
                 formatDate(
-                    data.issue_date
+                    record.issue_date
                 )
             )}
 
@@ -424,7 +518,7 @@ async function verifyCertificate(
             <b>Date of Expiry:</b>
             ${escapeHTML(
                 formatDate(
-                    data.expiry_date
+                    record.expiry_date
                 )
             )}
 
@@ -432,7 +526,7 @@ async function verifyCertificate(
 
             <b>Status:</b>
             ${escapeHTML(
-                data.status || ""
+                record.status
             )}
             `
         );
@@ -441,7 +535,7 @@ async function verifyCertificate(
     } catch (error) {
 
         console.error(
-            "VERIFICATION ERROR:",
+            "FINAL ERROR:",
             error
         );
 
@@ -449,7 +543,7 @@ async function verifyCertificate(
         showResult(
             "error",
             `
-            <strong>ERROR</strong>
+            <strong>JAVASCRIPT / CONNECTION ERROR</strong>
 
             <br><br>
 
@@ -478,10 +572,6 @@ function showResult(
 
     if (!resultBox) {
 
-        console.error(
-            "resultBox not found."
-        );
-
         return;
     }
 
@@ -495,16 +585,12 @@ function showResult(
         resultBox.className =
             "result-box result-success";
 
-    }
-
-    else if (type === "error") {
+    } else if (type === "error") {
 
         resultBox.className =
             "result-box result-error";
 
-    }
-
-    else {
+    } else {
 
         resultBox.className =
             "result-box";
@@ -517,7 +603,7 @@ function showResult(
 
 
 // ======================================================
-// FORMAT DATE
+// DATE FORMAT
 // ======================================================
 
 function formatDate(value) {
@@ -529,7 +615,7 @@ function formatDate(value) {
 
 
     const parts =
-        String(value).split("-");
+        String(value).substring(0, 10).split("-");
 
 
     if (parts.length === 3) {
@@ -555,27 +641,22 @@ function formatDate(value) {
 function escapeHTML(value) {
 
     return String(value)
-
         .replace(
             /&/g,
             "&amp;"
         )
-
         .replace(
             /</g,
             "&lt;"
         )
-
         .replace(
             />/g,
             "&gt;"
         )
-
         .replace(
             /"/g,
             "&quot;"
         )
-
         .replace(
             /'/g,
             "&#039;"
