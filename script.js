@@ -1,6 +1,7 @@
 ```javascript
 // ======================================================
 // BANGLADESH SEAFARER CERTIFICATE VERIFICATION
+// SUPABASE
 // ======================================================
 
 const SUPABASE_URL =
@@ -23,13 +24,18 @@ document.addEventListener("DOMContentLoaded", function () {
     if (typeof supabase === "undefined") {
 
         console.error(
-            "Supabase library is not loaded."
+            "Supabase library was not loaded."
         );
 
         showResult(
             "error",
-            "<strong>ERROR:</strong><br><br>" +
-            "Supabase library could not be loaded."
+            `
+            <strong>ERROR</strong>
+            <br><br>
+            Supabase library could not be loaded.
+            <br><br>
+            Please check your internet connection.
+            `
         );
 
         return;
@@ -64,13 +70,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // --------------------------------------------------
-    // CHECK HTML ELEMENTS
+    // CHECK HTML
     // --------------------------------------------------
 
-    if (!form || !certificateInput || !dobInput || !resultBox) {
+    if (
+        !form ||
+        !certificateInput ||
+        !dobInput ||
+        !resultBox
+    ) {
 
         console.error(
-            "Required HTML elements are missing."
+            "Verification HTML elements are missing."
         );
 
         return;
@@ -78,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     console.log(
-        "Certificate Verification System Loaded."
+        "Bangladesh Seafarer Verification System Loaded."
     );
 
 
@@ -86,75 +97,94 @@ document.addEventListener("DOMContentLoaded", function () {
     // FORM SUBMIT
     // ==================================================
 
-    form.addEventListener("submit", async function (event) {
+    form.addEventListener(
+        "submit",
+        async function (event) {
 
-        event.preventDefault();
-
-
-        const certNo =
-            certificateInput.value.trim();
-
-        const dob =
-            dobInput.value;
+            event.preventDefault();
 
 
-        // ------------------------------------------------
-        // CHECK CDC NO.
-        // ------------------------------------------------
+            // ------------------------------------------
+            // GET VALUES
+            // ------------------------------------------
 
-        if (!certNo) {
+            const certNo =
+                certificateInput.value.trim();
 
-            showResult(
-                "error",
-                "<strong>ERROR:</strong><br><br>" +
-                "Please enter CDC No."
+            const dob =
+                dobInput.value;
+
+
+            // ------------------------------------------
+            // CHECK CDC
+            // ------------------------------------------
+
+            if (!certNo) {
+
+                showResult(
+                    "error",
+                    `
+                    <strong>ERROR</strong>
+                    <br><br>
+                    Please enter CDC No.
+                    `
+                );
+
+                certificateInput.focus();
+
+                return;
+            }
+
+
+            // ------------------------------------------
+            // CHECK DOB
+            // ------------------------------------------
+
+            if (!dob) {
+
+                showResult(
+                    "error",
+                    `
+                    <strong>ERROR</strong>
+                    <br><br>
+                    Please select Date of Birth.
+                    `
+                );
+
+                dobInput.focus();
+
+                return;
+            }
+
+
+            // ------------------------------------------
+            // VERIFY
+            // ------------------------------------------
+
+            await verifyCertificate(
+                db,
+                certNo,
+                dob
             );
 
-            certificateInput.focus();
-
-            return;
         }
-
-
-        // ------------------------------------------------
-        // CHECK DATE OF BIRTH
-        // ------------------------------------------------
-
-        if (!dob) {
-
-            showResult(
-                "error",
-                "<strong>ERROR:</strong><br><br>" +
-                "Please select Date of Birth."
-            );
-
-            dobInput.focus();
-
-            return;
-        }
-
-
-        // ------------------------------------------------
-        // VERIFY
-        // ------------------------------------------------
-
-        await verifyCertificate(
-            db,
-            certNo,
-            dob
-        );
-
-    });
+    );
 
 
     // ==================================================
     // URL AUTO VERIFICATION
+    //
+    // Example:
+    //
+    // ?certNo=TEST001&dob=1990-01-01
+    //
     // ==================================================
 
     const params =
         new URLSearchParams(
             window.location.search
         );
+
 
     const urlCertNo =
         params.get("certNo");
@@ -163,13 +193,17 @@ document.addEventListener("DOMContentLoaded", function () {
         params.get("dob");
 
 
-    if (urlCertNo && urlDob) {
+    if (
+        urlCertNo &&
+        urlDob
+    ) {
 
         certificateInput.value =
             urlCertNo;
 
         dobInput.value =
             urlDob;
+
 
         verifyCertificate(
             db,
@@ -191,25 +225,32 @@ async function verifyCertificate(
     dob
 ) {
 
+    // --------------------------------------------------
+    // LOADING
+    // --------------------------------------------------
+
     showResult(
         "loading",
-        "<strong>Checking certificate...</strong>" +
-        "<br><br>Please wait."
+        `
+        <strong>Checking certificate...</strong>
+        <br><br>
+        Please wait.
+        `
+    );
+
+
+    console.log(
+        "Searching CDC:",
+        certNo
+    );
+
+    console.log(
+        "Searching DOB:",
+        dob
     );
 
 
     try {
-
-        console.log(
-            "Searching CDC:",
-            certNo
-        );
-
-        console.log(
-            "Searching DOB:",
-            dob
-        );
-
 
         // ==================================================
         // DATABASE QUERY
@@ -234,6 +275,17 @@ async function verifyCertificate(
             .maybeSingle();
 
 
+        console.log(
+            "SUPABASE DATA:",
+            data
+        );
+
+        console.log(
+            "SUPABASE ERROR:",
+            error
+        );
+
+
         // ==================================================
         // DATABASE ERROR
         // ==================================================
@@ -241,19 +293,31 @@ async function verifyCertificate(
         if (error) {
 
             console.error(
-                "Supabase Error:",
+                "SUPABASE DATABASE ERROR:",
                 error
             );
+
 
             showResult(
                 "error",
                 `
                 <strong>DATABASE ERROR</strong>
+
                 <br><br>
+
                 ${escapeHTML(
                     error.message ||
                     "Unable to connect to database."
                 )}
+
+                <br><br>
+
+                <small>
+                Code:
+                ${escapeHTML(
+                    error.code || "N/A"
+                )}
+                </small>
                 `
             );
 
@@ -267,10 +331,17 @@ async function verifyCertificate(
 
         if (!data) {
 
+            console.log(
+                "Certificate not found."
+            );
+
+
             showResult(
                 "error",
                 `
-                <strong>✗ CERTIFICATE NOT FOUND</strong>
+                <strong>
+                    ✗ CERTIFICATE NOT FOUND
+                </strong>
 
                 <br><br>
 
@@ -296,66 +367,92 @@ async function verifyCertificate(
         // VERIFIED
         // ==================================================
 
+        console.log(
+            "CERTIFICATE VERIFIED:",
+            data
+        );
+
+
         showResult(
             "success",
             `
-            <strong>✓ CDC VERIFIED</strong>
+            <strong>
+                ✓ CDC VERIFIED
+            </strong>
 
             <br><br>
 
             <b>CDC No.:</b>
-            ${escapeHTML(data.certificate_no || "")}
+            ${escapeHTML(
+                data.certificate_no || ""
+            )}
 
             <br>
 
             <b>Name:</b>
-            ${escapeHTML(data.name || "")}
+            ${escapeHTML(
+                data.name || ""
+            )}
 
             <br>
 
             <b>Rank:</b>
-            ${escapeHTML(data.rank || "")}
+            ${escapeHTML(
+                data.rank || ""
+            )}
 
             <br>
 
             <b>Date of Birth:</b>
             ${escapeHTML(
-                formatDate(data.date_of_birth)
+                formatDate(
+                    data.date_of_birth
+                )
             )}
 
             <br>
 
             <b>Date of Issue:</b>
             ${escapeHTML(
-                formatDate(data.issue_date)
+                formatDate(
+                    data.issue_date
+                )
             )}
 
             <br>
 
             <b>Date of Expiry:</b>
             ${escapeHTML(
-                formatDate(data.expiry_date)
+                formatDate(
+                    data.expiry_date
+                )
             )}
 
             <br>
 
             <b>Status:</b>
-            ${escapeHTML(data.status || "")}
+            ${escapeHTML(
+                data.status || ""
+            )}
             `
         );
+
 
     } catch (error) {
 
         console.error(
-            "Verification Error:",
+            "VERIFICATION ERROR:",
             error
         );
+
 
         showResult(
             "error",
             `
             <strong>ERROR</strong>
+
             <br><br>
+
             ${escapeHTML(
                 error.message ||
                 String(error)
@@ -398,12 +495,16 @@ function showResult(
         resultBox.className =
             "result-box result-success";
 
-    } else if (type === "error") {
+    }
+
+    else if (type === "error") {
 
         resultBox.className =
             "result-box result-error";
 
-    } else {
+    }
+
+    else {
 
         resultBox.className =
             "result-box";
@@ -422,6 +523,7 @@ function showResult(
 function formatDate(value) {
 
     if (!value) {
+
         return "";
     }
 
@@ -453,10 +555,30 @@ function formatDate(value) {
 function escapeHTML(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 ```
