@@ -3,25 +3,28 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Bangladesh Seafarer Certificate Verification</title>
 
+    <!-- Website CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Supabase JavaScript Library -->
+    <!-- Supabase JavaScript Library - LOAD ONCE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
 
 
 <body>
 
-    <!-- ==================================================
+
+    <!-- ======================================================
          GOVERNMENT HEADER
-    ================================================== -->
+    ======================================================= -->
 
     <header class="gov-header">
 
@@ -50,9 +53,10 @@
     </header>
 
 
-    <!-- ==================================================
+
+    <!-- ======================================================
          NAVIGATION
-    ================================================== -->
+    ======================================================= -->
 
     <nav class="gov-nav">
 
@@ -67,7 +71,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="#verification">
                         Verification
                     </a>
                 </li>
@@ -79,11 +83,15 @@
     </nav>
 
 
-    <!-- ==================================================
-         VERIFICATION SECTION
-    ================================================== -->
 
-    <section class="hero-section">
+    <!-- ======================================================
+         VERIFICATION SECTION
+    ======================================================= -->
+
+    <section
+        class="hero-section"
+        id="verification"
+    >
 
         <div class="container">
 
@@ -100,6 +108,7 @@
 
                 <form id="verificationForm">
 
+
                     <!-- CDC NUMBER -->
 
                     <div class="form-group">
@@ -111,6 +120,7 @@
                         <input
                             type="text"
                             id="certificateNo"
+                            name="certificateNo"
                             class="form-control"
                             placeholder="Enter CDC No."
                             autocomplete="off"
@@ -118,6 +128,7 @@
                         >
 
                     </div>
+
 
 
                     <!-- DATE OF BIRTH -->
@@ -131,11 +142,13 @@
                         <input
                             type="date"
                             id="dateOfBirth"
+                            name="dateOfBirth"
                             class="form-control"
                             required
                         >
 
                     </div>
+
 
 
                     <!-- VERIFY BUTTON -->
@@ -147,7 +160,9 @@
                         VERIFY
                     </button>
 
+
                 </form>
+
 
 
                 <!-- ==================================================
@@ -157,8 +172,10 @@
                 <div
                     id="resultBox"
                     class="result-box"
-                    style="display:none;"
+                    style="display: none;"
+                    aria-live="polite"
                 ></div>
+
 
             </div>
 
@@ -167,9 +184,10 @@
     </section>
 
 
-    <!-- ==================================================
+
+    <!-- ======================================================
          FOOTER
-    ================================================== -->
+    ======================================================= -->
 
     <footer>
 
@@ -185,15 +203,14 @@
     </footer>
 
 
-    <!-- ==================================================
-         SUPABASE LIBRARY
-         Must load before script.js
-    ================================================== -->
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- ======================================================
+         VERIFICATION JAVASCRIPT
+         Supabase library is already loaded above.
+    ======================================================= -->
 
-    <!-- Your Verification Script -->
     <script src="script.js"></script>
+
 
 </body>
 
