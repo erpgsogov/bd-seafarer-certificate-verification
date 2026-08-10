@@ -1,5 +1,5 @@
 const SUPABASE_URL = "https://zwpcswfrpzpyccdksspi.supabase.co";
-const SUPABASE_ANON_KEY = "PASTE_YOUR_ANON_KEY_HERE";
+const SUPABASE_ANON_KEY = sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
