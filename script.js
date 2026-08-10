@@ -78,4 +78,4 @@ async function verifyCertificate(certNo, dob) {
         <b>Date of Expiry:</b> ${data.expiry_date || ""}<br>
         <b>Status:</b> ${data.status || ""}
     `;
-}const SUPABASE_ANON_KEY = "const SUPABASE_ANON_KEY = "PASTE_YOUR_ANON_KEY_HERE";
+}
