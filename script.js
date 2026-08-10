@@ -1,6 +1,6 @@
+```javascript
 // ======================================================
 // BANGLADESH SEAFARER CERTIFICATE VERIFICATION
-// SUPABASE CONFIGURATION
 // ======================================================
 
 const SUPABASE_URL =
@@ -22,11 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (typeof supabase === "undefined") {
 
+        console.error(
+            "Supabase library is not loaded."
+        );
+
         showResult(
             "error",
             "<strong>ERROR:</strong><br><br>" +
-            "Supabase library could not be loaded.<br>" +
-            "Please check your internet connection."
+            "Supabase library could not be loaded."
         );
 
         return;
@@ -67,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!form || !certificateInput || !dobInput || !resultBox) {
 
         console.error(
-            "Required verification elements are missing."
+            "Required HTML elements are missing."
         );
 
         return;
@@ -75,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     console.log(
-        "Bangladesh Seafarer Certificate Verification loaded."
+        "Certificate Verification System Loaded."
     );
 
 
@@ -88,10 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
 
 
-        // ----------------------------------------------
-        // GET INPUT VALUES
-        // ----------------------------------------------
-
         const certNo =
             certificateInput.value.trim();
 
@@ -99,9 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
             dobInput.value;
 
 
-        // ----------------------------------------------
-        // VALIDATE CDC NUMBER
-        // ----------------------------------------------
+        // ------------------------------------------------
+        // CHECK CDC NO.
+        // ------------------------------------------------
 
         if (!certNo) {
 
@@ -117,9 +116,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // ----------------------------------------------
-        // VALIDATE DATE OF BIRTH
-        // ----------------------------------------------
+        // ------------------------------------------------
+        // CHECK DATE OF BIRTH
+        // ------------------------------------------------
 
         if (!dob) {
 
@@ -135,9 +134,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // ----------------------------------------------
-        // VERIFY CERTIFICATE
-        // ----------------------------------------------
+        // ------------------------------------------------
+        // VERIFY
+        // ------------------------------------------------
 
         await verifyCertificate(
             db,
@@ -150,21 +149,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ==================================================
     // URL AUTO VERIFICATION
-    // Example:
-    // ?certNo=TEST001&dob=1990-01-01
     // ==================================================
 
-    const urlParams =
+    const params =
         new URLSearchParams(
             window.location.search
         );
 
-
     const urlCertNo =
-        urlParams.get("certNo");
+        params.get("certNo");
 
     const urlDob =
-        urlParams.get("dob");
+        params.get("dob");
 
 
     if (urlCertNo && urlDob) {
@@ -174,7 +170,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         dobInput.value =
             urlDob;
-
 
         verifyCertificate(
             db,
@@ -196,33 +191,28 @@ async function verifyCertificate(
     dob
 ) {
 
-    // --------------------------------------------------
-    // SHOW LOADING
-    // --------------------------------------------------
-
     showResult(
         "loading",
         "<strong>Checking certificate...</strong>" +
-        "<br><br>" +
-        "Please wait."
-    );
-
-
-    console.log(
-        "Checking CDC:",
-        certNo
-    );
-
-    console.log(
-        "Checking DOB:",
-        dob
+        "<br><br>Please wait."
     );
 
 
     try {
 
+        console.log(
+            "Searching CDC:",
+            certNo
+        );
+
+        console.log(
+            "Searching DOB:",
+            dob
+        );
+
+
         // ==================================================
-        // SEARCH DATABASE
+        // DATABASE QUERY
         // ==================================================
 
         const {
@@ -251,20 +241,18 @@ async function verifyCertificate(
         if (error) {
 
             console.error(
-                "SUPABASE DATABASE ERROR:",
+                "Supabase Error:",
                 error
             );
-
 
             showResult(
                 "error",
                 `
                 <strong>DATABASE ERROR</strong>
                 <br><br>
-
                 ${escapeHTML(
                     error.message ||
-                    "Unable to connect to verification database."
+                    "Unable to connect to database."
                 )}
                 `
             );
@@ -274,15 +262,10 @@ async function verifyCertificate(
 
 
         // ==================================================
-        // CERTIFICATE NOT FOUND
+        // NOT FOUND
         // ==================================================
 
         if (!data) {
-
-            console.log(
-                "Certificate not found."
-            );
-
 
             showResult(
                 "error",
@@ -310,14 +293,8 @@ async function verifyCertificate(
 
 
         // ==================================================
-        // CERTIFICATE FOUND
+        // VERIFIED
         // ==================================================
-
-        console.log(
-            "Certificate verified:",
-            data
-        );
-
 
         showResult(
             "success",
@@ -327,23 +304,17 @@ async function verifyCertificate(
             <br><br>
 
             <b>CDC No.:</b>
-            ${escapeHTML(
-                data.certificate_no || ""
-            )}
+            ${escapeHTML(data.certificate_no || "")}
 
             <br>
 
             <b>Name:</b>
-            ${escapeHTML(
-                data.name || ""
-            )}
+            ${escapeHTML(data.name || "")}
 
             <br>
 
             <b>Rank:</b>
-            ${escapeHTML(
-                data.rank || ""
-            )}
+            ${escapeHTML(data.rank || "")}
 
             <br>
 
@@ -369,27 +340,22 @@ async function verifyCertificate(
             <br>
 
             <b>Status:</b>
-            ${escapeHTML(
-                data.status || ""
-            )}
+            ${escapeHTML(data.status || "")}
             `
         );
 
     } catch (error) {
 
         console.error(
-            "VERIFICATION ERROR:",
+            "Verification Error:",
             error
         );
-
 
         showResult(
             "error",
             `
             <strong>ERROR</strong>
-
             <br><br>
-
             ${escapeHTML(
                 error.message ||
                 String(error)
@@ -423,17 +389,9 @@ function showResult(
     }
 
 
-    // --------------------------------------------------
-    // SHOW RESULT BOX
-    // --------------------------------------------------
-
     resultBox.style.display =
         "block";
 
-
-    // --------------------------------------------------
-    // RESULT TYPE
-    // --------------------------------------------------
 
     if (type === "success") {
 
@@ -452,10 +410,6 @@ function showResult(
     }
 
 
-    // --------------------------------------------------
-    // RESULT MESSAGE
-    // --------------------------------------------------
-
     resultBox.innerHTML =
         message;
 }
@@ -468,13 +422,9 @@ function showResult(
 function formatDate(value) {
 
     if (!value) {
-
         return "";
     }
 
-
-    // Supabase date normally comes as:
-    // YYYY-MM-DD
 
     const parts =
         String(value).split("-");
@@ -497,35 +447,16 @@ function formatDate(value) {
 
 
 // ======================================================
-// SECURITY: ESCAPE HTML
+// SECURITY
 // ======================================================
 
 function escapeHTML(value) {
 
     return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
+```
