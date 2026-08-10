@@ -1,8 +1,8 @@
 ```javascript
 const SUPABASE_URL = "https://zwpcswfrpzpyccdksspi.supabase.co";
 
-// এখানে আপনার Supabase Publishable/Anon Key বসা
-const SUPABASE_ANON_KEY = sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5
+// Supabase Publishable/Anon Key
+const SUPABASE_ANON_KEY = "sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5";
 
 const { createClient } = supabase;
 const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -47,10 +47,15 @@ document
             .value;
 
         if (!certNo || !dob) {
-            const resultBox = document.getElementById("resultBox");
+
+            const resultBox =
+                document.getElementById("resultBox");
 
             resultBox.style.display = "block";
-            resultBox.className = "result-box result-error";
+
+            resultBox.className =
+                "result-box result-error";
+
             resultBox.innerHTML =
                 "<strong>ERROR:</strong> Please enter CDC No. and Date of Birth.";
 
@@ -67,11 +72,16 @@ document
 
 async function verifyCertificate(certNo, dob) {
 
-    const resultBox = document.getElementById("resultBox");
+    const resultBox =
+        document.getElementById("resultBox");
 
     resultBox.style.display = "block";
-    resultBox.className = "result-box";
-    resultBox.innerHTML = "Checking certificate...";
+
+    resultBox.className =
+        "result-box";
+
+    resultBox.innerHTML =
+        "Checking certificate...";
 
 
     try {
@@ -84,9 +94,9 @@ async function verifyCertificate(certNo, dob) {
             .maybeSingle();
 
 
-        // --------------------------------------------------
+        // ==================================================
         // DATABASE ERROR
-        // --------------------------------------------------
+        // ==================================================
 
         if (error) {
 
@@ -102,9 +112,9 @@ async function verifyCertificate(certNo, dob) {
         }
 
 
-        // --------------------------------------------------
+        // ==================================================
         // CERTIFICATE NOT FOUND
-        // --------------------------------------------------
+        // ==================================================
 
         if (!data) {
 
@@ -118,9 +128,9 @@ async function verifyCertificate(certNo, dob) {
         }
 
 
-        // --------------------------------------------------
+        // ==================================================
         // CERTIFICATE VERIFIED
-        // --------------------------------------------------
+        // ==================================================
 
         resultBox.className =
             "result-box result-success";
@@ -129,19 +139,26 @@ async function verifyCertificate(certNo, dob) {
         resultBox.innerHTML = `
             <strong>✓ CDC VERIFIED</strong><br><br>
 
-            <b>CDC No.:</b> ${escapeHTML(data.certificate_no || "")}<br>
+            <b>CDC No.:</b>
+            ${escapeHTML(data.certificate_no || "")}<br>
 
-            <b>Name:</b> ${escapeHTML(data.name || "")}<br>
+            <b>Name:</b>
+            ${escapeHTML(data.name || "")}<br>
 
-            <b>Rank:</b> ${escapeHTML(data.rank || "")}<br>
+            <b>Rank:</b>
+            ${escapeHTML(data.rank || "")}<br>
 
-            <b>Date of Birth:</b> ${escapeHTML(data.date_of_birth || "")}<br>
+            <b>Date of Birth:</b>
+            ${escapeHTML(data.date_of_birth || "")}<br>
 
-            <b>Date of Issue:</b> ${escapeHTML(data.issue_date || "")}<br>
+            <b>Date of Issue:</b>
+            ${escapeHTML(data.issue_date || "")}<br>
 
-            <b>Date of Expiry:</b> ${escapeHTML(data.expiry_date || "")}<br>
+            <b>Date of Expiry:</b>
+            ${escapeHTML(data.expiry_date || "")}<br>
 
-            <b>Status:</b> ${escapeHTML(data.status || "")}
+            <b>Status:</b>
+            ${escapeHTML(data.status || "")}
         `;
 
     } catch (error) {
