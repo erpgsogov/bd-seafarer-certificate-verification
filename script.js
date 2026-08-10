@@ -2,7 +2,6 @@ const SUPABASE_URL = "https://zwpcswfrpzpyccdksspi.supabase.co";
 
 const SUPABASE_ANON_KEY = "sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5";
 
-
 document.addEventListener("DOMContentLoaded", async function () {
 
     const resultBox = document.getElementById("resultBox");
@@ -16,37 +15,28 @@ document.addEventListener("DOMContentLoaded", async function () {
     resultBox.className = "result-box";
     resultBox.innerHTML = "Testing database...";
 
-
     try {
 
         if (typeof supabase === "undefined") {
-
-            throw new Error(
-                "Supabase library is not loaded."
-            );
+            throw new Error("Supabase library is not loaded.");
         }
-
 
         const db = supabase.createClient(
             SUPABASE_URL,
             SUPABASE_ANON_KEY
         );
 
-
         const { data, error } = await db
             .from("certificates")
             .select("*")
             .limit(5);
 
-
         console.log("SUPABASE DATA:", data);
         console.log("SUPABASE ERROR:", error);
 
-
         if (error) {
 
-            resultBox.className =
-                "result-box result-error";
+            resultBox.className = "result-box result-error";
 
             resultBox.innerHTML = `
                 <strong>DATABASE ERROR</strong>
@@ -57,11 +47,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-
         if (!data || data.length === 0) {
 
-            resultBox.className =
-                "result-box result-error";
+            resultBox.className = "result-box result-error";
 
             resultBox.innerHTML = `
                 <strong>NO DATA FOUND</strong>
@@ -73,17 +61,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-
         const certificate = data[0];
 
-
-        resultBox.className =
-            "result-box result-success";
-
+        resultBox.className = "result-box result-success";
 
         resultBox.innerHTML = `
             <strong>✓ DATABASE CONNECTED</strong>
-
             <br><br>
 
             <b>Records Found:</b>
@@ -125,15 +108,11 @@ document.addEventListener("DOMContentLoaded", async function () {
             ${escapeHTML(certificate.status || "")}
         `;
 
-
     } catch (error) {
 
         console.error("SUPABASE TEST ERROR:", error);
 
-
-        resultBox.className =
-            "result-box result-error";
-
+        resultBox.className = "result-box result-error";
 
         resultBox.innerHTML = `
             <strong>ERROR</strong>
