@@ -33,7 +33,6 @@
             min-height: 100vh;
         }
 
-        /* LEFT PANEL WITH SHIP PATTERN WATERMARK */
         .left-panel {
             width: 50%;
             min-height: 100vh;
@@ -86,7 +85,6 @@
             font-weight: 400;
         }
 
-        /* RIGHT PANEL */
         .right-panel {
             width: 50%;
             min-height: 100vh;
@@ -98,7 +96,6 @@
             overflow-y: auto;
         }
 
-        /* FORM CARD */
         .form-card {
             background: #ffffff;
             padding: 35px 40px;
@@ -177,7 +174,6 @@
             background-color: #008cd4;
         }
 
-        /* SEARCH RESULT TABLE */
         .result-box {
             margin-top: 25px;
             width: 100%;
@@ -238,7 +234,6 @@
             background-color: #43a047;
         }
 
-        /* DETAILS INTERFACE STYLES */
         .details-container {
             width: 100%;
             max-width: 800px;
@@ -304,7 +299,6 @@
             background-color: #008cd4;
         }
 
-        /* GRID FOR CDC INFO */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -349,9 +343,9 @@
             background-color: #f0f0f0;
             display: block;
             margin: 0 auto;
+            cursor: pointer;
         }
 
-        /* SECTION HEADERS */
         .section-title {
             font-size: 14px;
             font-weight: bold;
@@ -372,7 +366,6 @@
             text-transform: uppercase;
         }
 
-        /* VOYAGE & MEDICAL TABLES */
         .detail-data-table {
             width: 100%;
             border-collapse: collapse;
@@ -395,7 +388,6 @@
             color: #333;
         }
 
-        /* FOOTER */
         .site-footer {
             text-align: center;
             font-size: 11px;
@@ -414,7 +406,6 @@
 <body>
 
     <div class="page-wrapper">
-        <!-- LEFT PANEL -->
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
@@ -425,10 +416,7 @@
             </div>
         </div>
 
-        <!-- RIGHT PANEL -->
         <div class="right-panel">
-            
-            <!-- SEARCH FORM VIEW -->
             <div id="searchView">
                 <div class="form-card">
                     <div class="form-header">
@@ -458,7 +446,6 @@
                 </div>
             </div>
 
-            <!-- FULL DETAILS INTERFACE VIEW -->
             <div id="detailsView" style="display: none;">
                 <div class="details-container">
                     
@@ -475,7 +462,6 @@
                         </button>
                     </div>
 
-                    <!-- CDC INFO GRID -->
                     <div class="info-grid">
                         <table class="info-table">
                             <tr>
@@ -545,7 +531,8 @@
                                 <td class="label-cell">Picture</td>
                                 <td class="value-cell" style="text-align: center;">
                                     <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <img id="profileImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACVCAMAAACoM+jHAAAAG1BMVEUAAAD///8A//8A/wAAAP//AAD//wAA//8A////zC9lAAAAAXRSTlMAQObYZgAAAFdJREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBnAWwAAAGyO0wJAAAAAElFTkSuQmCC" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" style="cursor:pointer;" title="Click to replace image">
+                                    <!-- Embedded Base64 Image to prevent broken image errors -->
+                                    <img id="profileImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACVCAMAAACoM+jHAAAAG1BMVEUAAAD///8A//8A/wAAAP//AAD//wAA//8A////zC9lAAAAAXRSTlMAQObYZgAAAFdJREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBnAWwAAAGyO0wJAAAAAElFTkSuQmCC" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" title="Click to replace image">
                                 </td>
                             </tr>
                             <tr>
@@ -595,7 +582,6 @@
                         </table>
                     </div>
 
-                    <!-- MEDICAL INFORMATION -->
                     <div class="section-title">
                         <i class="fa-regular fa-circle-user"></i> Medical Information
                     </div>
@@ -624,7 +610,6 @@
                         </table>
                     </div>
 
-                    <!-- VOYAGE ENDORSEMENT INFORMATION -->
                     <div class="blue-banner-header">
                         VOYAGE ENDROSMENT INFORMATION
                     </div>
@@ -784,14 +769,9 @@
     </div>
 
     <script>
-        var currentCdc = "";
-        var currentDob = "";
-
         document.getElementById('verificationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            currentCdc = document.getElementById('certificateNo').value.trim();
-            currentDob = document.getElementById('dateOfBirth').value;
+            var currentCdc = document.getElementById('certificateNo').value.trim();
             var resultBox = document.getElementById('resultBox');
 
             resultBox.style.display = 'block';
@@ -837,7 +817,6 @@
         function showDetailsView(cdc) {
             document.getElementById('searchView').style.display = 'none';
             document.getElementById('detailsView').style.display = 'block';
-            
             document.getElementById('detCdcNo').innerText = cdc;
             document.getElementById('infoCdcNo').innerText = cdc;
         }
@@ -858,6 +837,5 @@
             }
         }
     </script>
-
 </body>
 </html>
