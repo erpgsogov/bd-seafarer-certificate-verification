@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Government Shipping Office - CDC Verification</title>
     
-    <!-- Prevent Favicon 404 Error -->
+    <!-- Favicon 404 Error বন্ধ করার জন্য -->
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
     <!-- FontAwesome Icons -->
@@ -36,16 +36,15 @@
             width: 100vw;
         }
 
-        /* LEFT PANEL WITH ACCURATE SHIP WATERMARK PATTERN */
+        /* LEFT PANEL WITH ORIGINAL BG-SHIP.PNG WATERMARK */
         .left-panel {
             width: 50vw;
             min-width: 50vw;
-            background-color: #008037;
-            /* Exact embedded SVG pattern for cargo/ship watermark grid */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='%23000000' fill-opacity='0.15'%3E%3C!-- Ship 1 --%3E%3Cpath d='M10 50 L30 25 L80 25 L100 50 L85 70 L20 70 Z M35 25 L35 15 L50 15 L50 25 M60 25 L60 10 L75 10 L75 25'/%3E%3C!-- Ship 2 --%3E%3Cpath d='M130 170 L150 145 L200 145 L220 170 L205 190 L140 190 Z M155 145 L155 135 L170 135 L170 145 M180 145 L180 130 L195 130 L195 145'/%3E%3C!-- Sail Boat 1 --%3E%3Cpath d='M150 40 L180 10 L180 40 Z M185 40 L210 20 L200 40 Z M140 45 L220 45 L200 55 L150 55 Z'/%3E%3C!-- Sail Boat 2 --%3E%3Cpath d='M30 160 L60 130 L60 160 Z M65 160 L90 140 L80 160 Z M20 165 L100 165 L80 175 L30 175 Z'/%3E%3C/g%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-position: center;
-            background-size: 200px auto;
+            background-color: #008037; /* আসল ওয়েবসাইটের সবুজ রঙ */
+            background-image: url('bg-ship.png'); /* মূল ইমেজ ফাইল */
+            background-repeat: repeat; /* পুরো ব্যাকগ্রাউন্ড জুড়ে বারবার রিপিট হবে */
+            background-position: center top;
+            background-size: auto; /* অথবা আপনার ইমেজের সাইজ অনুযায়ী 300px দিয়ে অ্যাডজাস্ট করতে পারেন */
             display: flex;
             justify-content: center;
             align-items: center;
