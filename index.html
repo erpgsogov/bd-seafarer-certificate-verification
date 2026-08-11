@@ -114,7 +114,7 @@
             border-radius: 4px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             width: 100%;
-            max-width: 620px;
+            max-width: 650px;
             margin: auto;
             border: 1px solid #dce3e8;
         }
@@ -237,18 +237,17 @@
             overflow-x: auto;
             background: #ffffff;
             border: 1px solid #dce3e8;
-            padding: 2px;
         }
 
         .gso-result-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 11px;
             text-align: left;
         }
 
         .gso-result-table th, .gso-result-table td {
-            padding: 10px;
+            padding: 9px 8px;
             border: 1px solid #dce3e8;
             white-space: nowrap;
             color: #333;
@@ -257,17 +256,21 @@
         .gso-result-table th {
             background-color: #f8f9fa;
             font-weight: bold;
+            color: #0073aa;
         }
 
         .btn-details {
             background-color: #4caf50;
             color: white;
             border: none;
-            padding: 5px 12px;
+            padding: 5px 10px;
             border-radius: 3px;
-            font-size: 12px;
+            font-size: 11px;
             cursor: pointer;
             font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .btn-details:hover {
@@ -463,16 +466,26 @@
                             <table class="gso-result-table">
                                 <thead>
                                     <tr>
+                                        <th>SERIAL NO</th>
                                         <th>NAME</th>
+                                        <th>DATE OF BIRTH</th>
                                         <th>CDC NUMBER</th>
+                                        <th>DATE OF ISSUE</th>
+                                        <th>DATE OF EXPIRE</th>
+                                        <th>PLACE OF ISSUE</th>
                                         <th>DETAILS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td>1</td>
                                         <td>MD KHALILUR RAHMAN</td>
+                                        <td>05-04-1990</td>
                                         <td id="resultCdcNo">C/O/6628</td>
-                                        <td><button class="btn-details" onclick="showDetailsView()">Details</button></td>
+                                        <td>15/09/2023</td>
+                                        <td>14/09/2033</td>
+                                        <td>CHATTOGRAM</td>
+                                        <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -495,6 +508,8 @@
                         <tr><td class="label-cell">NAME</td><td>MD KHALILUR RAHMAN</td></tr>
                         <tr><td class="label-cell">RANK</td><td>CHIEF MATE</td></tr>
                         <tr><td class="label-cell">DATE OF ISSUE</td><td>15/09/2023</td></tr>
+                        <tr><td class="label-cell">DATE OF EXPIRE</td><td>14/09/2033</td></tr>
+                        <tr><td class="label-cell">PLACE OF ISSUE</td><td>CHATTOGRAM</td></tr>
                         <tr><td class="label-cell">AGE</td><td>35 Years</td></tr>
                         <tr><td class="label-cell">DATE OF BIRTH</td><td>05/04/1990</td></tr>
                     </table>
@@ -531,7 +546,6 @@
     </div>
 
     <script>
-        // Random Captcha Generator
         function generateCaptcha() {
             var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var captcha = "";
