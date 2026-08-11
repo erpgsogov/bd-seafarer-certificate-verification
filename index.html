@@ -36,11 +36,10 @@
         .left-panel {
             width: 50%;
             min-height: 100vh;
-            background-color: #01833d;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='%23000000' fill-opacity='0.12'%3E%3Cpath d='M20 70 L50 35 L170 35 L200 70 L180 95 L30 95 Z M140 35 L140 18 L165 18 L165 35 M145 18 L145 10 L160 10 L160 18 M60 35 L60 28 L125 28 L125 35 M70 28 L70 22 L115 22 L115 28'/%3E%3Cpath d='M130 230 L165 190 L280 190 L310 230 L290 260 L145 260 Z M180 190 L180 160 L260 160 L260 190 M195 160 L195 145 L245 145 L245 160 M210 145 L210 135 L230 135 L230 145 M185 170 H255 M185 180 H255'/%3E%3Cpath d='M220 65 L270 15 L270 65 Z M278 65 L310 35 L298 65 Z M208 72 L318 72 L298 85 L220 85 Z'/%3E%3Cpath d='M30 220 L65 180 L115 180 L125 220 L110 235 L40 235 Z M55 180 L55 160 L95 160 L95 180 M70 160 L70 148 L85 148 L85 160'/%3E%3C/g%3E%3C/svg%3E");
+            background-color: #00833d;
+            background-image: url("bg-ship.png");
             background-repeat: repeat;
             background-position: center;
-            background-size: 320px 320px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -54,19 +53,22 @@
         }
 
         .logo-circle {
-            width: 110px;
-            height: 110px;
+            width: 115px;
+            height: 115px;
             margin: 0 auto 20px auto;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            padding: 4px;
         }
 
         .logo-circle img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.25));
         }
 
         .brand-content h1 {
@@ -78,7 +80,7 @@
         }
 
         .brand-content p {
-            font-size: 15px;
+            font-size: 14px;
             color: #ffffff;
             opacity: 0.95;
             line-height: 1.4;
