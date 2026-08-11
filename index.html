@@ -367,7 +367,7 @@
             background-color: #f0f0f0;
             display: block;
             margin: 0 auto;
-            cursor: pointer; /* ছবির ওপর নিলেই পয়েন্টার দেখাবে যাতে বোঝা যায় ক্লিক করা যায় */
+            cursor: pointer; /* ছবির ওপর নিলেই পয়েন্টার দেখাবে */
         }
 
         .section-title {
@@ -563,8 +563,8 @@
                                 <td class="label-cell">Picture</td>
                                 <td class="value-cell profile-img-wrap">
                                     <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <!-- ছবির ওপর ক্লিক করলেই ফাইল আপলোড অপশন আসবে, কোনো বাটন দেখাবে না -->
-                                    <img id="profileImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACVCAMAAACoM+jHAAAAG1BMVEUAAAD///8A//8A/wAAAP//AAD//wAA//8A////zC9lAAAAAXRSTlMAQObYZgAAAFdJREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBnAWwAAAGyO0wJAAAAAElFTkSuQmCC" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" title="Click to change photo">
+                                    <!-- বাটন সম্পূর্ণ হাইড, ছবির ওপর ক্লিক করলেই ছবি আপলোড বা পরিবর্তনের অপশন আসবে -->
+                                    <img id="profileImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACVCAMAAACoM+jHAAAAG1BMVEUAAAD///8A//8A/wAAAP//AAD//wAA//8A////zC9lAAAAAXRSTlMAQObYZgAAAFdJREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBnAWwAAAGyO0wJAAAAAElFTkSuQmCC" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" title="Click to upload/change photo">
                                 </td>
                             </tr>
                             <tr>
