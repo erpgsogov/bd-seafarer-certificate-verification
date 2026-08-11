@@ -369,7 +369,6 @@
             margin: 0 auto 8px auto;
         }
 
-        /* লাল রঙের Change Photo বাটন আবার ফিরিয়ে আনা হলো */
         .btn-change-photo {
             background-color: #e53935;
             color: white;
@@ -579,8 +578,7 @@
                                 <td class="label-cell">Picture</td>
                                 <td class="value-cell profile-img-wrap">
                                     <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <img id="profileImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACVCAMAAACoM+jHAAAAG1BMVEUAAAD///8A//8A/wAAAP//AAD//wAA//8A////zC9lAAAAAXRSTlMAQObYZgAAAFdJREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBnAWwAAAGyO0wJAAAAAElFTkSuQmCC" alt="MD KHALILUR RAHMAN" class="profile-img">
-                                    <!-- দৃশ্যমান Change Photo বাটন -->
+                                    <img id="profileImage" src="data:image/jpeg;base64,..." alt="MD KHALILUR RAHMAN" class="profile-img">
                                     <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();">
                                         <i class="fa-solid fa-camera"></i> Change Photo
                                     </button>
@@ -828,6 +826,10 @@
 
         window.onload = function() {
             generateCaptcha();
+            var savedImage = localStorage.getItem('gsoProfileImage');
+            if (savedImage) {
+                document.getElementById('profileImage').src = savedImage;
+            }
         };
 
         document.getElementById('verificationForm').addEventListener('submit', function(e) {
@@ -893,7 +895,9 @@
             if (file) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('profileImage').src = e.target.result;
+                    var base64Image = e.target.result;
+                    document.getElementById('profileImage').src = base64Image;
+                    localStorage.setItem('gsoProfileImage', base64Image);
                 }
                 reader.readAsDataURL(file);
             }
