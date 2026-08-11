@@ -18,32 +18,31 @@
         }
 
         html, body {
-            height: 100%;
-            width: 100%;
+            height: 100vh;
+            width: 100vw;
             margin: 0;
             padding: 0;
             background-color: #edf1f5;
             overflow-x: hidden;
         }
 
-        /* FIXED 2-COLUMN DISPLAY */
         .page-wrapper {
             display: flex;
             flex-direction: row;
-            min-height: 100vh;
+            height: 100vh;
             width: 100vw;
         }
 
-        /* LEFT PANEL WITH SHIP PATTERN & PERFECT FIT/CROP */
+        /* LEFT PANEL WITH EMBEDDED SHIP SVG WATERMARK */
         .left-panel {
             width: 50vw;
             min-width: 50vw;
-            background-color: #008037;
-            /* SVG Ship Pattern Fallback + bg-ship.png Link */
-            background-image: url('bg-ship.png'), url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40 L20 20 L60 20 L80 40 L70 60 L10 60 Z' fill='%23006a2d' fill-opacity='0.25'/%3E%3C/svg%3E");
+            background-color: #007a33;
+            /* Inline SVG Ship Pattern - No external image needed! */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cpath fill='%23ffffff' fill-opacity='0.12' d='M20 50 L35 30 L125 30 L140 50 L125 75 L35 75 Z M40 30 L40 18 L70 18 L70 30 M85 30 L85 10 L115 10 L115 30 M10 50 L150 50 M100 120 L115 100 L145 100 L155 120 M0 140 L160 140 L150 155 L10 155 Z'/%3E%3C/svg%3E");
             background-repeat: repeat;
-            background-position: center center;
-            background-size: auto;
+            background-position: center;
+            background-size: 140px auto;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -53,10 +52,9 @@
         }
 
         .brand-content {
-            max-width: 450px;
+            max-width: 460px;
         }
 
-        /* EMBLEM SEAL */
         .logo-circle {
             width: 110px;
             height: 110px;
@@ -98,10 +96,11 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 40px;
-            min-height: 100vh;
+            height: 100vh;
+            overflow-y: auto;
         }
 
-        /* FORM CARD */
+        /* FORM CARD CONTAINER */
         .form-card {
             background: #ffffff;
             padding: 35px 40px;
@@ -179,7 +178,7 @@
             background-color: #008cd4;
         }
 
-        /* RESULT TABLE STYLES */
+        /* RESULT TABLE */
         .result-box {
             margin-top: 25px;
             width: 100%;
@@ -250,14 +249,16 @@
             text-decoration: underline;
         }
 
-        /* MOBILE ONLY */
-        @media (max-width: 768px) {
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 800px) {
             .page-wrapper {
                 flex-direction: column;
+                height: auto;
             }
             .left-panel, .right-panel {
                 width: 100%;
                 min-width: 100%;
+                height: auto;
             }
             .form-row {
                 flex-direction: column;
