@@ -1,23 +1,15 @@
 // ==========================================
 // BANGLADESH SEAFARER CERTIFICATE VERIFICATION
-// FINAL VERSION
-// ==========================================
-
-// ==========================================
-// SUPABASE CONFIGURATION
+// FINAL FIX
 // ==========================================
 
 const SUPABASE_URL = "https://zwpcswfrpzpyccdksspi.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5";
-// ==========================================
-// START APPLICATION
-// ==========================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
     console.log("==========================================");
-    console.log("BANGLADESH SEAFARER VERIFICATION");
-    console.log("APPLICATION STARTED");
+    console.log("BANGLADESH SEAFARER VERIFICATION STARTED");
     console.log("==========================================");
 
     const form = document.getElementById("verificationForm");
@@ -31,19 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    if (typeof window.supabase === "undefined") {
+    if (typeof window.supabase === "undefined" || !window.supabase.createClient) {
         showResult(
             "error",
-            `
-            <strong>SUPABASE LIBRARY ERROR</strong>
-            <br><br>
-            Supabase JavaScript library was not loaded.
-            `
+            `<strong>SUPABASE LIBRARY ERROR</strong><br><br>Supabase JavaScript CDN library could not be initialized.`
         );
         return;
     }
 
-    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // Direct initialization
+    const db = window.supabase.createClient(
+        "https://zwpcswfrpzpyccdksspi.supabase.co",
+        "sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5"
+    );
 
     form.addEventListener("submit", async function (event) {
 
@@ -53,18 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const dob = dobInput.value.trim();
 
         if (!certNo) {
-            showResult(
-                "error",
-                "<strong>ERROR</strong><br><br>Please enter CDC / Certificate No."
-            );
+            showResult("error", "<strong>ERROR</strong><br><br>Please enter CDC / Certificate No.");
             return;
         }
 
         if (!dob) {
-            showResult(
-                "error",
-                "<strong>ERROR</strong><br><br>Please select Date of Birth."
-            );
+            showResult("error", "<strong>ERROR</strong><br><br>Please select Date of Birth.");
             return;
         }
 
@@ -84,14 +70,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function verifyCertificate(db, certNo, dob) {
 
-    showResult(
-        "loading",
-        "<strong>Checking certificate...</strong><br><br>Please wait."
-    );
+    showResult("loading", "<strong>Checking certificate...</strong><br><br>Please wait.");
 
     try {
 
-        // Using .ilike for case-insensitive lookup
         const { data, error } = await db
             .from("certificates")
             .select(`
@@ -110,14 +92,7 @@ async function verifyCertificate(db, certNo, dob) {
 
             showResult(
                 "error",
-                `
-                <strong>DATABASE ERROR</strong>
-                <br><br>
-                ${escapeHTML(error.message || "Unable to access database.")}
-                <br><br>
-                <b>Error Code:</b>
-                ${escapeHTML(error.code || "N/A")}
-                `
+                `<strong>DATABASE ERROR</strong><br><br>${escapeHTML(error.message || "Unable to access database.")}<br><br><b>Error Code:</b> ${escapeHTML(error.code || "N/A")}`
             );
 
             return;
@@ -127,13 +102,7 @@ async function verifyCertificate(db, certNo, dob) {
 
             showResult(
                 "error",
-                `
-                <strong>✗ CDC NOT FOUND</strong>
-                <br><br>
-                Certificate No.
-                <b>${escapeHTML(certNo)}</b>
-                was not found in the database.
-                `
+                `<strong>✗ CDC NOT FOUND</strong><br><br>Certificate No. <b>${escapeHTML(certNo)}</b> was not found in the database.`
             );
 
             return;
@@ -156,14 +125,7 @@ async function verifyCertificate(db, certNo, dob) {
 
             showResult(
                 "error",
-                `
-                <strong>✗ NOT VERIFIED</strong>
-                <br><br>
-                Certificate No.:
-                <b>${escapeHTML(data[0].certificate_no || certNo)}</b>
-                <br><br>
-                Date of Birth does not match our records.
-                `
+                `<strong>✗ NOT VERIFIED</strong><br><br>Certificate No.: <b>${escapeHTML(data[0].certificate_no || certNo)}</b><br><br>Date of Birth does not match our records.`
             );
 
             return;
@@ -171,55 +133,21 @@ async function verifyCertificate(db, certNo, dob) {
 
         showResult(
             "success",
-            `
-            <strong>✓ CDC VERIFIED</strong>
-
-            <br><br>
-
-            <b>Certificate No.:</b>
-            ${escapeHTML(matchedRecord.certificate_no || "")}
-
-            <br>
-
-            <b>Name:</b>
-            ${escapeHTML(matchedRecord.name || "")}
-
-            <br>
-
-            <b>Rank:</b>
-            ${escapeHTML(matchedRecord.rank || "")}
-
-            <br>
-
-            <b>Date of Birth:</b>
-            ${formatDate(matchedRecord.date_of_birth)}
-
-            <br>
-
-            <b>Date of Issue:</b>
-            ${formatDate(matchedRecord.issue_date)}
-
-            <br>
-
-            <b>Date of Expiry:</b>
-            ${formatDate(matchedRecord.expiry_date)}
-
-            <br>
-
-            <b>Status:</b>
-            ${escapeHTML(matchedRecord.status || "")}
-            `
+            `<strong>✓ CDC VERIFIED</strong><br><br>
+            <b>Certificate No.:</b> ${escapeHTML(matchedRecord.certificate_no || "")}<br>
+            <b>Name:</b> ${escapeHTML(matchedRecord.name || "")}<br>
+            <b>Rank:</b> ${escapeHTML(matchedRecord.rank || "")}<br>
+            <b>Date of Birth:</b> ${formatDate(matchedRecord.date_of_birth)}<br>
+            <b>Date of Issue:</b> ${formatDate(matchedRecord.issue_date)}<br>
+            <b>Date of Expiry:</b> ${formatDate(matchedRecord.expiry_date)}<br>
+            <b>Status:</b> ${escapeHTML(matchedRecord.status || "")}`
         );
 
     } catch (error) {
 
         showResult(
             "error",
-            `
-            <strong>CONNECTION ERROR</strong>
-            <br><br>
-            ${escapeHTML(error.message || String(error))}
-            `
+            `<strong>CONNECTION ERROR</strong><br><br>${escapeHTML(error.message || String(error))}`
         );
     }
 }
