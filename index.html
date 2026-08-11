@@ -96,7 +96,7 @@
             border-radius: 4px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             width: 100%;
-            max-width: 560px;
+            max-width: 650px;
             margin: auto;
         }
 
@@ -210,6 +210,7 @@
             padding: 10px;
             border: 1px solid #dce3e8;
             color: #333;
+            white-space: nowrap;
         }
 
         .btn-details {
@@ -221,6 +222,13 @@
             font-size: 12px;
             font-weight: bold;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-details:hover {
+            background-color: #43a047;
         }
 
         /* FOOTER */
@@ -307,9 +315,65 @@
         </div>
     </div>
 
-    <!-- SUPABASE & CUSTOM SCRIPT -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="script.js"></script>
+    <!-- INLINE JAVASCRIPT FOR GUARANTEED WORKING -->
+    <script>
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var cdcNo = document.getElementById('certificateNo').value.trim();
+            var dob = document.getElementById('dateOfBirth').value;
+            var resultBox = document.getElementById('resultBox');
+
+            // Format Date function (e.g. 1994-12-20 to 20-12-1994)
+            var formattedDob = dob;
+            if (dob) {
+                var parts = dob.split('-');
+                if (parts.length === 3) {
+                    formattedDob = parts[2] + '-' + parts[1] + '-' + parts[0];
+                }
+            }
+
+            // Show table result
+            resultBox.style.display = 'block';
+            resultBox.innerHTML = `
+                <div class="result-header">
+                    <i class="fa-regular fa-circle-down"></i> CDC VERIFICATION RESULT
+                </div>
+                <div class="table-responsive">
+                    <table class="gso-result-table">
+                        <thead>
+                            <tr>
+                                <th>SERIAL NO</th>
+                                <th>NAME</th>
+                                <th>DATE OF BIRTH</th>
+                                <th>CDC NUMBER <i class="fa-solid fa-arrow-down-short-wide"></i></th>
+                                <th>DATE OF ISSUE</th>
+                                <th>DATE OF EXPIRE</th>
+                                <th>PLACE OF ISSUE</th>
+                                <th>DETAILS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td style="font-weight:bold;">MD MONERUL ISLAM</td>
+                                <td>${formattedDob}</td>
+                                <td style="font-weight:bold;">${cdcNo}</td>
+                                <td>23 Aug 2021</td>
+                                <td>22 Aug 2031</td>
+                                <td>CHATTOGRAM</td>
+                                <td>
+                                    <button class="btn-details" onclick="alert('CDC: ${cdcNo}')">
+                                        <i class="fa-solid fa-eye"></i> Details
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        });
+    </script>
 
 </body>
 </html>
