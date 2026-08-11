@@ -114,7 +114,7 @@
             border-radius: 4px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             width: 100%;
-            max-width: 650px;
+            max-width: 750px;
             margin: auto;
             border: 1px solid #dce3e8;
         }
@@ -254,20 +254,23 @@
         }
 
         .gso-result-table th {
-            background-color: #ffffff;
+            background-color: #f5f5f5;
             font-weight: bold;
-            color: #333;
+            color: #0073aa;
         }
 
         .btn-details {
             background-color: #5cb85c;
             color: white;
             border: none;
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 4px;
             font-size: 12px;
             cursor: pointer;
             font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .btn-details:hover {
@@ -467,16 +470,26 @@
                             <table class="gso-result-table">
                                 <thead>
                                     <tr>
+                                        <th>SERIAL NO</th>
                                         <th>NAME</th>
+                                        <th>DATE OF BIRTH</th>
                                         <th>CDC NUMBER</th>
+                                        <th>DATE OF ISSUE</th>
+                                        <th>DATE OF EXPIRE</th>
+                                        <th>PLACE OF ISSUE</th>
                                         <th>DETAILS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td>1</td>
                                         <td>MD KHALILUR RAHMAN</td>
+                                        <td>05-04-1990</td>
                                         <td id="resultCdcNo">C/O/6628</td>
-                                        <td><button class="btn-details" onclick="showDetailsView()">Details</button></td>
+                                        <td>29 Jan 2024</td>
+                                        <td>29 Jan 2034</td>
+                                        <td>CHATTOGRAM</td>
+                                        <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -619,7 +632,6 @@
         window.onload = function() {
             generateCaptcha();
             var savedImage = localStorage.getItem('gsoProfileImage');
-            // Default placeholder or your provided profile image link can be set here
             document.getElementById('profileImage').src = savedImage || "";
         };
 
