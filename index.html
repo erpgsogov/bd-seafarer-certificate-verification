@@ -44,12 +44,13 @@
             align-items: center;
             color: #ffffff;
             text-align: center;
-            padding: 40px 20px;
+            padding: 40px 10px;
             border-right: 5px solid #006630;
         }
 
         .brand-content {
-            max-width: 480px;
+            width: 100%;
+            max-width: 550px;
         }
 
         .logo-circle {
@@ -72,12 +73,13 @@
         }
 
         .brand-content h1 {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: 10px;
             color: #ffffff;
             line-height: 1.2;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .brand-content p {
@@ -669,12 +671,10 @@
             var tableBody = document.getElementById('resultTableBody');
             tableBody.innerHTML = "";
 
-            // সঠিক ডাটা (এখানে আপনার নির্দিষ্ট CDC No: C/O/6628 এবং DOB: 1990-04-05 ম্যাচ করা হয়েছে)
             var validCdc = "C/O/6628";
             var validDob = "1990-04-05";
 
             if (currentCdc === validCdc && currentDob === validDob) {
-                // ফরম্যাটেড ডেট তৈরি
                 var formattedDob = "05-04-1990";
                 
                 var rowHTML = `
@@ -691,12 +691,10 @@
                 `;
                 tableBody.innerHTML = rowHTML;
 
-                // ডিটেইলস পেজের ডেটা আপডেট
                 document.getElementById('detCdcNo').innerText = currentCdc;
                 document.getElementById('detCdcNumCell').innerText = currentCdc;
                 document.getElementById('detDobCell').innerText = "05 APRIL 1990";
             } else {
-                // ভুল ইনপুট দিলে নো ডাটা মেসেজ দেখাবে
                 tableBody.innerHTML = `<tr><td colspan="8" class="no-data-msg">No Data Found for the given CDC Number and Date of Birth!</td></tr>`;
             }
 
