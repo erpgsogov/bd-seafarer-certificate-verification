@@ -463,8 +463,8 @@
                         <div class="form-row">
                             <label for="captchaInput">Verification Code <span>*</span></label>
                             <div class="captcha-container">
-                                <div class="captcha-box">703215</div>
-                                <input type="text" id="captchaInput" placeholder="Please enter the numbers displayed above" value="703215" required>
+                                <div class="captcha-box" id="captchaDisplay">703215</div>
+                                <input type="text" id="captchaInput" placeholder="Please enter the numbers displayed above" required>
                             </div>
                         </div>
 
@@ -796,6 +796,18 @@
     </div>
 
     <script>
+        // রেন্ডম ৬ ডিজিটের ভেরিফিকেশন কোড জেনারেট করার ফাংশন
+        function generateCaptcha() {
+            var randomCode = Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('captchaDisplay').innerText = randomCode;
+            document.getElementById('captchaInput').value = ''; // ইনপুট বক্স খালি রাখবে
+        }
+
+        // পেজ লোড হওয়ার সাথে সাথেই রেন্ডম কোড জেনারেট হবে
+        window.onload = function() {
+            generateCaptcha();
+        };
+
         document.getElementById('verificationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             var currentCdc = document.getElementById('certificateNo').value.trim();
@@ -851,6 +863,8 @@
         function showSearchView() {
             document.getElementById('detailsView').style.display = 'none';
             document.getElementById('searchView').style.display = 'block';
+            // ব্যাক করলে নতুন ভেরিফিকেশন কোড জেনারেট হবে
+            generateCaptcha();
         }
 
         function previewFile(input) {
