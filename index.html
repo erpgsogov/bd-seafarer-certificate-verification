@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bangladesh Seafarer Certificate Verification - CDC VERIFICATION</title>
     
+    <!-- 1. FIX FAVICON 404 ERROR -->
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -33,12 +36,11 @@
             width: 100vw;
         }
 
-        /* LEFT PANEL WITH EMBEDDED SHIP SVG WATERMARK */
+        /* 2. FIX BG-SHIP.PNG 404 ERROR (Pure SVG Watermark Only) */
         .left-panel {
             width: 50vw;
             min-width: 50vw;
             background-color: #007a33;
-            /* Inline SVG Ship Pattern - No external image needed! */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cpath fill='%23ffffff' fill-opacity='0.12' d='M20 50 L35 30 L125 30 L140 50 L125 75 L35 75 Z M40 30 L40 18 L70 18 L70 30 M85 30 L85 10 L115 10 L115 30 M10 50 L150 50 M100 120 L115 100 L145 100 L155 120 M0 140 L160 140 L150 155 L10 155 Z'/%3E%3C/svg%3E");
             background-repeat: repeat;
             background-position: center;
@@ -100,7 +102,7 @@
             overflow-y: auto;
         }
 
-        /* FORM CARD CONTAINER */
+        /* FORM CARD */
         .form-card {
             background: #ffffff;
             padding: 35px 40px;
@@ -249,7 +251,6 @@
             text-decoration: underline;
         }
 
-        /* MOBILE RESPONSIVE */
         @media (max-width: 800px) {
             .page-wrapper {
                 flex-direction: column;
@@ -275,7 +276,6 @@
 <body>
 
     <div class="page-wrapper">
-        <!-- LEFT PANEL -->
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
@@ -286,7 +286,6 @@
             </div>
         </div>
 
-        <!-- RIGHT PANEL -->
         <div class="right-panel">
             <div class="form-card">
                 <div class="form-header">
