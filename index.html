@@ -366,22 +366,8 @@
             border: 1px solid #ccc;
             background-color: #f0f0f0;
             display: block;
-            margin: 0 auto 5px auto;
-        }
-
-        .btn-change-photo {
-            background-color: #e53935;
-            color: white;
-            border: none;
-            padding: 4px 10px;
-            border-radius: 3px;
-            font-size: 11px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .btn-change-photo:hover {
-            background-color: #c62828;
+            margin: 0 auto;
+            cursor: pointer; /* ছবির ওপর নিলেই পয়েন্টার দেখাবে যাতে বোঝা যায় ক্লিক করা যায় */
         }
 
         .section-title {
@@ -577,11 +563,8 @@
                                 <td class="label-cell">Picture</td>
                                 <td class="value-cell profile-img-wrap">
                                     <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <!-- আপনার দেওয়া ছবিটি সরাসরি ডিফল্ট হিসেবে সেট করা হয়েছে -->
-                                    <img id="profileImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACVCAMAAACoM+jHAAAAG1BMVEUAAAD///8A//8A/wAAAP//AAD//wAA//8A////zC9lAAAAAXRSTlMAQObYZgAAAFdJREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBnAWwAAAGyO0wJAAAAAElFTkSuQmCC" alt="MD KHALILUR RAHMAN" class="profile-img">
-                                    <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();">
-                                        <i class="fa-solid fa-camera"></i> Change Photo
-                                    </button>
+                                    <!-- ছবির ওপর ক্লিক করলেই ফাইল আপলোড অপশন আসবে, কোনো বাটন দেখাবে না -->
+                                    <img id="profileImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACVCAMAAACoM+jHAAAAG1BMVEUAAAD///8A//8A/wAAAP//AAD//wAA//8A////zC9lAAAAAXRSTlMAQObYZgAAAFdJREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBnAWwAAAGyO0wJAAAAAElFTkSuQmCC" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" title="Click to change photo">
                                 </td>
                             </tr>
                             <tr>
