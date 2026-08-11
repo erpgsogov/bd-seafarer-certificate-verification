@@ -559,7 +559,8 @@
                                 <td class="label-cell">Picture</td>
                                 <td class="value-cell" style="text-align: center;">
                                     <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <img id="profileImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACVCAMAAACoM+jHAAAAG1BMVEUAAAD///8A//8A/wAAAP//AAD//wAA//8A////zC9lAAAAAXRSTlMAQObYZgAAAFdJREFUeNrtwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBnAWwAAAGyO0wJAAAAAElFTkSuQmCC" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" title="Click to replace image">
+                                    <!-- এখানে Base64 কোডের পরিবর্তে ছবির সঠিক লিংক বা ফাইল নাম দেওয়া হয়েছে -->
+                                    <img id="profileImage" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" title="Click to replace image">
                                 </td>
                             </tr>
                             <tr>
@@ -796,14 +797,12 @@
     </div>
 
     <script>
-        // রেন্ডম ৬ ডিজিটের ভেরিফিকেশন কোড জেনারেট করার ফাংশন
         function generateCaptcha() {
             var randomCode = Math.floor(100000 + Math.random() * 900000);
             document.getElementById('captchaDisplay').innerText = randomCode;
-            document.getElementById('captchaInput').value = ''; // ক্যাপচা ইনপুট বক্স খালি রাখবে
+            document.getElementById('captchaInput').value = '';
         }
 
-        // পেজ লোড হওয়ার সাথে সাথে শুধুমাত্র ক্যাপচা কোড জেনারেট হবে, বাকি ফিল্ডগুলো খালি থাকবে
         window.onload = function() {
             generateCaptcha();
         };
@@ -863,7 +862,6 @@
         function showSearchView() {
             document.getElementById('detailsView').style.display = 'none';
             document.getElementById('searchView').style.display = 'block';
-            // ব্যাক করলে নতুন ভিন্ন ভেরিফিকেশন কোড জেনারেট হবে
             generateCaptcha();
         }
 
