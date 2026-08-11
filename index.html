@@ -1,90 +1,386 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Shipping Office</title>
+    <title>Government Shipping Office - CDC Verification</title>
     
-    <!-- Favicon 404 Error বন্ধের জন্য -->
+    <!-- Favicon 404 Error বন্ধ করার জন্য -->
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
             text-shadow: none !important;
         }
 
         html, body {
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-            background-color: #008037;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            background-color: #edf1f5;
+            overflow-x: hidden;
         }
 
-        .hero-bg {
-            width: 100vw;
-            height: 100vh;
+        .page-wrapper {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            flex-direction: row;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* LEFT PANEL WITH SHIP WATERMARK PATTERN */
+        .left-panel {
+            width: 50vw;
+            min-width: 50vw;
             background-color: #008037;
-            /* 100% Embedded Watermark Pattern (No External File Needed) */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cg fill='%23000000' fill-opacity='0.13'%3E%3C!-- Container Ship 1 --%3E%3Cpath d='M15 60 L45 30 L110 30 L140 60 L120 85 L25 85 Z M50 30 L50 18 L70 18 L70 30 M80 30 L80 12 L100 12 L100 30'/%3E%3C!-- Ship 2 --%3E%3Cpath d='M155 200 L185 170 L250 170 L280 200 L260 225 L165 225 Z M190 170 L190 158 L210 158 L210 170 M220 170 L220 152 L240 152 L240 170'/%3E%3C!-- Sailboat 1 --%3E%3Cpath d='M180 50 L220 10 L220 50 Z M228 50 L255 25 L245 50 Z M170 56 L265 56 L245 68 L180 68 Z'/%3E%3C!-- Sailboat 2 --%3E%3Cpath d='M40 190 L80 150 L80 190 Z M88 190 L115 165 L105 190 Z M30 196 L125 196 L105 208 L40 208 Z'/%3E%3C/g%3E%3C/svg%3E");
+            /* Direct Base64 PNG Watermark pattern for guaranteed visual display */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220"><g fill="%23000000" fill-opacity="0.14"><path d="M10 50 L35 20 L90 20 L110 50 L95 70 L25 70 Z M35 20 L35 10 L50 10 L50 20 M60 20 L60 8 L75 8 L75 20"/><path d="M120 160 L145 130 L200 130 L220 160 L205 180 L135 180 Z M145 130 L145 120 L160 120 L160 130 M170 130 L170 118 L185 118 L185 130"/><path d="M140 45 L175 10 L175 45 Z M182 45 L205 22 L195 45 Z M130 50 L212 50 L195 60 L140 60 Z"/><path d="M30 155 L65 120 L65 155 Z M72 155 L95 132 L85 155 Z M20 160 L102 160 L85 170 L30 170 Z"/></g></svg>');
             background-repeat: repeat;
             background-position: center;
-            background-size: 260px 260px;
-            padding: 20px;
+            background-size: 220px 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
         }
 
-        .logo-box {
-            width: 110px;
-            height: 110px;
-            margin-bottom: 20px;
+        .brand-content {
+            max-width: 480px;
         }
 
-        .logo-box img {
+        .logo-circle {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-circle img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.25));
         }
 
-        .title {
-            color: #ffffff;
-            font-size: 32px;
+        .brand-content h1 {
+            font-size: 30px;
             font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 0.3px;
-        }
-
-        .subtitle {
+            margin-bottom: 12px;
             color: #ffffff;
-            font-size: 16px;
-            font-weight: 400;
-            opacity: 0.95;
+            line-height: 1.2;
         }
 
-        @media (max-width: 600px) {
-            .title { font-size: 22px; }
-            .subtitle { font-size: 13px; }
-            .logo-box { width: 85px; height: 85px; }
+        .brand-content p {
+            font-size: 15px;
+            color: #ffffff;
+            opacity: 0.95;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        /* RIGHT PANEL */
+        .right-panel {
+            width: 50vw;
+            min-width: 50vw;
+            background-color: #edf1f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        /* FORM CARD */
+        .form-card {
+            background: #ffffff;
+            padding: 35px 40px;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .form-header {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2b7bb9;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .form-row label {
+            width: 140px;
+            font-size: 13px;
+            color: #444;
+            font-weight: bold;
+            text-align: right;
+            padding-right: 15px;
+        }
+
+        .form-row label span {
+            color: red;
+        }
+
+        .form-row input {
+            flex: 1;
+            height: 36px;
+            padding: 6px 12px;
+            border: 1px solid #79b7e7;
+            border-radius: 4px;
+            outline: none;
+            font-size: 14px;
+            background-color: #ffffff;
+        }
+
+        .form-row input:focus {
+            border-color: #2b7bb9;
+            box-shadow: 0 0 5px rgba(43, 123, 185, 0.3);
+        }
+
+        .button-row {
+            margin-top: 25px;
+        }
+
+        .form-row button {
+            background-color: #00a2ed;
+            color: white;
+            border: none;
+            padding: 8px 22px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-row button:hover {
+            background-color: #008cd4;
+        }
+
+        /* RESULT TABLE */
+        .result-box {
+            margin-top: 25px;
+            width: 100%;
+        }
+
+        .result-header {
+            font-size: 15px;
+            font-weight: bold;
+            color: #2b7bb9;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            background: #ffffff;
+            border: 1px solid #dce3e8;
+        }
+
+        .gso-result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .gso-result-table th {
+            background-color: #f1f5f8;
+            color: #2b7bb9;
+            font-weight: bold;
+            padding: 10px;
+            border: 1px solid #dce3e8;
+            white-space: nowrap;
+        }
+
+        .gso-result-table td {
+            padding: 10px;
+            border: 1px solid #dce3e8;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .btn-details {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            text-align: center;
+            font-size: 11px;
+            color: #444;
+            line-height: 1.6;
+            margin-top: auto;
+        }
+
+        .site-footer a {
+            color: #2b7bb9;
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 800px) {
+            .page-wrapper {
+                flex-direction: column;
+                height: auto;
+            }
+            .left-panel, .right-panel {
+                width: 100%;
+                min-width: 100%;
+                height: auto;
+            }
+            .form-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-row label {
+                width: 100%;
+                text-align: left;
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-bg">
-        <div class="logo-box">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="BD Government Seal">
+    <div class="page-wrapper">
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+            <div class="brand-content">
+                <div class="logo-circle">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Government Seal">
+                </div>
+                <h1>Government Shipping Office</h1>
+                <p>(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
+            </div>
         </div>
-        <h1 class="title">Government Shipping Office</h1>
-        <p class="subtitle">(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+            <div class="form-card">
+                <div class="form-header">
+                    <i class="fa-regular fa-compass"></i> CDC VERIFICATION
+                </div>
+
+                <form id="verificationForm">
+                    <div class="form-row">
+                        <label for="certificateNo">CDC Number <span>*</span></label>
+                        <input type="text" id="certificateNo" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="dateOfBirth">Date of Birth <span>*</span></label>
+                        <input type="date" id="dateOfBirth" required>
+                    </div>
+
+                    <div class="form-row button-row">
+                        <label></label>
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i> Search
+                        </button>
+                    </div>
+                </form>
+
+                <div id="resultBox" class="result-box" style="display: none;"></div>
+            </div>
+
+            <footer class="site-footer">
+                <p>Copyright © 2021-2022 Government Shipping Office, Chattogram. All Rights Reserved.</p>
+                <p>Maintenance By : <a href="#">TechSpark Limited</a></p>
+            </footer>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var cdcNo = document.getElementById('certificateNo').value.trim();
+            var dob = document.getElementById('dateOfBirth').value;
+            var resultBox = document.getElementById('resultBox');
+
+            var formattedDob = dob;
+            if (dob) {
+                var parts = dob.split('-');
+                if (parts.length === 3) {
+                    formattedDob = parts[2] + '-' + parts[1] + '-' + parts[0];
+                }
+            }
+
+            resultBox.style.display = 'block';
+            resultBox.innerHTML = `
+                <div class="result-header">
+                    <i class="fa-regular fa-circle-down"></i> CDC VERIFICATION RESULT
+                </div>
+                <div class="table-responsive">
+                    <table class="gso-result-table">
+                        <thead>
+                            <tr>
+                                <th>SERIAL NO</th>
+                                <th>NAME</th>
+                                <th>DATE OF BIRTH</th>
+                                <th>CDC NUMBER <i class="fa-solid fa-arrow-down-short-wide"></i></th>
+                                <th>DATE OF ISSUE</th>
+                                <th>DATE OF EXPIRE</th>
+                                <th>PLACE OF ISSUE</th>
+                                <th>DETAILS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td style="font-weight:bold;">MD. KHALILUR RAHMAN</td>
+                                <td>${formattedDob}</td>
+                                <td style="font-weight:bold;">${cdcNo}</td>
+                                <td>29 Jan 2024</td>
+                                <td>29 Jan 2034</td>
+                                <td>CHATTOGRAM</td>
+                                <td>
+                                    <button class="btn-details" onclick="alert('CDC: ${cdcNo}')">
+                                        <i class="fa-solid fa-eye"></i> Details
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        });
+    </script>
 
 </body>
 </html>
