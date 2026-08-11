@@ -222,4 +222,67 @@ html, body {
             .info-table td {
                 font-size: 11px;
             }
-        }
+        } /* Mobile & Small Screen Responsive Styles */
+@media screen and (max-width: 900px) {
+    .page-wrapper {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    
+    .left-panel {
+        width: 100% !important;
+        min-height: 280px !important;
+        padding: 30px 15px !important;
+        border-right: none !important;
+        border-bottom: 5px solid #006630;
+    }
+
+    .right-panel {
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 20px 10px !important;
+    }
+
+    .form-card {
+        padding: 20px 15px !important;
+        max-width: 100% !important;
+    }
+
+    .form-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        margin-bottom: 15px !important;
+    }
+
+    .form-row label {
+        width: 100% !important;
+        text-align: left !important;
+        padding-right: 0 !important;
+        margin-bottom: 5px !important;
+    }
+
+    .form-row input, 
+    .captcha-container {
+        width: 100% !important;
+    }
+
+    .captcha-box-wrap {
+        width: 100% !important;
+    }
+
+    .details-container {
+        padding: 15px 10px !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+    }
+
+    .info-table td.label-cell {
+        width: 40% !important;
+        font-size: 11px !important;
+    }
+
+    .info-table td {
+        font-size: 11px !important;
+        word-break: break-word;
+    }
+}
