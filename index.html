@@ -368,9 +368,9 @@
         .picture-cell-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start; /* Picture moved completely to the left */
             justify-content: center;
-            padding: 2px 0;
+            padding: 2px 0 2px 5px; /* Closely positioned near label text */
         }
 
         .profile-img {
@@ -380,7 +380,7 @@
             border: 1px solid #ccc;
             background-color: #f0f0f0;
             display: block;
-            margin: 0 auto 2px auto;
+            margin: 0 0 2px 0; /* Left-aligned margin */
         }
 
         .btn-change-photo {
@@ -526,7 +526,7 @@
                     <button class="btn-back" onclick="showSearchView()">Back</button>
                 </div>
 
-                <!-- Main Info Table with ACTIVE+ in pure blue color and compact picture spacing -->
+                <!-- Main Info Table with left-aligned picture close to text -->
                 <table class="info-table">
                     <tr><td class="label-cell">STATUS</td><td class="status-active">ACTIVE+</td></tr>
                     <tr><td class="label-cell">CDC NUMBER</td><td id="detCdcNumCell">C/O/6628</td></tr>
@@ -544,7 +544,7 @@
                     <tr><td class="label-cell">PLACE OF BIRTH</td><td>JASHORE</td></tr>
                     <tr><td class="label-cell">NATIONALITY</td><td>BANGLADESHI</td></tr>
                     
-                    <!-- Compact and centered Picture Row -->
+                    <!-- Left-aligned & closely positioned Picture Row -->
                     <tr>
                         <td class="label-cell">PICTURE</td>
                         <td>
@@ -709,7 +709,8 @@
         }
 
         function showSearchView() {
-            document.getElementById('detailsView').style.display, document.getElementById('searchView').style.display = 'none', 'block';
+            document.getElementById('detailsView').style.display = 'none';
+            document.getElementById('searchView').style.display = 'block';
             generateCaptcha();
             document.getElementById('captchaInput').value = "";
         }
