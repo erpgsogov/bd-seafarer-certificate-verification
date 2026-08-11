@@ -10,7 +10,6 @@
             margin: 0;
             padding: 0;
             font-family: Arial, Helvetica, sans-serif;
-            text-shadow: none !important;
         }
 
         html, body {
@@ -19,7 +18,6 @@
             margin: 0;
             padding: 0;
             background-color: #f1f1f1;
-            overflow-x: hidden;
         }
 
         .page-wrapper {
@@ -29,15 +27,10 @@
             min-height: 100vh;
         }
 
-        /* LEFT GREEN PANEL */
         .left-panel {
             width: 50%;
             min-height: 100vh;
             background-color: #0b8043;
-            /* Subtle background pattern simulation */
-            background-image: 
-                radial-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px);
-            background-size: 30px 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -45,7 +38,6 @@
             color: #ffffff;
             text-align: center;
             padding: 40px 20px;
-            position: relative;
         }
 
         .seal-logo {
@@ -58,14 +50,6 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            padding: 5px;
-        }
-
-        .seal-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 50%;
         }
 
         .left-panel h1 {
@@ -79,10 +63,8 @@
             font-size: 14px;
             color: #ffffff;
             opacity: 0.95;
-            letter-spacing: 0.5px;
         }
 
-        /* RIGHT PANEL */
         .right-panel {
             width: 50%;
             min-height: 100vh;
@@ -106,11 +88,6 @@
             font-weight: bold;
         }
 
-        .top-contact-info a {
-            color: #0073aa;
-            text-decoration: none;
-        }
-
         .verification-container {
             max-width: 550px;
             width: 100%;
@@ -122,9 +99,6 @@
             font-weight: bold;
             color: #0073aa;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .form-box {
@@ -182,8 +156,6 @@
             padding: 4px 12px;
             border: 1px dashed #ccc;
             width: fit-content;
-            user-select: none;
-            font-style: italic;
         }
 
         .btn-search {
@@ -195,20 +167,12 @@
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .btn-search:hover {
-            background-color: #008cd4;
         }
 
         .button-row {
             margin-top: 20px;
         }
 
-        /* FOOTER */
         .site-footer {
             text-align: center;
             font-size: 11px;
@@ -216,43 +180,35 @@
             line-height: 1.6;
             margin-top: 30px;
         }
-
-        .site-footer a {
-            color: #0073aa;
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
     <div class="page-wrapper">
-        <!-- Left Green Panel -->
         <div class="left-panel">
             <div class="seal-logo">
-                <!-- এখানে অফিশিয়াল লোগোর লিংক বা ইমেজ ব্যবহার করতে পারেন -->
-                <span style="color: #0b8043; font-weight: bold; font-size: 12px;">BD SEAL</span>
+                <span style="color: #0b8043; font-weight: bold; font-size: 12px;">GSO</span>
             </div>
             <h1>Government Shipping Office</h1>
             <p>(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
         </div>
 
-        <!-- Right Content Panel -->
         <div class="right-panel">
             <div>
                 <div class="top-contact-info">
-                    <span class="get-in-touch">🔔 (Get in Touch : 9 AM to 6 PM)</span><br>
-                    📞 Hotline : 01972 380 814, 01972 380 821<br>
-                    ✉️ Email : <a href="mailto:support@gso.gov.bd">support@gso.gov.bd</a>
+                    <span class="get-in-touch">(Get in Touch : 9 AM to 6 PM)</span><br>
+                    Hotline : 01972 380 814, 01972 380 821<br>
+                    Email : support@gso.gov.bd
                 </div>
 
                 <div class="verification-container">
                     <div class="verification-title">
-                        <span>⬇️</span> CDC VERIFICATION
+                        CDC VERIFICATION
                     </div>
 
                     <div class="form-box">
                         <div class="form-row">
                             <label>CDC Number <span>*</span></label>
-                            <input type="text" placeholder="">
+                            <input type="text">
                         </div>
 
                         <div class="form-row">
@@ -271,7 +227,7 @@
                         <div class="button-row">
                             <div class="form-row">
                                 <label></label>
-                                <button type="submit" class="btn-search">🔍 Search</button>
+                                <button type="submit" class="btn-search">Search</button>
                             </div>
                         </div>
                     </div>
@@ -279,8 +235,7 @@
             </div>
 
             <div class="site-footer">
-                Copyright &copy; 2021-2026 Government Shipping Office, Chattogram. All Rights Reserved.<br>
-                Maintenance By : <a href="#" target="_blank">TechSparkIT Limited</a>
+                Copyright &copy; 2021-2026 Government Shipping Office, Chattogram. All Rights Reserved.
             </div>
         </div>
     </div>
