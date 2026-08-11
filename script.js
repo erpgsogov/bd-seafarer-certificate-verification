@@ -1,7 +1,26 @@
-const SUPABASE_URL = "https://zwpcswfrpzpyccdksspi.supabase.co";
+// ==========================================
+// BANGLADESH SEAFARER CERTIFICATE VERIFICATION
+// FINAL VERSION
+// ==========================================
+
+// ==========================================
+// SUPABASE CONFIGURATION
+// ==========================================
+
+const SUPABASE_URL = "[https://zwpcswfrpzpyccdksspi.supabase.co](https://zwpcswfrpzpyccdksspi.supabase.co)";
 const SUPABASE_ANON_KEY = "sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5";
 
+// ==========================================
+// START APPLICATION
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("==========================================");
+    console.log("BANGLADESH SEAFARER VERIFICATION");
+    console.log("APPLICATION STARTED");
+    console.log("==========================================");
+
     const form = document.getElementById("verificationForm");
     const certificateInput = document.getElementById("certificateNo");
     const dobInput = document.getElementById("dateOfBirth");
@@ -16,7 +35,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (typeof window.supabase === "undefined") {
         showResult(
             "error",
-            `<strong>SUPABASE LIBRARY ERROR</strong><br><br>Supabase JavaScript library was not loaded.`
+            `
+            <strong>SUPABASE LIBRARY ERROR</strong>
+            <br><br>
+            Supabase JavaScript library was not loaded.
+            `
         );
         return;
     }
@@ -24,18 +47,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     form.addEventListener("submit", async function (event) {
+
         event.preventDefault();
 
         const certNo = certificateInput.value.trim().toUpperCase();
         const dob = dobInput.value.trim();
 
         if (!certNo) {
-            showResult("error", "<strong>ERROR</strong><br><br>Please enter CDC / Certificate No.");
+            showResult(
+                "error",
+                "<strong>ERROR</strong><br><br>Please enter CDC / Certificate No."
+            );
             return;
         }
 
         if (!dob) {
-            showResult("error", "<strong>ERROR</strong><br><br>Please select Date of Birth.");
+            showResult(
+                "error",
+                "<strong>ERROR</strong><br><br>Please select Date of Birth."
+            );
             return;
         }
 
@@ -54,35 +84,66 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function verifyCertificate(db, certNo, dob) {
-    showResult("loading", "<strong>Checking certificate...</strong><br><br>Please wait.");
+
+    showResult(
+        "loading",
+        "<strong>Checking certificate...</strong><br><br>Please wait."
+    );
 
     try {
-        // ILIKE ব্যবহার করা হয়েছে যাতে Case-insensitive সার্চ হয়
+
+        // Using .ilike for case-insensitive lookup
         const { data, error } = await db
             .from("certificates")
-            .select(`certificate_no, name, rank, date_of_birth, issue_date, expiry_date, status`)
+            .select(`
+                certificate_no,
+                name,
+                rank,
+                date_of_birth,
+                issue_date,
+                expiry_date,
+                status
+            `)
             .ilike("certificate_no", certNo)
             .limit(10);
 
         if (error) {
+
             showResult(
                 "error",
-                `<strong>DATABASE ERROR</strong><br><br>${escapeHTML(error.message || "Unable to access database.")}`
+                `
+                <strong>DATABASE ERROR</strong>
+                <br><br>
+                ${escapeHTML(error.message || "Unable to access database.")}
+                <br><br>
+                <b>Error Code:</b>
+                ${escapeHTML(error.code || "N/A")}
+                `
             );
+
             return;
         }
 
         if (!data || data.length === 0) {
+
             showResult(
                 "error",
-                `<strong>✗ CDC NOT FOUND</strong><br><br>Certificate No. <b>${escapeHTML(certNo)}</b> was not found in the database.`
+                `
+                <strong>✗ CDC NOT FOUND</strong>
+                <br><br>
+                Certificate No.
+                <b>${escapeHTML(certNo)}</b>
+                was not found in the database.
+                `
             );
+
             return;
         }
 
         let matchedRecord = null;
 
         for (const record of data) {
+
             const databaseDOB = normalizeDate(record.date_of_birth);
             const inputDOB = normalizeDate(dob);
 
@@ -93,44 +154,92 @@ async function verifyCertificate(db, certNo, dob) {
         }
 
         if (!matchedRecord) {
+
             showResult(
                 "error",
-                `<strong>✗ NOT VERIFIED</strong><br><br>Certificate No.: <b>${escapeHTML(data[0].certificate_no || certNo)}</b><br><br>Date of Birth does not match our records.`
+                `
+                <strong>✗ NOT VERIFIED</strong>
+                <br><br>
+                Certificate No.:
+                <b>${escapeHTML(data[0].certificate_no || certNo)}</b>
+                <br><br>
+                Date of Birth does not match our records.
+                `
             );
+
             return;
         }
 
         showResult(
             "success",
-            `<strong>✓ CDC VERIFIED</strong><br><br>
-            <b>Certificate No.:</b> ${escapeHTML(matchedRecord.certificate_no || "")}<br>
-            <b>Name:</b> ${escapeHTML(matchedRecord.name || "")}<br>
-            <b>Rank:</b> ${escapeHTML(matchedRecord.rank || "")}<br>
-            <b>Date of Birth:</b> ${formatDate(matchedRecord.date_of_birth)}<br>
-            <b>Date of Issue:</b> ${formatDate(matchedRecord.issue_date)}<br>
-            <b>Date of Expiry:</b> ${formatDate(matchedRecord.expiry_date)}<br>
-            <b>Status:</b> ${escapeHTML(matchedRecord.status || "")}`
+            `
+            <strong>✓ CDC VERIFIED</strong>
+
+            <br><br>
+
+            <b>Certificate No.:</b>
+            ${escapeHTML(matchedRecord.certificate_no || "")}
+
+            <br>
+
+            <b>Name:</b>
+            ${escapeHTML(matchedRecord.name || "")}
+
+            <br>
+
+            <b>Rank:</b>
+            ${escapeHTML(matchedRecord.rank || "")}
+
+            <br>
+
+            <b>Date of Birth:</b>
+            ${formatDate(matchedRecord.date_of_birth)}
+
+            <br>
+
+            <b>Date of Issue:</b>
+            ${formatDate(matchedRecord.issue_date)}
+
+            <br>
+
+            <b>Date of Expiry:</b>
+            ${formatDate(matchedRecord.expiry_date)}
+
+            <br>
+
+            <b>Status:</b>
+            ${escapeHTML(matchedRecord.status || "")}
+            `
         );
 
     } catch (error) {
+
         showResult(
             "error",
-            `<strong>CONNECTION ERROR</strong><br><br>${escapeHTML(error.message || String(error))}`
+            `
+            <strong>CONNECTION ERROR</strong>
+            <br><br>
+            ${escapeHTML(error.message || String(error))}
+            `
         );
     }
 }
 
 function showResult(type, message) {
+
     const resultBox = document.getElementById("resultBox");
+
     if (!resultBox) return;
 
     resultBox.style.display = "block";
 
     if (type === "success") {
         resultBox.className = "result-box result-success";
-    } else if (type === "error") {
+    }
+    else if (type === "error") {
         resultBox.className = "result-box result-error";
-    } else {
+    }
+    else {
         resultBox.className = "result-box";
     }
 
@@ -138,23 +247,38 @@ function showResult(type, message) {
 }
 
 function normalizeDate(value) {
+
     if (!value) return "";
-    return String(value).trim().substring(0, 10);
+
+    return String(value)
+        .trim()
+        .substring(0, 10);
 }
 
 function formatDate(value) {
+
     const date = normalizeDate(value);
+
     if (!date) return "";
 
     const parts = date.split("-");
+
     if (parts.length === 3) {
-        return escapeHTML(parts[2] + "-" + parts[1] + "-" + parts[0]);
+
+        return escapeHTML(
+            parts[2] +
+            "-" +
+            parts[1] +
+            "-" +
+            parts[0]
+        );
     }
 
     return escapeHTML(date);
 }
 
 function escapeHTML(value) {
+
     return String(value)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
