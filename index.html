@@ -28,7 +28,7 @@
             min-height: 100vh;
         }
 
-        /* LEFT GREEN PANEL WITH SHIP BACKGROUND IMAGE */
+        /* LEFT GREEN PANEL WITH FALLBACK BACKGROUND */
         .left-panel {
             width: 50%;
             min-height: 100vh;
@@ -169,7 +169,7 @@
         }
 
         .captcha-row-content {
-            display: flex;
+            `display`: flex;
             flex-direction: column;
             flex: 1;
             gap: 6px;
@@ -226,6 +226,32 @@
             color: #0073aa;
             text-decoration: underline;
         }
+
+        @media (max-width: 768px) {
+            .page-wrapper {
+                flex-direction: column;
+            }
+            .left-panel, .right-panel {
+                width: 100%;
+                min-height: auto;
+            }
+            .right-panel {
+                padding: 20px;
+            }
+            .form-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-row label {
+                text-align: left;
+                width: 100%;
+                padding-right: 0;
+                margin-bottom: 5px;
+            }
+            .top-contact-info {
+                text-align: left;
+            }
+        }
     </style>
 </head>
 <body>
@@ -233,7 +259,7 @@
         <!-- Left Green Panel -->
         <div class="left-panel">
             <div class="seal-logo">
-                <img src="logo.png" alt="Government Logo">
+                <img src="logo.png" alt="Government Logo" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Bangladesh_%28circle%29.svg';">
             </div>
             <h1>Government Shipping Office</h1>
             <p>(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
