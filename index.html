@@ -102,10 +102,24 @@
         .top-contact-info {
             text-align: center;
             font-size: 12px;
-            color: #b38600;
+            color: #444;
             margin-bottom: 20px;
             line-height: 1.6;
             font-weight: bold;
+        }
+
+        .top-contact-info .time-alert {
+            color: #d9822b;
+            margin-bottom: 2px;
+        }
+
+        .top-contact-info .hotline-row {
+            color: #3b2063;
+            margin-bottom: 2px;
+        }
+
+        .top-contact-info .email-row {
+            color: #0073aa;
         }
 
         .form-card {
@@ -428,8 +442,9 @@
             <!-- Search View -->
             <div id="searchView">
                 <div class="top-contact-info">
-                    <p><i class="fa-regular fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</p>
-                    <p><i class="fa-brands fa-whatsapp"></i> Hotline : 01972 380 814</p>
+                    <div class="time-alert"><i class="fa-regular fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</div>
+                    <div class="hotline-row"><i class="fa-brands fa-whatsapp"></i> Hotline : 01972 380 814, 01972 380 821</div>
+                    <div class="email-row"><i class="fa-regular fa-envelope"></i> Email : support@gso.gov.bd</div>
                 </div>
 
                 <div class="form-card">
@@ -633,7 +648,6 @@
             generateCaptcha();
             var savedImage = localStorage.getItem('gsoProfileImage');
             if(!savedImage) {
-                // Default user image provided
                 savedImage = ""; 
             }
             document.getElementById('profileImage').src = savedImage;
