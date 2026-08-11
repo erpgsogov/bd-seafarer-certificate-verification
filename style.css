@@ -74,31 +74,17 @@ body, html {
     background-color: #f0f3f6;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 30px 50px;
-}
-
-.top-contact {
-    text-align: right;
-    font-size: 13px;
-    color: #8b3a80;
-    font-weight: bold;
-    line-height: 1.8;
-}
-
-.top-contact i {
-    margin-right: 4px;
-}
-
-.top-contact p:first-child {
-    color: #d97706;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 50px;
+    position: relative;
 }
 
 /* FORM CONTAINER */
 .form-container {
     width: 100%;
     max-width: 560px;
-    margin: 0 auto;
+    margin: auto 0;
 }
 
 .form-header {
@@ -196,8 +182,9 @@ body, html {
     text-align: center;
     font-size: 11px;
     color: #555;
-    margin-top: 40px;
+    margin-top: auto;
     line-height: 1.6;
+    width: 100%;
 }
 
 .site-footer a {
@@ -224,10 +211,5 @@ body, html {
         width: 100%;
         text-align: left;
         margin-bottom: 5px;
-    }
-
-    .top-contact {
-        text-align: center;
-        margin-bottom: 20px;
     }
 }
