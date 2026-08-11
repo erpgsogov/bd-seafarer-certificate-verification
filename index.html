@@ -347,7 +347,7 @@
         }
 
         .info-table td {
-            padding: 4px 8px;
+            padding: 2px 6px;
             border: 1px solid #e0e0e0;
             color: #333;
         }
@@ -359,8 +359,9 @@
             background-color: #f9f9f9;
         }
 
+        /* STATUS text color blue */
         .status-active {
-            color: blue;
+            color: #0000FF;
             font-weight: bold;
         }
 
@@ -369,31 +370,31 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 4px 0;
+            padding: 2px 0;
         }
 
         .profile-img {
-            width: 95px;
-            height: 115px;
+            width: 75px;
+            height: 95px;
             object-fit: cover;
             border: 1px solid #ccc;
             background-color: #f0f0f0;
             display: block;
-            margin: 0 auto 4px auto;
+            margin: 0 auto 2px auto;
         }
 
         .btn-change-photo {
             background-color: #e53935;
             color: white;
             border: none;
-            padding: 3px 6px;
+            padding: 2px 5px;
             font-size: 10px;
             border-radius: 3px;
             cursor: pointer;
             font-weight: bold;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             justify-content: center;
         }
 
@@ -525,7 +526,7 @@
                     <button class="btn-back" onclick="showSearchView()">Back</button>
                 </div>
 
-                <!-- Main Info Table with STATUS restored in blue color and adjusted Picture -->
+                <!-- Main Info Table with ACTIVE+ in pure blue color and compact picture spacing -->
                 <table class="info-table">
                     <tr><td class="label-cell">STATUS</td><td class="status-active">ACTIVE+</td></tr>
                     <tr><td class="label-cell">CDC NUMBER</td><td id="detCdcNumCell">C/O/6628</td></tr>
@@ -543,7 +544,7 @@
                     <tr><td class="label-cell">PLACE OF BIRTH</td><td>JASHORE</td></tr>
                     <tr><td class="label-cell">NATIONALITY</td><td>BANGLADESHI</td></tr>
                     
-                    <!-- Perfectly adjusted & centered Picture Row directly below NATIONALITY -->
+                    <!-- Compact and centered Picture Row -->
                     <tr>
                         <td class="label-cell">PICTURE</td>
                         <td>
@@ -708,8 +709,7 @@
         }
 
         function showSearchView() {
-            document.getElementById('detailsView').style.display = 'none';
-            document.getElementById('searchView').style.display = 'block';
+            document.getElementById('detailsView').style.display, document.getElementById('searchView').style.display = 'none', 'block';
             generateCaptcha();
             document.getElementById('captchaInput').value = "";
         }
