@@ -347,7 +347,7 @@
         }
 
         .info-table td {
-            padding: 5px 8px;
+            padding: 3px 8px; /* স্পেস কমানোর জন্য প্যাডিং ছোট করা হয়েছে */
             border: 1px solid #e0e0e0;
             color: #333;
         }
@@ -365,27 +365,27 @@
         }
 
         .profile-img {
-            width: 120px;
-            height: 140px;
+            width: 100px;  /* ছবির সাইজও সামান্য গুছিয়ে ছোট করা হয়েছে */
+            height: 120px;
             object-fit: cover;
             border: 1px solid #ccc;
             background-color: #f0f0f0;
             display: block;
-            margin: 0 auto 6px auto;
+            margin: 0 auto 4px auto;
         }
 
         .btn-change-photo {
             background-color: #e53935;
             color: white;
             border: none;
-            padding: 4px 8px;
-            font-size: 11px;
+            padding: 3px 6px;
+            font-size: 10px;
             border-radius: 3px;
             cursor: pointer;
             font-weight: bold;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             width: fit-content;
             margin: 0 auto;
             justify-content: center;
@@ -397,7 +397,7 @@
             font-size: 12px;
             font-weight: bold;
             padding: 8px 12px;
-            margin-top: 20px;
+            margin-top: 15px;
             margin-bottom: 10px;
             text-transform: uppercase;
         }
@@ -519,7 +519,7 @@
                     <button class="btn-back" onclick="showSearchView()">Back</button>
                 </div>
 
-                <!-- Main Info Table with Integrated Picture Row right below NATIONALITY -->
+                <!-- Main Info Table with Reduced Spacing -->
                 <table class="info-table">
                     <tr><td class="label-cell">STATUS</td><td class="status-active">ACTIVE+</td></tr>
                     <tr><td class="label-cell">CDC NUMBER</td><td id="detCdcNumCell">C/O/6628</td></tr>
@@ -537,7 +537,7 @@
                     <tr><td class="label-cell">PLACE OF BIRTH</td><td>JASHORE</td></tr>
                     <tr><td class="label-cell">NATIONALITY</td><td>BANGLADESHI</td></tr>
                     
-                    <!-- Picture Row placed directly below NATIONALITY -->
+                    <!-- Picture Row placed directly below NATIONALITY with compact spacing -->
                     <tr>
                         <td class="label-cell">PICTURE</td>
                         <td>
