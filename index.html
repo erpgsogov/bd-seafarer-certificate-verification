@@ -347,7 +347,7 @@
         }
 
         .info-table td {
-            padding: 3px 8px; /* স্পেস কমানোর জন্য প্যাডিং ছোট করা হয়েছে */
+            padding: 4px 8px;
             border: 1px solid #e0e0e0;
             color: #333;
         }
@@ -360,13 +360,21 @@
         }
 
         .status-active {
-            color: #0073aa;
+            color: blue;
             font-weight: bold;
         }
 
+        .picture-cell-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 0;
+        }
+
         .profile-img {
-            width: 100px;  /* ছবির সাইজও সামান্য গুছিয়ে ছোট করা হয়েছে */
-            height: 120px;
+            width: 95px;
+            height: 115px;
             object-fit: cover;
             border: 1px solid #ccc;
             background-color: #f0f0f0;
@@ -383,11 +391,9 @@
             border-radius: 3px;
             cursor: pointer;
             font-weight: bold;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 4px;
-            width: fit-content;
-            margin: 0 auto;
             justify-content: center;
         }
 
@@ -519,7 +525,7 @@
                     <button class="btn-back" onclick="showSearchView()">Back</button>
                 </div>
 
-                <!-- Main Info Table with Reduced Spacing -->
+                <!-- Main Info Table with STATUS restored in blue color and adjusted Picture -->
                 <table class="info-table">
                     <tr><td class="label-cell">STATUS</td><td class="status-active">ACTIVE+</td></tr>
                     <tr><td class="label-cell">CDC NUMBER</td><td id="detCdcNumCell">C/O/6628</td></tr>
@@ -537,15 +543,17 @@
                     <tr><td class="label-cell">PLACE OF BIRTH</td><td>JASHORE</td></tr>
                     <tr><td class="label-cell">NATIONALITY</td><td>BANGLADESHI</td></tr>
                     
-                    <!-- Picture Row placed directly below NATIONALITY with compact spacing -->
+                    <!-- Perfectly adjusted & centered Picture Row directly below NATIONALITY -->
                     <tr>
                         <td class="label-cell">PICTURE</td>
                         <td>
-                            <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                            <img id="profileImage" src="" alt="Photo" class="profile-img">
-                            <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();">
-                                <i class="fa-solid fa-camera"></i> Change Photo
-                            </button>
+                            <div class="picture-cell-content">
+                                <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
+                                <img id="profileImage" src="" alt="Photo" class="profile-img">
+                                <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();">
+                                    <i class="fa-solid fa-camera"></i> Change Photo
+                                </button>
+                            </div>
                         </td>
                     </tr>
 
