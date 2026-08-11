@@ -338,17 +338,11 @@
             font-size: 12px;
         }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
         .info-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 12px;
+            margin-bottom: 20px;
         }
 
         .info-table td {
@@ -360,7 +354,7 @@
         .info-table td.label-cell {
             font-weight: bold;
             text-align: right;
-            width: 45%;
+            width: 35%;
             background-color: #f9f9f9;
         }
 
@@ -520,53 +514,45 @@
                     <button class="btn-back" onclick="showSearchView()">Back</button>
                 </div>
 
-                <div class="info-grid">
-                    <!-- Left Info Table -->
-                    <table class="info-table">
-                        <tr><td class="label-cell">STATUS</td><td class="status-active">ACTIVE+</td></tr>
-                        <tr><td class="label-cell">CDC NUMBER</td><td id="detCdcNumCell">C/O/6628</td></tr>
-                        <tr><td class="label-cell">NAME</td><td>MD KHALILUR RAHMAN</td></tr>
-                        <tr><td class="label-cell">FATHER'S NAME</td><td>MD ROBIUL ISLAM</td></tr>
-                        <tr><td class="label-cell">MOTHER'S NAME</td><td>KHADIZA BEGUJM</td></tr>
-                        <tr><td class="label-cell">RANK/RATING</td><td>DECK OFFICER (CLASS-1)</td></tr>
-                        <tr><td class="label-cell">DATE OF ISSUE</td><td>29 JAN 2024</td></tr>
-                        <tr><td class="label-cell">DATE OF EXPIRE</td><td>29 JAN 2034</td></tr>
-                        <tr><td class="label-cell">PLACE OF ISSUE</td><td>CHATTOGRAM</td></tr>
-                        <tr><td class="label-cell">CELL PHONE</td><td>+8801602449628</td></tr>
-                        <tr><td class="label-cell">EMAIL</td><td>marinertito1362@gmail.com</td></tr>
-                        <tr><td class="label-cell">RELIGION</td><td>ISLAM</td></tr>
-                        <tr><td class="label-cell">DATE OF BIRTH</td><td id="detDobCell">05 APRIL 1990</td></tr>
-                        <tr><td class="label-cell">PLACE OF BIRTH</td><td>JASHORE</td></tr>
-                        <tr><td class="label-cell">NATIONALITY</td><td>BANGLADESHI</td></tr>
-                        <tr><td class="label-cell">PASSPORT NUMBER</td><td>A08611931</td></tr>
-                        <tr><td class="label-cell">HEIGHT METRE</td><td>1</td></tr>
-                        <tr><td class="label-cell">HEIGHT CM</td><td>74</td></tr>
-                        <tr><td class="label-cell">COLOUR OF EYES</td><td>BLACK</td></tr>
-                        <tr><td class="label-cell">COLOUR OF HAIR</td><td>BLACK</td></tr>
-                        <tr><td class="label-cell">COMPLEXION</td><td>FAIR</td></tr>
-                        <tr><td class="label-cell">DISTINGUISHING MARKS</td><td>NIL</td></tr>
-                        <tr><td class="label-cell">VILLAGE</td><td>SWRUPDHA</td></tr>
-                        <tr><td class="label-cell">POST OFFICE</td><td>CHAUGACHHA</td></tr>
-                        <tr><td class="label-cell">THANA</td><td>CHAUGACHHA</td></tr>
-                        <tr><td class="label-cell">DISTRICT</td><td>JASHORE</td></tr>
-                    </table>
-
-                    <!-- Right Picture & Quick Details -->
-                    <div>
-                        <table class="info-table" style="margin-bottom: 15px;">
-                            <tr>
-                                <td class="label-cell">Picture</td>
-                                <td style="text-align: center;">
-                                    <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <img id="profileImage" src="" alt="Photo" class="profile-img">
-                                    <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();">
-                                        <i class="fa-solid fa-camera"></i> Change Photo
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                <!-- Single Unified Table -->
+                <table class="info-table">
+                    <tr><td class="label-cell">STATUS</td><td class="status-active">ACTIVE+</td></tr>
+                    <tr><td class="label-cell">CDC NUMBER</td><td id="detCdcNumCell">C/O/6628</td></tr>
+                    <tr><td class="label-cell">NAME</td><td>MD KHALILUR RAHMAN</td></tr>
+                    <tr><td class="label-cell">FATHER'S NAME</td><td>MD ROBIUL ISLAM</td></tr>
+                    <tr><td class="label-cell">MOTHER'S NAME</td><td>KHADIZA BEGUJM</td></tr>
+                    <tr><td class="label-cell">RANK/RATING</td><td>DECK OFFICER (CLASS-1)</td></tr>
+                    <tr><td class="label-cell">DATE OF ISSUE</td><td>29 JAN 2024</td></tr>
+                    <tr><td class="label-cell">DATE OF EXPIRE</td><td>29 JAN 2034</td></tr>
+                    <tr><td class="label-cell">PLACE OF ISSUE</td><td>CHATTOGRAM</td></tr>
+                    <tr><td class="label-cell">CELL PHONE</td><td>+8801602449628</td></tr>
+                    <tr><td class="label-cell">EMAIL</td><td>marinertito1362@gmail.com</td></tr>
+                    <tr><td class="label-cell">RELIGION</td><td>ISLAM</td></tr>
+                    <tr><td class="label-cell">DATE OF BIRTH</td><td id="detDobCell">05 APRIL 1990</td></tr>
+                    <tr><td class="label-cell">PLACE OF BIRTH</td><td>JASHORE</td></tr>
+                    <tr><td class="label-cell">NATIONALITY</td><td>BANGLADESHI</td></tr>
+                    <tr>
+                        <td class="label-cell">Picture</td>
+                        <td style="text-align: left; padding: 10px;">
+                            <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
+                            <img id="profileImage" src="" alt="Photo" class="profile-img">
+                            <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();" style="margin: 0;">
+                                <i class="fa-solid fa-camera"></i> Change Photo
+                            </button>
+                        </td>
+                    </tr>
+                    <tr><td class="label-cell">PASSPORT NUMBER</td><td>A08611931</td></tr>
+                    <tr><td class="label-cell">HEIGHT METRE</td><td>1</td></tr>
+                    <tr><td class="label-cell">HEIGHT CM</td><td>74</td></tr>
+                    <tr><td class="label-cell">COLOUR OF EYES</td><td>BLACK</td></tr>
+                    <tr><td class="label-cell">COLOUR OF HAIR</td><td>BLACK</td></tr>
+                    <tr><td class="label-cell">COMPLEXION</td><td>FAIR</td></tr>
+                    <tr><td class="label-cell">DISTINGUISHING MARKS</td><td>NIL</td></tr>
+                    <tr><td class="label-cell">VILLAGE</td><td>SWRUPDHA</td></tr>
+                    <tr><td class="label-cell">POST OFFICE</td><td>CHAUGACHHA</td></tr>
+                    <tr><td class="label-cell">THANA</td><td>CHAUGACHHA</td></tr>
+                    <tr><td class="label-cell">DISTRICT</td><td>JASHORE</td></tr>
+                </table>
 
                 <!-- Medical Information -->
                 <div class="blue-banner-header">Medical Information</div>
