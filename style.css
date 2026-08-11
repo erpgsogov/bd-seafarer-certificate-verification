@@ -20,22 +20,20 @@ html, body {
 }
 
 .left-panel {
-            width: 45%;
-            min-height: 100vh;
-            background-image: url('bg-ship.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #006b3f; /* ব্যাকগ্রাউন্ডের সাথে সামঞ্জস্যপূর্ণ সবুজ বেজ কালার */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ffffff;
-            text-align: center;
-            padding: 40px 10px;
-            border-right: 5px solid #006630;
-        }
-
+    width: 45%;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 107, 63, 0.85), rgba(0, 88, 51, 0.85)), url('bg-ship.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 10px;
+    border-right: 5px solid #006630;
+}
 .brand-content {
     max-width: 480px;
 }
