@@ -452,12 +452,12 @@
                     <form id="verificationForm">
                         <div class="form-row">
                             <label for="certificateNo">CDC Number <span>*</span></label>
-                            <input type="text" id="certificateNo" placeholder="Enter CDC Number" value="C/O/6628" required>
+                            <input type="text" id="certificateNo" placeholder="Enter CDC Number" required>
                         </div>
 
                         <div class="form-row">
                             <label for="dateOfBirth">Date of Birth <span>*</span></label>
-                            <input type="date" id="dateOfBirth" value="1990-04-05" required>
+                            <input type="date" id="dateOfBirth" required>
                         </div>
 
                         <div class="form-row">
@@ -800,10 +800,10 @@
         function generateCaptcha() {
             var randomCode = Math.floor(100000 + Math.random() * 900000);
             document.getElementById('captchaDisplay').innerText = randomCode;
-            document.getElementById('captchaInput').value = ''; // ইনপুট বক্স খালি রাখবে
+            document.getElementById('captchaInput').value = ''; // ক্যাপচা ইনপুট বক্স খালি রাখবে
         }
 
-        // পেজ লোড হওয়ার সাথে সাথেই রেন্ডম কোড জেনারেট হবে
+        // পেজ লোড হওয়ার সাথে সাথে শুধুমাত্র ক্যাপচা কোড জেনারেট হবে, বাকি ফিল্ডগুলো খালি থাকবে
         window.onload = function() {
             generateCaptcha();
         };
@@ -863,7 +863,7 @@
         function showSearchView() {
             document.getElementById('detailsView').style.display = 'none';
             document.getElementById('searchView').style.display = 'block';
-            // ব্যাক করলে নতুন ভেরিফিকেশন কোড জেনারেট হবে
+            // ব্যাক করলে নতুন ভিন্ন ভেরিফিকেশন কোড জেনারেট হবে
             generateCaptcha();
         }
 
