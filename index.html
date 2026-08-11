@@ -21,30 +21,32 @@
         }
 
         html, body {
-            height: 100vh;
-            width: 100vw;
+            height: 100%;
+            width: 100%;
             margin: 0;
             padding: 0;
             background-color: #edf1f5;
             overflow-x: hidden;
         }
 
+        /* 2-COLUMN LAYOUT (FIXED SIDE BY SIDE) */
         .page-wrapper {
             display: flex;
             flex-direction: row;
-            height: 100vh;
             width: 100vw;
+            min-height: 100vh;
         }
 
-        /* LEFT PANEL WITH ORIGINAL BG-SHIP.PNG IMAGE */
+        /* LEFT PANEL WITH DETAILED SHIP WATERMARK PATTERN */
         .left-panel {
-            width: 50vw;
-            min-width: 50vw;
+            width: 50%;
+            min-height: 100vh;
             background-color: #01833d;
-            background-image: url('bg-ship.png'); /* আপনার আসল ডাউনলোড করা ইমেজ ফাইল */
+            /* Embedded SVG Pattern matching original GSO detailed ships */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='%23000000' fill-opacity='0.12'%3E%3C!-- Detailed Cargo Ship --%3E%3Cpath d='M20 70 L50 35 L170 35 L200 70 L180 95 L30 95 Z M140 35 L140 18 L165 18 L165 35 M145 18 L145 10 L160 10 L160 18 M60 35 L60 28 L125 28 L125 35 M70 28 L70 22 L115 22 L115 28'/%3E%3C!-- Detailed Cruise Liner --%3E%3Cpath d='M130 230 L165 190 L280 190 L310 230 L290 260 L145 260 Z M180 190 L180 160 L260 160 L260 190 M195 160 L195 145 L245 145 L245 160 M210 145 L210 135 L230 135 L230 145 M185 170 H255 M185 180 H255'/%3E%3C!-- Yacht / Sailboat --%3E%3Cpath d='M220 65 L270 15 L270 65 Z M278 65 L310 35 L298 65 Z M208 72 L318 72 L298 85 L220 85 Z'/%3E%3C!-- Tug Boat / Service Ship --%3E%3Cpath d='M30 220 L65 180 L115 180 L125 220 L110 235 L40 235 Z M55 180 L55 160 L95 160 L95 180 M70 160 L70 148 L85 148 L85 160'/%3E%3C/g%3E%3C/svg%3E");
             background-repeat: repeat;
-            background-position: center top;
-            background-size: cover; /* প্রয়োজন অনুযায়ী auto বা contain ব্যবহার করতে পারেন */
+            background-position: center;
+            background-size: 320px 320px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -91,14 +93,13 @@
 
         /* RIGHT PANEL - FORM AREA */
         .right-panel {
-            width: 50vw;
-            min-width: 50vw;
+            width: 50%;
+            min-height: 100vh;
             background-color: #edf1f5;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 40px;
-            height: 100vh;
+            padding: 40px 20px;
             overflow-y: auto;
         }
 
@@ -109,7 +110,7 @@
             border-radius: 4px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             width: 100%;
-            max-width: 600px;
+            max-width: 580px;
             margin: auto;
         }
 
@@ -130,12 +131,13 @@
         }
 
         .form-row label {
-            width: 140px;
+            width: 130px;
             font-size: 13px;
             color: #444;
             font-weight: bold;
             text-align: right;
             padding-right: 15px;
+            white-space: nowrap;
         }
 
         .form-row label span {
@@ -244,40 +246,19 @@
             color: #444;
             line-height: 1.6;
             margin-top: auto;
+            padding-top: 20px;
         }
 
         .site-footer a {
             color: #2b7bb9;
             text-decoration: underline;
         }
-
-        /* RESPONSIVE */
-        @media (max-width: 800px) {
-            .page-wrapper {
-                flex-direction: column;
-                height: auto;
-            }
-            .left-panel, .right-panel {
-                width: 100%;
-                min-width: 100%;
-                height: auto;
-            }
-            .form-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .form-row label {
-                width: 100%;
-                text-align: left;
-                margin-bottom: 5px;
-            }
-        }
     </style>
 </head>
 <body>
 
     <div class="page-wrapper">
-        <!-- LEFT PANEL -->
+        <!-- LEFT PANEL WITH EMBEDDED DETAILED SHIP PATTERN -->
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
@@ -288,7 +269,7 @@
             </div>
         </div>
 
-        <!-- RIGHT PANEL -->
+        <!-- RIGHT PANEL WITH CDC FORM -->
         <div class="right-panel">
             <div class="form-card">
                 <div class="form-header">
