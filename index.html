@@ -3,56 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bangladesh Seafarer Certificate Verification System">
-    <meta name="robots" content="index, follow">
-    <title>Bangladesh Seafarer Certificate Verification</title>
+    <title>CDC VERIFICATION</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <header class="header">
-        <!-- HEADER CONTENT -->
-    </header>
+    <div class="page-wrapper">
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+            <div class="brand-content">
+                <div class="logo-circle">
+                    <img src="images.jpeg" alt="Government Emblem" id="govLogo">
+                </div>
+                <h1>Government Shipping Office</h1>
+                <p>(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
+            </div>
+        </div>
 
-    <main class="container">
-        <section class="card">
-            <h2>Verify Seafarer Certificate</h2>
-            
-            <form id="verificationForm">
-                <div class="form-group">
-                    <label for="certificateNo">CDC No.</label>
-                    <input 
-                        type="text" 
-                        id="certificateNo" 
-                        placeholder="Enter CDC No." 
-                        required
-                    >
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+            <div class="top-contact">
+                <p><i class="fa-solid fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</p>
+                <p><i class="fa-solid fa-phone"></i> Hotline : 01972 380 814, 01972 380 821</p>
+                <p><i class="fa-solid fa-envelope"></i> Email : support@gso.gov.bd</p>
+            </div>
+
+            <div class="form-container">
+                <div class="form-header">
+                    <i class="fa-regular fa-compass"></i> CDC VERIFICATION
                 </div>
 
-                <div class="form-group">
-                    <label for="dateOfBirth">Date of Birth</label>
-                    <input 
-                        type="date" 
-                        id="dateOfBirth" 
-                        required
-                    >
-                </div>
+                <form id="verificationForm">
+                    <div class="form-row">
+                        <label for="certificateNo">CDC Number <span>*</span></label>
+                        <input type="text" id="certificateNo" placeholder="" required>
+                    </div>
 
-                <button type="submit" id="verifyButton">VERIFY CERTIFICATE</button>
-            </form>
+                    <div class="form-row">
+                        <label for="dateOfBirth">Date of Birth <span>*</span></label>
+                        <input type="date" id="dateOfBirth" required>
+                    </div>
 
-            <div id="resultBox" class="result-box" style="display: none;"></div>
-        </section>
-    </main>
+                    <div class="form-row button-row">
+                        <label></label>
+                        <button type="submit" id="verifyButton">
+                            <i class="fa-solid fa-magnifying-glass"></i> Search
+                        </button>
+                    </div>
+                </form>
 
-    <footer class="footer">
-        <!-- FOOTER CONTENT -->
-    </footer>
+                <div id="resultBox" class="result-box" style="display: none;"></div>
+            </div>
+
+            <footer class="site-footer">
+                <p>Copyright © 2021-2022 Government Shipping Office, Chattogram. All Rights Reserved.</p>
+                <p>Maintenance By : <a href="#">TechSpark Limited</a></p>
+            </footer>
+        </div>
+    </div>
 
     <!-- SUPABASE JAVASCRIPT LIBRARY -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- YOUR CUSTOM SCRIPT (MUST LOAD AFTER SUPABASE) -->
+    <!-- CUSTOM SCRIPT -->
     <script src="script.js"></script>
 
 </body>
