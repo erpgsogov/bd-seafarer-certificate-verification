@@ -10,11 +10,12 @@
 <body>
 
     <div class="page-wrapper">
-        <!-- LEFT PANEL -->
+        <!-- LEFT PANEL WITH SHIP PATTERN -->
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
-                    <img src="images.jpeg" alt="Government Emblem" id="govLogo">
+                    <!-- Bangladesh Government Emblem -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Government Seal of Bangladesh" id="govLogo">
                 </div>
                 <h1>Government Shipping Office</h1>
                 <p>(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
@@ -23,7 +24,13 @@
 
         <!-- RIGHT PANEL -->
         <div class="right-panel">
-            <div class="form-container">
+            <div class="top-contact">
+                <p><i class="fa-solid fa-bell" style="color: #d97706;"></i> <span style="color: #d97706;">(Get in Touch : 9 AM to 6 PM)</span></p>
+                <p><i class="fa-solid fa-phone"></i> Hotline : 01972 380 814, 01972 380 821</p>
+                <p><i class="fa-solid fa-envelope"></i> Email : support@gso.gov.bd</p>
+            </div>
+
+            <div class="form-card">
                 <div class="form-header">
                     <i class="fa-regular fa-compass"></i> CDC VERIFICATION
                 </div>
@@ -31,7 +38,7 @@
                 <form id="verificationForm">
                     <div class="form-row">
                         <label for="certificateNo">CDC Number <span>*</span></label>
-                        <input type="text" id="certificateNo" placeholder="" required>
+                        <input type="text" id="certificateNo" required>
                     </div>
 
                     <div class="form-row">
@@ -57,9 +64,7 @@
         </div>
     </div>
 
-    <!-- SUPABASE JAVASCRIPT LIBRARY -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- CUSTOM SCRIPT -->
     <script src="script.js"></script>
 
 </body>
