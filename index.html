@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification Portal - Marine Department</title>
+    <title>Government Shipping Office - CDC Verification</title>
     <style>
         * {
             box-sizing: border-box;
@@ -18,7 +18,7 @@
             width: 100%;
             margin: 0;
             padding: 0;
-            background-color: #edf1f5;
+            background-color: #f1f1f1;
             overflow-x: hidden;
         }
 
@@ -34,97 +34,105 @@
             width: 50%;
             min-height: 100vh;
             background-color: #0b8043;
+            /* Subtle background pattern simulation */
             background-image: 
-                radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+                radial-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px);
+            background-size: 30px 30px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: #ffffff;
             text-align: center;
             padding: 40px 20px;
+            position: relative;
         }
 
-        .brand-content {
-            max-width: 480px;
-        }
-
-        .logo-circle {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 20px auto;
+        .seal-logo {
+            width: 110px;
+            height: 110px;
+            margin-bottom: 20px;
+            background: #ffffff;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #ffffff;
-            border-radius: 50%;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            padding: 4px;
+            padding: 5px;
         }
 
-        .logo-circle img {
+        .seal-logo img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            border-radius: 50%;
         }
 
-        .brand-content h1 {
-            font-size: 32px;
-            font-weight: 700;
+        .left-panel h1 {
+            font-size: 28px;
+            font-weight: bold;
             margin-bottom: 10px;
             color: #ffffff;
-            line-height: 1.2;
         }
 
-        .brand-content p {
+        .left-panel p {
             font-size: 14px;
             color: #ffffff;
             opacity: 0.95;
-            line-height: 1.4;
-            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
         /* RIGHT PANEL */
         .right-panel {
             width: 50%;
             min-height: 100vh;
-            background-color: #edf1f5;
+            background-color: #eef2f5;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 30px 20px;
-            overflow-y: auto;
+            padding: 40px 50px;
         }
 
         .top-contact-info {
-            text-align: center;
+            text-align: right;
             font-size: 12px;
-            color: #b38600;
-            margin-bottom: 20px;
+            color: #333;
+            margin-bottom: 30px;
             line-height: 1.6;
         }
 
-        .form-card {
-            background: #ffffff;
-            padding: 30px 40px;
-            border-radius: 4px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-            width: 100%;
-            max-width: 620px;
-            margin: auto;
-            border: 1px solid #dce3e8;
+        .top-contact-info .get-in-touch {
+            color: #d9822b;
+            font-weight: bold;
         }
 
-        .form-header {
+        .top-contact-info a {
+            color: #0073aa;
+            text-decoration: none;
+        }
+
+        .verification-container {
+            max-width: 550px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .verification-title {
             font-size: 15px;
             font-weight: bold;
             color: #0073aa;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+        }
+
+        .form-box {
+            background: #ffffff;
+            padding: 30px;
+            border: 1px solid #dce3e8;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .form-row {
@@ -134,13 +142,12 @@
         }
 
         .form-row label {
-            width: 140px;
+            width: 150px;
             font-size: 13px;
             color: #333;
             font-weight: bold;
             text-align: right;
             padding-right: 15px;
-            white-space: nowrap;
         }
 
         .form-row label span {
@@ -149,127 +156,131 @@
 
         .form-row input {
             flex: 1;
-            height: 36px;
+            height: 35px;
             padding: 6px 12px;
             border: 1px solid #bce8f1;
             border-radius: 4px;
             outline: none;
             font-size: 14px;
-            background-color: #ffffff;
+            background-color: #fff;
         }
 
-        .captcha-container {
+        .captcha-row-content {
             display: flex;
             flex-direction: column;
             flex: 1;
-            gap: 6px;
+            gap: 8px;
         }
 
-        .captcha-box {
+        .captcha-display {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 26px;
+            font-size: 24px;
             font-weight: bold;
             color: #1a0dab;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             background: #f9f9f9;
             padding: 4px 12px;
             border: 1px dashed #ccc;
-            display: inline-block;
             width: fit-content;
             user-select: none;
             font-style: italic;
         }
 
-        .button-row {
-            margin-top: 25px;
-        }
-
-        .form-row button {
+        .btn-search {
             background-color: #00a2ed;
             color: white;
             border: none;
-            padding: 8px 22px;
+            padding: 7px 18px;
             font-size: 13px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
-        .form-row button:hover {
+        .btn-search:hover {
             background-color: #008cd4;
         }
 
+        .button-row {
+            margin-top: 20px;
+        }
+
+        /* FOOTER */
         .site-footer {
             text-align: center;
             font-size: 11px;
-            color: #444;
+            color: #333;
             line-height: 1.6;
-            margin-top: auto;
-            padding-top: 20px;
+            margin-top: 30px;
         }
 
         .site-footer a {
-            color: #2b7bb9;
+            color: #0073aa;
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="page-wrapper">
-        <!-- Left Panel -->
+        <!-- Left Green Panel -->
         <div class="left-panel">
-            <div class="brand-content">
-                <div class="logo-circle">
-                    <span style="color: #0b8043; font-weight: bold; font-size: 16px;">TITO</span>
-                </div>
-                <h1>MARINER TITO</h1>
-                <p>Merchant Navy Chief Officer Verification & Portal System</p>
+            <div class="seal-logo">
+                <!-- এখানে অফিশিয়াল লোগোর লিংক বা ইমেজ ব্যবহার করতে পারেন -->
+                <span style="color: #0b8043; font-weight: bold; font-size: 12px;">BD SEAL</span>
             </div>
+            <h1>Government Shipping Office</h1>
+            <p>(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
         </div>
 
-        <!-- Right Panel -->
+        <!-- Right Content Panel -->
         <div class="right-panel">
-            <div class="top-contact-info">
-                Online Verification System for Seafarers (CDC & Date of Birth)
-            </div>
-
-            <div class="form-card">
-                <div class="form-header">
-                    <span>🔒</span> CDC & Seafarer Verification
-                </div>
-                
-                <div class="form-row">
-                    <label>CDC Number <span>*</span></label>
-                    <input type="text" placeholder="Enter CDC Number">
+            <div>
+                <div class="top-contact-info">
+                    <span class="get-in-touch">🔔 (Get in Touch : 9 AM to 6 PM)</span><br>
+                    📞 Hotline : 01972 380 814, 01972 380 821<br>
+                    ✉️ Email : <a href="mailto:support@gso.gov.bd">support@gso.gov.bd</a>
                 </div>
 
-                <div class="form-row">
-                    <label>Date of Birth <span>*</span></label>
-                    <input type="date">
-                </div>
-
-                <div class="form-row">
-                    <label>Verification Code <span>*</span></label>
-                    <div class="captcha-container">
-                        <div class="captcha-box">A8K9M</div>
-                        <input type="text" placeholder="Enter code">
+                <div class="verification-container">
+                    <div class="verification-title">
+                        <span>⬇️</span> CDC VERIFICATION
                     </div>
-                </div>
 
-                <div class="button-row">
-                    <div class="form-row">
-                        <label></label>
-                        <button type="submit">Verify Now</button>
+                    <div class="form-box">
+                        <div class="form-row">
+                            <label>CDC Number <span>*</span></label>
+                            <input type="text" placeholder="">
+                        </div>
+
+                        <div class="form-row">
+                            <label>Date of Birth <span>*</span></label>
+                            <input type="date">
+                        </div>
+
+                        <div class="form-row">
+                            <label>Verification Code <span>*</span></label>
+                            <div class="captcha-row-content">
+                                <div class="captcha-display">724628</div>
+                                <input type="text" placeholder="Please enter the numbers displayed above">
+                            </div>
+                        </div>
+
+                        <div class="button-row">
+                            <div class="form-row">
+                                <label></label>
+                                <button type="submit" class="btn-search">🔍 Search</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="site-footer">
-                &copy; 2026 Maritime Department. All Rights Reserved.<br>
-                <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+                Copyright &copy; 2021-2026 Government Shipping Office, Chattogram. All Rights Reserved.<br>
+                Maintenance By : <a href="#" target="_blank">TechSparkIT Limited</a>
             </div>
         </div>
     </div>
