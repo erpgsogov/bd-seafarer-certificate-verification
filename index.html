@@ -660,10 +660,9 @@
         window.onload = function() {
             generateCaptcha();
             var savedImage = localStorage.getItem('gsoProfileImage');
-            if(!savedImage) {
-                savedImage = ""; 
+            if(savedImage) {
+                document.getElementById('profileImage').src = savedImage;
             }
-            document.getElementById('profileImage').src = savedImage;
         };
 
         document.getElementById('verificationForm').addEventListener('submit', function(e) {
