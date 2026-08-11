@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Government Shipping Office - CDC Verification</title>
     
-    <!-- Favicon 404 Error বন্ধ করার জন্য -->
+    <!-- Favicon 404 Error বন্ধের জন্য -->
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
     <!-- FontAwesome Icons -->
@@ -36,16 +36,15 @@
             width: 100vw;
         }
 
-        /* LEFT PANEL WITH SHIP WATERMARK PATTERN */
+        /* LEFT PANEL - EXACT SHIP WATERMARK BACKGROUND */
         .left-panel {
             width: 50vw;
             min-width: 50vw;
             background-color: #008037;
-            /* Direct Base64 PNG Watermark pattern for guaranteed visual display */
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220"><g fill="%23000000" fill-opacity="0.14"><path d="M10 50 L35 20 L90 20 L110 50 L95 70 L25 70 Z M35 20 L35 10 L50 10 L50 20 M60 20 L60 8 L75 8 L75 20"/><path d="M120 160 L145 130 L200 130 L220 160 L205 180 L135 180 Z M145 130 L145 120 L160 120 L160 130 M170 130 L170 118 L185 118 L185 130"/><path d="M140 45 L175 10 L175 45 Z M182 45 L205 22 L195 45 Z M130 50 L212 50 L195 60 L140 60 Z"/><path d="M30 155 L65 120 L65 155 Z M72 155 L95 132 L85 155 Z M20 160 L102 160 L85 170 L30 170 Z"/></g></svg>');
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cg fill='%23000000' fill-opacity='0.13'%3E%3C!-- Container Ship 1 --%3E%3Cpath d='M15 60 L45 30 L110 30 L140 60 L120 85 L25 85 Z M50 30 L50 18 L70 18 L70 30 M80 30 L80 12 L100 12 L100 30'/%3E%3C!-- Ship 2 --%3E%3Cpath d='M155 200 L185 170 L250 170 L280 200 L260 225 L165 225 Z M190 170 L190 158 L210 158 L210 170 M220 170 L220 152 L240 152 L240 170'/%3E%3C!-- Sailboat 1 --%3E%3Cpath d='M180 50 L220 10 L220 50 Z M228 50 L255 25 L245 50 Z M170 56 L265 56 L245 68 L180 68 Z'/%3E%3C!-- Sailboat 2 --%3E%3Cpath d='M40 190 L80 150 L80 190 Z M88 190 L115 165 L105 190 Z M30 196 L125 196 L105 208 L40 208 Z'/%3E%3C/g%3E%3C/svg%3E");
             background-repeat: repeat;
             background-position: center;
-            background-size: 220px 220px;
+            background-size: 260px 260px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -59,8 +58,8 @@
         }
 
         .logo-circle {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             margin: 0 auto 20px auto;
             display: flex;
             justify-content: center;
@@ -75,9 +74,9 @@
         }
 
         .brand-content h1 {
-            font-size: 30px;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: #ffffff;
             line-height: 1.2;
         }
@@ -90,7 +89,7 @@
             font-weight: 400;
         }
 
-        /* RIGHT PANEL */
+        /* RIGHT PANEL - FORM AREA */
         .right-panel {
             width: 50vw;
             min-width: 50vw;
@@ -278,7 +277,7 @@
 <body>
 
     <div class="page-wrapper">
-        <!-- LEFT PANEL -->
+        <!-- LEFT PANEL (GREEN WITH WATERMARK) -->
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
@@ -289,7 +288,7 @@
             </div>
         </div>
 
-        <!-- RIGHT PANEL -->
+        <!-- RIGHT PANEL (FORM AREA) -->
         <div class="right-panel">
             <div class="form-card">
                 <div class="form-header">
@@ -299,7 +298,7 @@
                 <form id="verificationForm">
                     <div class="form-row">
                         <label for="certificateNo">CDC Number <span>*</span></label>
-                        <input type="text" id="certificateNo" required>
+                        <input type="text" id="certificateNo" placeholder="Enter CDC Number" required>
                     </div>
 
                     <div class="form-row">
