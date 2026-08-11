@@ -3,201 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verification Portal</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            text-shadow: none !important;
-        }
-
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            background-color: #edf1f5;
-            overflow-x: hidden;
-        }
-
-        .page-wrapper {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            min-height: 100vh;
-        }
-
-        .left-panel {
-            width: 50%;
-            min-height: 100vh;
-            background-color: #0b8043;
-            background-image: 
-                radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ffffff;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .brand-content {
-            max-width: 480px;
-        }
-
-        .logo-circle {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 20px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            padding: 4px;
-        }
-
-        .logo-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .brand-content h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #ffffff;
-            line-height: 1.2;
-        }
-
-        .brand-content p {
-            font-size: 14px;
-            color: #ffffff;
-            opacity: 0.95;
-            line-height: 1.4;
-            font-weight: 400;
-        }
-
-        .right-panel {
-            width: 50%;
-            min-height: 100vh;
-            background-color: #edf1f5;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 30px 20px;
-            overflow-y: auto;
-        }
-
-        .top-contact-info {
-            text-align: center;
-            font-size: 12px;
-            color: #b38600;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .form-card {
-            background: #ffffff;
-            padding: 30px 40px;
-            border-radius: 4px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-            width: 100%;
-            max-width: 620px;
-            margin: auto;
-            border: 1px solid #dce3e8;
-        }
-
-        .form-header {
-            font-size: 15px;
-            font-weight: bold;
-            color: #0073aa;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-
-        .form-row label {
-            width: 140px;
-            font-size: 13px;
-            color: #333;
-            font-weight: bold;
-            text-align: right;
-            padding-right: 15px;
-            white-space: nowrap;
-        }
-
-        .form-row label span {
-            color: red;
-        }
-
-        .form-row input {
-            flex: 1;
-            height: 36px;
-            padding: 6px 12px;
-            border: 1px solid #bce8f1;
-            border-radius: 4px;
-            outline: none;
-            font-size: 14px;
-            background-color: #ffffff;
-        }
-
-        .button-row {
-            margin-top: 25px;
-        }
-
-        .form-row button {
-            background-color: #00a2ed;
-            color: white;
-            border: none;
-            padding: 8px 22px;
-            font-size: 13px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .site-footer {
-            text-align: center;
-            font-size: 11px;
-            color: #444;
-            line-height: 1.6;
-            margin-top: auto;
-            padding-top: 20px;
-        }
-    </style>
+    <title>CDC Verification Portal</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="page-wrapper">
         <div class="left-panel">
             <div class="brand-content">
                 <h1>Verification Portal</h1>
-                <p>Secure online verification system for seafarers.</p>
+                <p>Secure online verification system.</p>
             </div>
         </div>
         <div class="right-panel">
             <div class="form-card">
-                <div class="form-header">CDC & Seafarer Verification</div>
+                <div class="form-header">CDC Verification</div>
                 <div class="form-row">
                     <label>CDC Number <span>*</span></label>
-                    <input type="text" placeholder="Enter CDC Number">
+                    <input type="text" placeholder="Enter CDC No">
                 </div>
                 <div class="form-row">
                     <label>Date of Birth <span>*</span></label>
@@ -206,12 +28,9 @@
                 <div class="button-row">
                     <div class="form-row">
                         <label></label>
-                        <button type="submit">Verify Now</button>
+                        <button type="submit">Submit</button>
                     </div>
                 </div>
-            </div>
-            <div class="site-footer">
-                &copy; 2026 All Rights Reserved.
             </div>
         </div>
     </div>
