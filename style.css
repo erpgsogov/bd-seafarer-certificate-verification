@@ -27,9 +27,7 @@ html, body {
     width: 50%;
     min-height: 100vh;
     background-color: #0b8043;
-    background-image: url("bg-ship.png");
-    background-repeat: repeat;
-    background-position: center;
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.05) 10px, transparent 0, transparent 20px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -363,6 +361,7 @@ html, body {
     padding: 3px 8px;
     font-size: 10px;
     border-radius: 3px;
+    cursor: pattern;
     cursor: pointer;
     display: block;
     margin: 0 auto;
