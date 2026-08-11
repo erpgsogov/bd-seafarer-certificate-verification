@@ -277,7 +277,7 @@
 
         .info-grid {
             display: grid;
-            grid-template-columns: 1.3fr 1fr;
+            grid-template-columns: 1fr;
             gap: 15px;
             margin-bottom: 20px;
         }
@@ -289,44 +289,19 @@
         }
 
         .info-table td {
-            padding: 6px 8px;
+            padding: 8px 10px;
             border: 1px solid #e0e0e0;
         }
 
         .info-table td.label-cell {
             font-weight: bold;
             text-align: right;
-            width: 42%;
+            width: 35%;
             color: #333;
         }
 
         .status-active {
             color: #008000;
-            font-weight: bold;
-        }
-
-        .profile-img-wrap {
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 95px;
-            height: 115px;
-            object-fit: cover;
-            border: 1px solid #ccc;
-            background-color: #f0f0f0;
-            display: block;
-            margin: 0 auto 8px auto;
-        }
-
-        .btn-change-photo {
-            background-color: #e53935;
-            color: white;
-            border: none;
-            padding: 4px 10px;
-            font-size: 11px;
-            border-radius: 3px;
-            cursor: pointer;
             font-weight: bold;
         }
 
@@ -437,19 +412,6 @@
                             <tr><td class="label-cell">DATE OF BIRTH</td><td class="value-cell">05/04/1990</td></tr>
                             <tr><td class="label-cell">RANK/RATING</td><td class="value-cell">CHIEF MATE (DECK)</td></tr>
                         </table>
-
-                        <table class="info-table">
-                            <tr>
-                                <td class="label-cell">Picture</td>
-                                <td class="value-cell profile-img-wrap">
-                                    <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <img id="profileImage" src="" alt="Profile Image" class="profile-img">
-                                    <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();">
-                                        <i class="fa-solid fa-camera"></i> Change Photo
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
                     </div>
 
                     <div class="blue-banner-header">Sign-On / Sign-Off History</div>
@@ -487,15 +449,6 @@
     </div>
 
     <script>
-        window.onload = function() {
-            var savedImage = localStorage.getItem('gsoProfileImage');
-            if (savedImage) {
-                document.getElementById('profileImage').src = savedImage;
-            } else {
-                document.getElementById('profileImage').src = "https://via.placeholder.com/95x115?text=No+Photo";
-            }
-        };
-
         document.getElementById('verificationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             var currentCdc = document.getElementById('certificateNo').value.trim();
@@ -531,19 +484,6 @@
         function showSearchView() {
             document.getElementById('detailsView').style.display = 'none';
             document.getElementById('searchView').style.display = 'block';
-        }
-
-        function previewFile(input) {
-            var file = input.files[0];
-            if (file) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var base64Image = e.target.result;
-                    document.getElementById('profileImage').src = base64Image;
-                    localStorage.setItem('gsoProfileImage', base64Image);
-                }
-                reader.readAsDataURL(file);
-            }
         }
     </script>
 </body>
