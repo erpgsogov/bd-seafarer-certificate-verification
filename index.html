@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bangladesh Seafarer Certificate Verification - CDC VERIFICATION</title>
     
-    <!-- 1. FIX FAVICON 404 ERROR -->
+    <!-- 1. PREVENT FAVICON 404 ERROR -->
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
     <!-- FontAwesome Icons -->
@@ -36,7 +36,7 @@
             width: 100vw;
         }
 
-        /* 2. FIX BG-SHIP.PNG 404 ERROR (Pure SVG Watermark Only) */
+        /* 2. LEFT PANEL WITH EMBEDDED SHIP SVG WATERMARK (NO IMAGE FILE NEEDED) */
         .left-panel {
             width: 50vw;
             min-width: 50vw;
@@ -251,6 +251,7 @@
             text-decoration: underline;
         }
 
+        /* RESPONSIVE */
         @media (max-width: 800px) {
             .page-wrapper {
                 flex-direction: column;
@@ -276,6 +277,7 @@
 <body>
 
     <div class="page-wrapper">
+        <!-- LEFT PANEL -->
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
@@ -286,6 +288,7 @@
             </div>
         </div>
 
+        <!-- RIGHT PANEL -->
         <div class="right-panel">
             <div class="form-card">
                 <div class="form-header">
