@@ -10,10 +10,8 @@
 <body>
 
     <div class="main-wrapper">
-        <!-- Top Header Section -->
         <header class="top-header">
             <div class="logo-container">
-                <!-- সরকারি লোগো -->
                 <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Government Seal" class="gov-logo">
             </div>
             
@@ -29,16 +27,13 @@
             </div>
         </header>
 
-        <!-- Verification Form Section -->
         <section class="form-section">
             <form id="verificationForm">
-                <!-- Input 1: CDC Number -->
                 <div class="form-group">
                     <label for="cdcNumber">CDC Number <span>*</span></label>
                     <input type="text" id="cdcNumber" name="cdcNumber" required>
                 </div>
 
-                <!-- Input 2: Date of Birth -->
                 <div class="form-group">
                     <label for="dob">Date of Birth <span>*</span></label>
                     <div class="input-with-icon">
@@ -47,7 +42,6 @@
                     </div>
                 </div>
 
-                <!-- Input 3: Verification Code -->
                 <div class="form-group">
                     <label for="captcha">Verification Code <span>*</span></label>
                     <div class="captcha-display">
@@ -56,24 +50,21 @@
                     <input type="text" id="captcha" name="captcha" placeholder="Please enter the numbers displayed above" required>
                 </div>
 
-                <!-- Search Button -->
                 <button type="submit" class="search-btn">🔍 Search</button>
             </form>
         </section>
 
-        <!-- Footer Section -->
         <footer class="site-footer">
             <p>Copyright © 2021-2022 Government Shipping Office, Chattogram. All Rights Reserved.</p>
         </footer>
     </div>
 
-    <!-- JavaScript for Random Captcha -->
     <script>
         function generateCaptcha() {
             var code = Math.floor(100000 + Math.random() * 900000);
             document.getElementById('captchaCode').innerText = code;
         }
-        generateCaptcha(); // Generate on page load
+        generateCaptcha();
     </script>
 
 </body>
