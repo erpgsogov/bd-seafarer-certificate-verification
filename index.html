@@ -359,7 +359,6 @@
             background-color: #f9f9f9;
         }
 
-        /* STATUS text color pure blue */
         .status-active {
             color: #0000FF;
             font-weight: bold;
@@ -384,7 +383,7 @@
         }
 
         .btn-change-photo {
-            background-color: #e53935;
+            background-color: #008B8B;
             color: white;
             border: none;
             padding: 2px 5px;
@@ -396,6 +395,10 @@
             align-items: center;
             gap: 3px;
             justify-content: center;
+        }
+
+        .btn-change-photo:hover {
+            background-color: #006666;
         }
 
         .blue-banner-header {
@@ -441,11 +444,12 @@
 <body>
 
     <div class="page-wrapper">
-        <!-- Left Banner Panel with bg-ship.png -->
+        <!-- Left Banner Panel with bg-ship.png background -->
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Seal">
+                    <!-- Government Shipping Logo / Seal connected with local or external source -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Government Seal">
                 </div>
                 <h1>Government Shipping Office</h1>
                 <p>(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
@@ -526,7 +530,7 @@
                     <button class="btn-back" onclick="showSearchView()">Back</button>
                 </div>
 
-                <!-- Main Info Table with ACTIVE+ in pure blue color -->
+                <!-- Main Info Table -->
                 <table class="info-table">
                     <tr><td class="label-cell">STATUS</td><td class="status-active">ACTIVE+</td></tr>
                     <tr><td class="label-cell">CDC NUMBER</td><td id="detCdcNumCell">C/O/6628</td></tr>
@@ -544,7 +548,7 @@
                     <tr><td class="label-cell">PLACE OF BIRTH</td><td>JASHORE</td></tr>
                     <tr><td class="label-cell">NATIONALITY</td><td>BANGLADESHI</td></tr>
                     
-                    <!-- Left-aligned & closely positioned Picture Row -->
+                    <!-- Picture Row -->
                     <tr>
                         <td class="label-cell">PICTURE</td>
                         <td>
