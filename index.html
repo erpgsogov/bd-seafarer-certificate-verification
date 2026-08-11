@@ -362,8 +362,24 @@
             border: 1px solid #ccc;
             background-color: #f0f0f0;
             display: block;
-            margin: 0 auto;
+            margin: 0 auto 5px auto;
             cursor: pointer;
+        }
+
+        .img-action-btn {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            font-size: 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .img-action-btn:hover {
+            background-color: #c9302c;
         }
 
         .section-title {
@@ -559,7 +575,8 @@
                                 <td class="label-cell">Picture</td>
                                 <td class="value-cell" style="text-align: center;">
                                     <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <img id="profileImage" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" title="Click to replace image">
+                                    <img id="profileImage" src="" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" title="Click to replace image">
+                                    <button class="img-action-btn" onclick="document.getElementById('imageUploader').click();">Change Photo</button>
                                 </td>
                             </tr>
                             <tr>
@@ -802,12 +819,14 @@
             document.getElementById('captchaInput').value = '';
         }
 
-        // পেজ লোড হওয়ার সময় লোকাল স্টোরেজ থেকে ছবি চেক করে সেট করা
         window.onload = function() {
             generateCaptcha();
             var savedImage = localStorage.getItem('profileImage');
             if (savedImage) {
                 document.getElementById('profileImage').src = savedImage;
+            } else {
+                // ডিফল্ট কোনো ছবি না রেখে খালি বা ডিফল্ট প্লেসহোল্ডার রাখা হলো
+                document.getElementById('profileImage').src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="95" height="115" viewBox="0 0 95 115"><rect width="95" height="115" fill="%23f0f0f0"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%23aaa" font-family="Arial" font-size="12">No Photo</text></svg>';
             }
         };
 
@@ -869,7 +888,6 @@
             generateCaptcha();
         }
 
-        // ছবি আপলোড করে লোকাল স্টোরেজে স্থায়ীভাবে সেভ করার ফাংশন
         function previewFile(input) {
             var file = input.files[0];
             if (file) {
@@ -877,7 +895,7 @@
                 reader.onload = function(e) {
                     var base64Image = e.target.result;
                     document.getElementById('profileImage').src = base64Image;
-                    localStorage.setItem('profileImage', base64Image); // ব্রাউজারে স্থায়ীভাবে সেভ করা হলো
+                    localStorage.setItem('profileImage', base64Image);
                 }
                 reader.readAsDataURL(file);
             }
