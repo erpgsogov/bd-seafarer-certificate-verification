@@ -96,20 +96,33 @@
             overflow-y: auto;
         }
 
+        .top-contact-info {
+            text-align: center;
+            font-size: 12px;
+            color: #b38600;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .top-contact-info i {
+            color: #b38600;
+        }
+
         .form-card {
             background: #ffffff;
-            padding: 35px 40px;
+            padding: 30px 40px;
             border-radius: 4px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             width: 100%;
-            max-width: 650px;
+            max-width: 620px;
             margin: auto;
+            border: 1px solid #dce3e8;
         }
 
         .form-header {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
-            color: #2b7bb9;
+            color: #0073aa;
             margin-bottom: 25px;
             display: flex;
             align-items: center;
@@ -123,9 +136,9 @@
         }
 
         .form-row label {
-            width: 130px;
+            width: 140px;
             font-size: 13px;
-            color: #444;
+            color: #333;
             font-weight: bold;
             text-align: right;
             padding-right: 15px;
@@ -140,7 +153,7 @@
             flex: 1;
             height: 36px;
             padding: 6px 12px;
-            border: 1px solid #79b7e7;
+            border: 1px solid #bce8f1;
             border-radius: 4px;
             outline: none;
             font-size: 14px;
@@ -148,8 +161,30 @@
         }
 
         .form-row input:focus {
-            border-color: #2b7bb9;
-            box-shadow: 0 0 5px rgba(43, 123, 185, 0.3);
+            border-color: #0073aa;
+            box-shadow: 0 0 4px rgba(0, 115, 170, 0.3);
+        }
+
+        .captcha-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 6px;
+        }
+
+        .captcha-box {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 26px;
+            font-weight: bold;
+            color: #1a0dab;
+            letter-spacing: 5px;
+            background: #f9f9f9;
+            padding: 4px 12px;
+            border: 1px dashed #ccc;
+            display: inline-block;
+            width: fit-content;
+            user-select: none;
+            font-style: italic;
         }
 
         .button-row {
@@ -161,7 +196,7 @@
             color: white;
             border: none;
             padding: 8px 22px;
-            font-size: 14px;
+            font-size: 13px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
@@ -243,23 +278,6 @@
             border-radius: 4px;
             padding: 15px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-        }
-
-        .contact-header {
-            text-align: center;
-            font-size: 12px;
-            color: #8b6b00;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .contact-header i {
-            color: #a37200;
-        }
-
-        .contact-header a {
-            color: #2b7bb9;
-            text-decoration: none;
         }
 
         .top-title-bar {
@@ -418,6 +436,12 @@
 
         <div class="right-panel">
             <div id="searchView">
+                <div class="top-contact-info">
+                    <p><i class="fa-regular fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</p>
+                    <p><i class="fa-brands fa-whatsapp"></i> Hotline : 01972 380 814, 01972 380 821</p>
+                    <p><i class="fa-regular fa-envelope"></i> Email : support@gso.gov.bd</p>
+                </div>
+
                 <div class="form-card">
                     <div class="form-header">
                         <i class="fa-regular fa-compass"></i> CDC VERIFICATION
@@ -432,6 +456,14 @@
                         <div class="form-row">
                             <label for="dateOfBirth">Date of Birth <span>*</span></label>
                             <input type="date" id="dateOfBirth" value="1990-04-05" required>
+                        </div>
+
+                        <div class="form-row">
+                            <label for="captchaInput">Verification Code <span>*</span></label>
+                            <div class="captcha-container">
+                                <div class="captcha-box">703215</div>
+                                <input type="text" id="captchaInput" placeholder="Please enter the numbers displayed above" value="703215" required>
+                            </div>
                         </div>
 
                         <div class="form-row button-row">
@@ -449,12 +481,6 @@
             <div id="detailsView" style="display: none;">
                 <div class="details-container">
                     
-                    <div class="contact-header">
-                        <p><i class="fa-regular fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</p>
-                        <p><i class="fa-brands fa-whatsapp"></i> Hotline : 01972 380 814, 01972 380 821</p>
-                        <p><i class="fa-regular fa-envelope"></i> Email : support@gso.gov.bd</p>
-                    </div>
-
                     <div class="top-title-bar">
                         <h2><i class="fa-regular fa-eye"></i> CDC INFORMATION OF - <span id="detCdcNo">C/O/6628</span></h2>
                         <button class="btn-back" onclick="showSearchView()">
