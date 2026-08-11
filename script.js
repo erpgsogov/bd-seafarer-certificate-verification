@@ -7,9 +7,8 @@
 // SUPABASE CONFIGURATION
 // ==========================================
 
-const SUPABASE_URL = "[https://zwpcswfrpzpyccdksspi.supabase.co](https://zwpcswfrpzpyccdksspi.supabase.co)";
+const SUPABASE_URL = "https://zwpcswfrpzpyccdksspi.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_iHFpyTs2PY57NvX6OqUxTg_lr53vTm5";
-
 // ==========================================
 // START APPLICATION
 // ==========================================
