@@ -3,8 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seafarer Verification Portal</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Verification Portal - Marine Department</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            text-shadow: none !important;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #edf1f5;
+            overflow-x: hidden;
+        }
+
+        .page-wrapper {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* LEFT GREEN PANEL */
+        .left-panel {
+            width: 50%;
+            min-height: 100vh;
+            background-color: #0b8043;
+            background-image: 
+                radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .brand-content {
+            max-width: 480px;
+        }
+
+        .logo-circle {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            padding: 4px;
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-content h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .brand-content p {
+            font-size: 14px;
+            color: #ffffff;
+            opacity: 0.95;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        /* RIGHT PANEL */
+        .right-panel {
+            width: 50%;
+            min-height: 100vh;
+            background-color: #edf1f5;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px 20px;
+            overflow-y: auto;
+        }
+
+        .top-contact-info {
+            text-align: center;
+            font-size: 12px;
+            color: #b38600;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .form-card {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 620px;
+            margin: auto;
+            border: 1px solid #dce3e8;
+        }
+
+        .form-header {
+            font-size: 15px;
+            font-weight: bold;
+            color: #0073aa;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .form-row label {
+            width: 140px;
+            font-size: 13px;
+            color: #333;
+            font-weight: bold;
+            text-align: right;
+            padding-right: 15px;
+            white-space: nowrap;
+        }
+
+        .form-row label span {
+            color: red;
+        }
+
+        .form-row input {
+            flex: 1;
+            height: 36px;
+            padding: 6px 12px;
+            border: 1px solid #bce8f1;
+            border-radius: 4px;
+            outline: none;
+            font-size: 14px;
+            background-color: #ffffff;
+        }
+
+        .captcha-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 6px;
+        }
+
+        .captcha-box {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 26px;
+            font-weight: bold;
+            color: #1a0dab;
+            letter-spacing: 5px;
+            background: #f9f9f9;
+            padding: 4px 12px;
+            border: 1px dashed #ccc;
+            display: inline-block;
+            width: fit-content;
+            user-select: none;
+            font-style: italic;
+        }
+
+        .button-row {
+            margin-top: 25px;
+        }
+
+        .form-row button {
+            background-color: #00a2ed;
+            color: white;
+            border: none;
+            padding: 8px 22px;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-row button:hover {
+            background-color: #008cd4;
+        }
+
+        .site-footer {
+            text-align: center;
+            font-size: 11px;
+            color: #444;
+            line-height: 1.6;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .site-footer a {
+            color: #2b7bb9;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="page-wrapper">
@@ -12,18 +223,17 @@
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
-                    <!-- আপনার লোগো বা ছবি এখানে দিতে পারেন -->
-                    <span style="color: #0b8043; font-weight: bold; font-size: 14px;">LOGO</span>
+                    <span style="color: #0b8043; font-weight: bold; font-size: 16px;">TITO</span>
                 </div>
                 <h1>MARINER TITO</h1>
-                <p>Merchant Navy Chief Officer Verification System</p>
+                <p>Merchant Navy Chief Officer Verification & Portal System</p>
             </div>
         </div>
 
         <!-- Right Panel -->
         <div class="right-panel">
             <div class="top-contact-info">
-                Online Verification Portal for Seafarers (CDC & Date of Birth)
+                Online Verification System for Seafarers (CDC & Date of Birth)
             </div>
 
             <div class="form-card">
