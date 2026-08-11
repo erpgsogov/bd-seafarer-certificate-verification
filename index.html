@@ -498,7 +498,7 @@
                                     <tr>
                                         <td>1</td>
                                         <td>MD KHALILUR RAHMAN</td>
-                                        <td>05-04-1990</td>
+                                        <td id="resultDob">05-04-1990</td>
                                         <td id="resultCdcNo">C/O/6628</td>
                                         <td>29 Jan 2024</td>
                                         <td>29 Jan 2034</td>
@@ -523,7 +523,7 @@
                     <!-- Left Info Table -->
                     <table class="info-table">
                         <tr><td class="label-cell">STATUS</td><td class="status-active">ACTIVE+</td></tr>
-                        <tr><td class="label-cell">CDC NUMBER</td><td>C/O/6628</td></tr>
+                        <tr><td class="label-cell">CDC NUMBER</td><td id="detCdcNumCell">C/O/6628</td></tr>
                         <tr><td class="label-cell">NAME</td><td>MD KHALILUR RAHMAN</td></tr>
                         <tr><td class="label-cell">FATHER'S NAME</td><td>MD ROBIUL ISLAM</td></tr>
                         <tr><td class="label-cell">MOTHER'S NAME</td><td>KHADIZA BEGUJM</td></tr>
@@ -534,7 +534,7 @@
                         <tr><td class="label-cell">CELL PHONE</td><td>+8801602449628</td></tr>
                         <tr><td class="label-cell">EMAIL</td><td>marinertito1362@gmail.com</td></tr>
                         <tr><td class="label-cell">RELIGION</td><td>ISLAM</td></tr>
-                        <tr><td class="label-cell">DATE OF BIRTH</td><td>05 APRIL 1990</td></tr>
+                        <tr><td class="label-cell">DATE OF BIRTH</td><td id="detDobCell">05 APRIL 1990</td></tr>
                         <tr><td class="label-cell">PLACE OF BIRTH</td><td>JASHORE</td></tr>
                         <tr><td class="label-cell">NATIONALITY</td><td>BANGLADESHI</td></tr>
                         <tr><td class="label-cell">PASSPORT NUMBER</td><td>A08611931</td></tr>
@@ -665,14 +665,29 @@
             }
 
             var currentCdc = document.getElementById('certificateNo').value.trim();
+            var currentDob = document.getElementById('dateOfBirth').value; // e.g. 1990-04-05
+
+            // Format DOB to DD-MM-YYYY for result table
+            if(currentDob) {
+                var parts = currentDob.split('-');
+                var formattedDob = parts[2] + '-' + parts[1] + '-' + parts[0];
+                document.getElementById('resultDob').innerText = formattedDob;
+                
+                // Format DOB for details view (e.g. 05 APRIL 1990)
+                var months = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+                var monthName = months[parseInt(parts[1], 10) - 1];
+                document.getElementById('detDobCell').innerText = parts[2] + ' ' + monthName + ' ' + parts[0];
+            }
+
             document.getElementById('resultCdcNo').innerText = currentCdc;
+            document.getElementById('detCdcNo').innerText = currentCdc;
+            document.getElementById('detCdcNumCell').innerText = currentCdc;
+
+            // Display result dynamically based on input
             document.getElementById('resultBox').style.display = 'block';
         });
 
         function showDetailsView() {
-            var currentCdc = document.getElementById('certificateNo').value.trim();
-            document.getElementById('detCdcNo').innerText = currentCdc;
-            
             document.getElementById('searchView').style.display = 'none';
             document.getElementById('detailsView').style.display = 'block';
         }
