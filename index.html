@@ -4,62 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Government Shipping Office</title>
+    
+    <!-- Favicon 404 Error বন্ধের জন্য -->
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
+            text-shadow: none !important;
         }
 
-        body, html {
+        html, body {
             height: 100%;
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #01833d;
+            overflow: hidden;
+            background-color: #008037;
         }
 
-        .gso-hero-card {
-            width: 100%;
+        .hero-bg {
+            width: 100vw;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
-            background-color: #01833d;
-            /* Exact Ship & Boat Watermark Grid Pattern */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='%23000000' fill-opacity='0.12'%3E%3C!-- Cargo Ship 1 --%3E%3Cpath d='M20 70 L50 35 L120 35 L150 70 L130 95 L30 95 Z M55 35 L55 20 L75 20 L75 35 M85 35 L85 15 L105 15 L105 35'/%3E%3C!-- Cruise / Vessel 2 --%3E%3Cpath d='M190 230 L220 195 L290 195 L320 230 L300 255 L200 255 Z M225 195 L225 180 L245 180 L245 195 M255 195 L255 175 L275 175 L275 195'/%3E%3C!-- Sail Boat 1 --%3E%3Cpath d='M220 60 L260 15 L260 60 Z M268 60 L300 30 L288 60 Z M208 68 L312 68 L288 82 L220 82 Z'/%3E%3C!-- Sail Boat 2 --%3E%3Cpath d='M50 220 L90 175 L90 220 Z M98 220 L130 190 L118 220 Z M38 228 L142 228 L118 242 L50 242 Z'/%3E%3C/g%3E%3C/svg%3E");
+            background-color: #008037;
+            /* 100% Embedded Watermark Pattern (No External File Needed) */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cg fill='%23000000' fill-opacity='0.13'%3E%3C!-- Container Ship 1 --%3E%3Cpath d='M15 60 L45 30 L110 30 L140 60 L120 85 L25 85 Z M50 30 L50 18 L70 18 L70 30 M80 30 L80 12 L100 12 L100 30'/%3E%3C!-- Ship 2 --%3E%3Cpath d='M155 200 L185 170 L250 170 L280 200 L260 225 L165 225 Z M190 170 L190 158 L210 158 L210 170 M220 170 L220 152 L240 152 L240 170'/%3E%3C!-- Sailboat 1 --%3E%3Cpath d='M180 50 L220 10 L220 50 Z M228 50 L255 25 L245 50 Z M170 56 L265 56 L245 68 L180 68 Z'/%3E%3C!-- Sailboat 2 --%3E%3Cpath d='M40 190 L80 150 L80 190 Z M88 190 L115 165 L105 190 Z M30 196 L125 196 L105 208 L40 208 Z'/%3E%3C/g%3E%3C/svg%3E");
             background-repeat: repeat;
             background-position: center;
-            background-size: 280px 280px;
+            background-size: 260px 260px;
+            padding: 20px;
         }
 
-        .logo-wrapper {
+        .logo-box {
             width: 110px;
             height: 110px;
-            margin-bottom: 22px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin-bottom: 20px;
         }
 
-        .logo-wrapper img {
+        .logo-box img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.2));
+            filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.25));
         }
 
         .title {
             color: #ffffff;
             font-size: 32px;
             font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: 0.2px;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
         }
 
         .subtitle {
@@ -70,24 +70,17 @@
         }
 
         @media (max-width: 600px) {
-            .title {
-                font-size: 24px;
-            }
-            .subtitle {
-                font-size: 13px;
-            }
-            .logo-wrapper {
-                width: 90px;
-                height: 90px;
-            }
+            .title { font-size: 22px; }
+            .subtitle { font-size: 13px; }
+            .logo-box { width: 85px; height: 85px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="gso-hero-card">
-        <div class="logo-wrapper">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Government Seal of Bangladesh">
+    <div class="hero-bg">
+        <div class="logo-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="BD Government Seal">
         </div>
         <h1 class="title">Government Shipping Office</h1>
         <p class="subtitle">(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
