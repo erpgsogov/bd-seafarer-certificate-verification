@@ -6,15 +6,170 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Bangladesh Seafarer Certificate Verification</title>
+    <meta name="description"
+          content="Bangladesh Seafarer Certificate Verification System">
 
-    <!-- Website CSS -->
-    <link rel="stylesheet" href="style.css">
+    <meta name="robots"
+          content="index, follow">
 
-    <!-- Supabase JavaScript Library - LOAD ONCE -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>
+        Bangladesh Seafarer Certificate Verification
+    </title>
+
+
+    <!-- ==================================================
+         BASIC STYLE
+         ================================================== -->
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f6fa;
+            color: #222;
+        }
+
+        .header {
+            background: #003b70;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            font-size: 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            margin: 45px auto;
+            padding: 0 15px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #003b70;
+            font-size: 23px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #c8d0d8;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #0066b3;
+            box-shadow: 0 0 0 2px rgba(0,102,179,0.12);
+        }
+
+        .verify-button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            background: #0066b3;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .verify-button:hover {
+            background: #004f8c;
+        }
+
+        .result-box {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 7px;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .result-success {
+            display: block;
+            background: #eaf8ee;
+            border: 1px solid #4caf50;
+            color: #155724;
+        }
+
+        .result-error {
+            display: block;
+            background: #fff0f0;
+            border: 1px solid #dc3545;
+            color: #721c24;
+        }
+
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            padding: 25px 15px 40px;
+        }
+
+        .footer strong {
+            color: #003b70;
+        }
+
+        @media (max-width: 600px) {
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .container {
+                margin: 25px auto;
+            }
+
+        }
+
+    </style>
 
 </head>
 
@@ -22,192 +177,138 @@
 <body>
 
 
-    <!-- ======================================================
-         GOVERNMENT HEADER
-    ======================================================= -->
+    <!-- ==================================================
+         HEADER
+         ================================================== -->
 
-    <header class="gov-header">
+    <header class="header">
 
-        <div class="container header-content">
+        <h1>
+            Bangladesh Seafarer Certificate Verification
+        </h1>
 
-            <img
-                src="images.jpeg"
-                alt="Bangladesh Department of Shipping Logo"
-                class="gov-logo"
-            >
-
-            <div class="header-text">
-
-                <h1>
-                    Bangladesh Seafarer Certificate Verification
-                </h1>
-
-                <p>
-                    Government of the People's Republic of Bangladesh
-                </p>
-
-            </div>
-
-        </div>
+        <p>
+            Certificate / CDC Verification System
+        </p>
 
     </header>
 
 
+    <!-- ==================================================
+         MAIN
+         ================================================== -->
 
-    <!-- ======================================================
-         NAVIGATION
-    ======================================================= -->
+    <main class="container">
 
-    <nav class="gov-nav">
+        <div class="card">
 
-        <div class="container">
-
-            <ul class="nav-links">
-
-                <li>
-                    <a href="#">
-                        Home
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#verification">
-                        Verification
-                    </a>
-                </li>
-
-            </ul>
-
-        </div>
-
-    </nav>
+            <h2>
+                Verify Seafarer Certificate
+            </h2>
 
 
+            <!-- ==================================================
+                 VERIFICATION FORM
+                 ================================================== -->
 
-    <!-- ======================================================
-         VERIFICATION SECTION
-    ======================================================= -->
+            <form id="verificationForm">
 
-    <section
-        class="hero-section"
-        id="verification"
-    >
+                <!-- CDC NUMBER -->
 
-        <div class="container">
+                <div class="form-group">
 
-            <div class="verification-card">
+                    <label for="certificateNo">
+                        CDC No.
+                    </label>
 
-                <h2>
-                    Verify Certificate
-                </h2>
-
-
-                <!-- ==================================================
-                     VERIFICATION FORM
-                ================================================== -->
-
-                <form id="verificationForm">
-
-
-                    <!-- CDC NUMBER -->
-
-                    <div class="form-group">
-
-                        <label for="certificateNo">
-                            CDC No.
-                        </label>
-
-                        <input
-                            type="text"
-                            id="certificateNo"
-                            name="certificateNo"
-                            class="form-control"
-                            placeholder="Enter CDC No."
-                            autocomplete="off"
-                            required
-                        >
-
-                    </div>
-
-
-
-                    <!-- DATE OF BIRTH -->
-
-                    <div class="form-group">
-
-                        <label for="dateOfBirth">
-                            Date of Birth
-                        </label>
-
-                        <input
-                            type="date"
-                            id="dateOfBirth"
-                            name="dateOfBirth"
-                            class="form-control"
-                            required
-                        >
-
-                    </div>
-
-
-
-                    <!-- VERIFY BUTTON -->
-
-                    <button
-                        type="submit"
-                        class="btn-submit"
+                    <input
+                        type="text"
+                        id="certificateNo"
+                        name="certificateNo"
+                        placeholder="Enter CDC No."
+                        autocomplete="off"
+                        required
                     >
-                        VERIFY
-                    </button>
+
+                </div>
 
 
-                </form>
+                <!-- DATE OF BIRTH -->
+
+                <div class="form-group">
+
+                    <label for="dateOfBirth">
+                        Date of Birth
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dateOfBirth"
+                        name="dateOfBirth"
+                        required
+                    >
+
+                </div>
 
 
+                <!-- VERIFY BUTTON -->
 
-                <!-- ==================================================
-                     RESULT BOX
-                ================================================== -->
+                <button
+                    type="submit"
+                    class="verify-button"
+                >
+                    VERIFY CERTIFICATE
+                </button>
 
-                <div
-                    id="resultBox"
-                    class="result-box"
-                    style="display: none;"
-                    aria-live="polite"
-                ></div>
+            </form>
 
 
-            </div>
+            <!-- ==================================================
+                 RESULT
+                 ================================================== -->
+
+            <div
+                id="resultBox"
+                class="result-box"
+                role="alert"
+                aria-live="polite"
+            ></div>
 
         </div>
 
-    </section>
+    </main>
 
 
-
-    <!-- ======================================================
+    <!-- ==================================================
          FOOTER
-    ======================================================= -->
+         ================================================== -->
 
-    <footer>
+    <footer class="footer">
 
-        <div class="container text-center">
+        <strong>
+            Bangladesh Seafarer Certificate Verification
+        </strong>
 
-            <p>
-                &copy; 2026 Department of Shipping, Bangladesh.
-                All rights reserved.
-            </p>
+        <br>
 
-        </div>
+        Online Certificate Verification System
 
     </footer>
 
 
+    <!-- ==================================================
+         SUPABASE JAVASCRIPT LIBRARY
+         
+         IMPORTANT:
+         Supabase MUST load BEFORE script.js
+         ================================================== -->
 
-    <!-- ======================================================
-         VERIFICATION JAVASCRIPT
-         Supabase library is already loaded above.
-    ======================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+    <!-- ==================================================
+         YOUR VERIFICATION JAVASCRIPT
+         ================================================== -->
 
     <script src="script.js"></script>
 
