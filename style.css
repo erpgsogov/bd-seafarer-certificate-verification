@@ -285,4 +285,29 @@ html, body {
         font-size: 11px !important;
         word-break: break-word;
     }
+} /* Mobile View Optimization for Top Banner/Logo */
+@media screen and (max-width: 900px) {
+    .left-panel {
+        width: 100% !important;
+        min-height: auto !important;
+        max-height: 220px !important;
+        padding: 15px 10px !important;
+    }
+
+    .logo-circle {
+        width: 65px !important;
+        height: 65px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .brand-content h1 {
+        font-size: 15px !important;
+        margin-bottom: 4px !important;
+        white-space: normal !important;
+    }
+
+    .brand-content p {
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+    }
 }
