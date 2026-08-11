@@ -225,7 +225,7 @@
         .result-header {
             font-size: 15px;
             font-weight: bold;
-            color: #2b7bb9;
+            color: #0073aa;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
@@ -242,39 +242,36 @@
         .gso-result-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 12px;
             text-align: left;
         }
 
         .gso-result-table th, .gso-result-table td {
-            padding: 9px 8px;
+            padding: 12px 15px;
             border: 1px solid #dce3e8;
             white-space: nowrap;
             color: #333;
         }
 
         .gso-result-table th {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             font-weight: bold;
-            color: #0073aa;
+            color: #333;
         }
 
         .btn-details {
-            background-color: #4caf50;
+            background-color: #5cb85c;
             color: white;
             border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            font-size: 11px;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 12px;
             cursor: pointer;
             font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
         }
 
         .btn-details:hover {
-            background-color: #43a047;
+            background-color: #449d44;
         }
 
         .details-container {
@@ -466,26 +463,16 @@
                             <table class="gso-result-table">
                                 <thead>
                                     <tr>
-                                        <th>SERIAL NO</th>
                                         <th>NAME</th>
-                                        <th>DATE OF BIRTH</th>
                                         <th>CDC NUMBER</th>
-                                        <th>DATE OF ISSUE</th>
-                                        <th>DATE OF EXPIRE</th>
-                                        <th>PLACE OF ISSUE</th>
                                         <th>DETAILS</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
                                         <td>MD KHALILUR RAHMAN</td>
-                                        <td>05-04-1990</td>
                                         <td id="resultCdcNo">C/O/6628</td>
-                                        <td>15/09/2023</td>
-                                        <td>14/09/2033</td>
-                                        <td>CHATTOGRAM</td>
-                                        <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
+                                        <td><button class="btn-details" onclick="showDetailsView()">Details</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -508,8 +495,6 @@
                         <tr><td class="label-cell">NAME</td><td>MD KHALILUR RAHMAN</td></tr>
                         <tr><td class="label-cell">RANK</td><td>CHIEF MATE</td></tr>
                         <tr><td class="label-cell">DATE OF ISSUE</td><td>15/09/2023</td></tr>
-                        <tr><td class="label-cell">DATE OF EXPIRE</td><td>14/09/2033</td></tr>
-                        <tr><td class="label-cell">PLACE OF ISSUE</td><td>CHATTOGRAM</td></tr>
                         <tr><td class="label-cell">AGE</td><td>35 Years</td></tr>
                         <tr><td class="label-cell">DATE OF BIRTH</td><td>05/04/1990</td></tr>
                     </table>
