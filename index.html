@@ -95,150 +95,6 @@
             overflow-y: auto;
         }
 
-        .top-contact-info {
-            text-align: center;
-            font-size: 12px;
-            color: #b38600;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .form-card {
-            background: #ffffff;
-            padding: 30px 40px;
-            border-radius: 4px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-            width: 100%;
-            max-width: 620px;
-            margin: auto;
-            border: 1px solid #dce3e8;
-        }
-
-        .form-header {
-            font-size: 15px;
-            font-weight: bold;
-            color: #0073aa;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-
-        .form-row label {
-            width: 140px;
-            font-size: 13px;
-            color: #333;
-            font-weight: bold;
-            text-align: right;
-            padding-right: 15px;
-            white-space: nowrap;
-        }
-
-        .form-row label span {
-            color: red;
-        }
-
-        .form-row input {
-            flex: 1;
-            height: 36px;
-            padding: 6px 12px;
-            border: 1px solid #bce8f1;
-            border-radius: 4px;
-            outline: none;
-            font-size: 14px;
-            background-color: #ffffff;
-        }
-
-        .captcha-container {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            gap: 6px;
-        }
-
-        .captcha-box {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 26px;
-            font-weight: bold;
-            color: #1a0dab;
-            letter-spacing: 5px;
-            background: #f9f9f9;
-            padding: 4px 12px;
-            border: 1px dashed #ccc;
-            display: inline-block;
-            width: fit-content;
-        }
-
-        .button-row {
-            margin-top: 25px;
-        }
-
-        .form-row button {
-            background-color: #00a2ed;
-            color: white;
-            border: none;
-            padding: 8px 22px;
-            font-size: 13px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .result-box {
-            margin-top: 25px;
-            width: 100%;
-        }
-
-        .result-header {
-            font-size: 15px;
-            font-weight: bold;
-            color: #2b7bb9;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            background: #ffffff;
-            border: 1px solid #dce3e8;
-        }
-
-        .gso-result-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            text-align: left;
-        }
-
-        .gso-result-table th, .gso-result-table td {
-            padding: 10px;
-            border: 1px solid #dce3e8;
-            white-space: nowrap;
-        }
-
-        .btn-details {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            padding: 5px 12px;
-            border-radius: 3px;
-            font-size: 12px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
         .details-container {
             width: 100%;
             max-width: 820px;
@@ -262,17 +118,6 @@
         .top-title-bar h2 {
             font-size: 14px;
             color: #333;
-        }
-
-        .btn-back {
-            background-color: #00a2ed;
-            color: white;
-            border: none;
-            padding: 5px 14px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 12px;
         }
 
         .info-grid {
@@ -381,102 +226,60 @@
         </div>
 
         <div class="right-panel">
-            <!-- Search View -->
-            <div id="searchView">
-                <div class="top-contact-info">
-                    <p><i class="fa-regular fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</p>
-                    <p><i class="fa-brands fa-whatsapp"></i> Hotline : 01972 380 814</p>
+            <div class="details-container">
+                <div class="top-title-bar">
+                    <h2>CDC INFORMATION OF - <span id="detCdcNo">C/O/6628</span></h2>
                 </div>
 
-                <div class="form-card">
-                    <div class="form-header">
-                        <i class="fa-regular fa-compass"></i> CDC VERIFICATION
-                    </div>
+                <div class="info-grid">
+                    <table class="info-table">
+                        <tr><td class="label-cell">STATUS</td><td class="value-cell status-active">ACTIVE</td></tr>
+                        <tr><td class="label-cell">CDC NUMBER</td><td class="value-cell" id="infoCdcNo">C/O/6628</td></tr>
+                        <tr><td class="label-cell">NAME</td><td class="value-cell">MD KHALILUR RAHMAN</td></tr>
+                        <tr><td class="label-cell">FATHER'S NAME</td><td class="value-cell">ABDUR RAHMAN</td></tr>
+                        <tr><td class="label-cell">MOTHER'S NAME</td><td class="value-cell">BEGUM FATEMA</td></tr>
+                        <tr><td class="label-cell">DATE OF BIRTH</td><td class="value-cell">05/04/1990</td></tr>
+                        <tr><td class="label-cell">RANK/RATING</td><td class="value-cell">CHIEF MATE (DECK)</td></tr>
+                    </table>
 
-                    <form id="verificationForm">
-                        <div class="form-row">
-                            <label for="certificateNo">CDC Number <span>*</span></label>
-                            <input type="text" id="certificateNo" value="C/O/6628" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="dateOfBirth">Date of Birth <span>*</span></label>
-                            <input type="date" id="dateOfBirth" value="1990-04-05" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="captchaInput">Verification Code <span>*</span></label>
-                            <div class="captcha-container">
-                                <div class="captcha-box" id="captchaDisplay">703215</div>
-                                <input type="text" id="captchaInput" placeholder="Enter code" required>
-                            </div>
-                        </div>
-                        <div class="form-row button-row">
-                            <label></label>
-                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-                        </div>
-                    </form>
-
-                    <div id="resultBox" class="result-box" style="display: none;"></div>
+                    <table class="info-table">
+                        <tr>
+                            <td class="label-cell">Picture</td>
+                            <td class="value-cell profile-img-wrap">
+                                <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
+                                <img id="profileImage" src="" alt="Profile Image" class="profile-img">
+                                <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();">
+                                    <i class="fa-solid fa-camera"></i> Change Photo
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-            </div>
 
-            <!-- Details View -->
-            <div id="detailsView" style="display: none;">
-                <div class="details-container">
-                    <div class="top-title-bar">
-                        <h2>CDC INFORMATION OF - <span id="detCdcNo">C/O/6628</span></h2>
-                        <button class="btn-back" onclick="showSearchView()">Back</button>
-                    </div>
-
-                    <div class="info-grid">
-                        <table class="info-table">
-                            <tr><td class="label-cell">STATUS</td><td class="value-cell status-active">ACTIVE</td></tr>
-                            <tr><td class="label-cell">CDC NUMBER</td><td class="value-cell" id="infoCdcNo">C/O/6628</td></tr>
-                            <tr><td class="label-cell">NAME</td><td class="value-cell">MD KHALILUR RAHMAN</td></tr>
-                            <tr><td class="label-cell">FATHER'S NAME</td><td class="value-cell">ABDUR RAHMAN</td></tr>
-                            <tr><td class="label-cell">MOTHER'S NAME</td><td class="value-cell">BEGUM FATEMA</td></tr>
-                            <tr><td class="label-cell">DATE OF BIRTH</td><td class="value-cell">05/04/1990</td></tr>
-                            <tr><td class="label-cell">RANK/RATING</td><td class="value-cell">CHIEF MATE (DECK)</td></tr>
-                        </table>
-
-                        <table class="info-table">
+                <div class="blue-banner-header">Sign-On / Sign-Off History</div>
+                <div class="table-responsive">
+                    <table class="detail-data-table">
+                        <thead>
                             <tr>
-                                <td class="label-cell">Picture</td>
-                                <td class="value-cell profile-img-wrap">
-                                    <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <img id="profileImage" src="" alt="Profile Image" class="profile-img">
-                                    <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();">
-                                        <i class="fa-solid fa-camera"></i> Change Photo
-                                    </button>
-                                </td>
+                                <th>SL</th>
+                                <th>Vessel Name</th>
+                                <th>IMO No</th>
+                                <th>Rank</th>
+                                <th>Sign On</th>
+                                <th>Sign Off</th>
                             </tr>
-                        </table>
-                    </div>
-
-                    <div class="blue-banner-header">Sign-On / Sign-Off History</div>
-                    <div class="table-responsive">
-                        <table class="detail-data-table">
-                            <thead>
-                                <tr>
-                                    <th>SL</th>
-                                    <th>Vessel Name</th>
-                                    <th>IMO No</th>
-                                    <th>Rank</th>
-                                    <th>Sign On</th>
-                                    <th>Sign Off</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>MT. OCEANGLORY</td>
-                                    <td>9876543</td>
-                                    <td>Chief Mate</td>
-                                    <td>10/01/2025</td>
-                                    <td>15/06/2025</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>MT. OCEANGLORY</td>
+                                <td>9876543</td>
+                                <td>Chief Mate</td>
+                                <td>10/01/2025</td>
+                                <td>15/06/2025</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -495,43 +298,6 @@
                 document.getElementById('profileImage').src = "https://via.placeholder.com/95x115?text=No+Photo";
             }
         };
-
-        document.getElementById('verificationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var currentCdc = document.getElementById('certificateNo').value.trim();
-            var resultBox = document.getElementById('resultBox');
-
-            resultBox.style.display = 'block';
-            resultBox.innerHTML = `
-                <div class="result-header">CDC VERIFICATION RESULT</div>
-                <div class="table-responsive">
-                    <table class="gso-result-table">
-                        <thead>
-                            <tr><th>NAME</th><th>CDC NUMBER</th><th>DETAILS</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>MD KHALILUR RAHMAN</td>
-                                <td>${currentCdc}</td>
-                                <td><button class="btn-details" onclick="showDetailsView('${currentCdc}')">Details</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            `;
-        });
-
-        function showDetailsView(cdc) {
-            document.getElementById('searchView').style.display = 'none';
-            document.getElementById('detailsView').style.display = 'block';
-            document.getElementById('detCdcNo').innerText = cdc;
-            document.getElementById('infoCdcNo').innerText = cdc;
-        }
-
-        function showSearchView() {
-            document.getElementById('detailsView').style.display = 'none';
-            document.getElementById('searchView').style.display = 'block';
-        }
 
         function previewFile(input) {
             var file = input.files[0];
