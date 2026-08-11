@@ -559,7 +559,6 @@
                                 <td class="label-cell">Picture</td>
                                 <td class="value-cell" style="text-align: center;">
                                     <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                    <!-- এখানে Base64 কোডের পরিবর্তে ছবির সঠিক লিংক বা ফাইল নাম দেওয়া হয়েছে -->
                                     <img id="profileImage" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="MD KHALILUR RAHMAN" class="profile-img" onclick="document.getElementById('imageUploader').click();" title="Click to replace image">
                                 </td>
                             </tr>
@@ -803,8 +802,13 @@
             document.getElementById('captchaInput').value = '';
         }
 
+        // পেজ লোড হওয়ার সময় লোকাল স্টোরেজ থেকে ছবি চেক করে সেট করা
         window.onload = function() {
             generateCaptcha();
+            var savedImage = localStorage.getItem('profileImage');
+            if (savedImage) {
+                document.getElementById('profileImage').src = savedImage;
+            }
         };
 
         document.getElementById('verificationForm').addEventListener('submit', function(e) {
@@ -865,12 +869,15 @@
             generateCaptcha();
         }
 
+        // ছবি আপলোড করে লোকাল স্টোরেজে স্থায়ীভাবে সেভ করার ফাংশন
         function previewFile(input) {
             var file = input.files[0];
             if (file) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('profileImage').src = e.target.result;
+                    var base64Image = e.target.result;
+                    document.getElementById('profileImage').src = base64Image;
+                    localStorage.setItem('profileImage', base64Image); // ব্রাউজারে স্থায়ীভাবে সেভ করা হলো
                 }
                 reader.readAsDataURL(file);
             }
