@@ -5,18 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Government Shipping Office - CDC Verification</title>
     
+    <!-- Google Tag / Verification -->
+    <meta name="google-site-verification" content="google1e79391054ee420b" />
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg">
+    <link rel="apple-touch-icon" href="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg">
+    
+    <!-- FontAwesome & Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="page-wrapper">
-        <!-- Left Panel / Branding -->
+        <!-- Left Banner Panel -->
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Seal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Government Seal">
                 </div>
                 <h1>Government Shipping Office</h1>
                 <p>Online Application for CDC, Roster, Article & Signon/Signoff</p>
@@ -25,10 +32,10 @@
 
         <!-- Right Content Panel -->
         <div class="right-panel">
-            <!-- Mobile Top Header -->
-            <div class="mobile top-header">
-                <div class="logo-circle">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Seal">
+            <!-- Mobile Header / Top Contact Info -->
+            <div class="top-header">
+                <div class="top-logo-area">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Seal" width="50">
                 </div>
                 <div class="top-contact-info">
                     <div class="time-alert"><i class="fa-regular fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</div>
@@ -37,26 +44,26 @@
                 </div>
             </div>
 
-            <!-- Search View -->
-            <div id="searchView">
-                <div class="form-container">
+            <!-- Search View Container -->
+            <div id="searchView" class="view-section">
+                <div class="form-card">
                     <h2>CDC Verification</h2>
                     <form id="verificationForm">
                         <div class="form-group">
-                            <label>CDC Number *</label>
+                            <label>CDC Number <span class="required">*</span></label>
                             <input type="text" id="certificateNo" placeholder="Enter CDC Number" required>
                         </div>
                         
                         <div class="form-group">
-                            <label>Date of Birth *</label>
+                            <label>Date of Birth <span class="required">*</span></label>
                             <input type="date" id="dateOfBirth" required>
                         </div>
                         
                         <div class="form-group">
-                            <label>Verification Code *</label>
-                            <div class="captcha-box">
-                                <span id="captchaDisplay">703215</span>
-                                <button type="button" onclick="generateCaptcha()"><i class="fa-solid fa-rotate-right"></i></button>
+                            <label>Verification Code <span class="required">*</span></label>
+                            <div class="captcha-wrapper">
+                                <div id="captchaDisplay" class="captcha-box">703215</div>
+                                <button type="button" class="btn-refresh" onclick="generateCaptcha()"><i class="fa-solid fa-rotate-right"></i></button>
                             </div>
                             <input type="text" id="captchaInput" placeholder="Please enter the numbers displayed above" required>
                         </div>
@@ -65,121 +72,172 @@
                     </form>
 
                     <!-- Result Box -->
-                    <div id="resultBox" style="display: none; margin-top: 20px;">
-                        <table border="1" width="100%" style="border-collapse: collapse; text-align: center;">
-                            <thead>
-                                <tr>
-                                    <th>SL</th>
-                                    <th>Name</th>
-                                    <th>Date of Birth</th>
-                                    <th>CDC No</th>
-                                    <th>Issue Date</th>
-                                    <th>Expiry Date</th>
-                                    <th>Place of Issue</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="resultTableBody"></tbody>
-                        </table>
+                    <div id="resultBox" class="result-box" style="display: none;">
+                        <div class="table-responsive">
+                            <table class="result-table">
+                               <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Name</th>
+                                        <th>Date of Birth</th>
+                                        <th>CDC No</th>
+                                        <th>Issue Date</th>
+                                        <th>Expiry Date</th>
+                                        <th>Place of Issue</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultTableBody"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Details View -->
-            <div id="detailsView" style="display: none;">
-                <h2>Seafarer Details</h2>
-                <div class="profile-section">
-                    <img id="profileImage" src="https://via.placeholder.com/75x95?text=Photo" alt="Seafarer Photo" width="95" height="115" style="object-fit: cover; border: 1px solid #ddd;">
-                    <br>
-                    <input type="file" id="imageLoader" accept="image/*" onchange="previewFile(this)" style="margin-top: 10px;">
+            <!-- Details View Container -->
+            <div id="detailsView" class="view-section" style="display: none;">
+                <div class="details-card">
+                    <div class="details-header">
+                        <h2>Seafarer Digital Certificate & Profile Details</h2>
+                        <button type="button" class="btn-back" onclick="showSearchView()"><i class="fa-solid fa-arrow-left"></i> Back to Search</button>
+                    </div>
+
+                    <div class="seafarer-profile-layout">
+                        <div class="profile-img-box">
+                            <img id="profileImage" src="https://via.placeholder.com/95x115?text=Photo" alt="Seafarer Photo">
+                            <div class="upload-btn-wrapper">
+                                <button class="btn-upload-file">Change Photo</button>
+                                <input type="file" id="imageLoader" accept="image/*" onchange="previewFile(this)">
+                            </div>
+                        </div>
+
+                        <div class="profile-info-box">
+                            <table class="info-table">
+                                <tr>
+                                    <td class="label-td">CDC Number</td>
+                                    <td class="colon-td">:</td>
+                                    <td class="value-td" id="detCdcNo">C/O/6628</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td">Seafarer Name</td>
+                                    <td class="colon-td">:</td>
+                                    <td class="value-td">MD KHALILUR RAHMAN</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td">Date of Birth</td>
+                                    <td class="colon-td">:</td>
+                                    <td class="value-td" id="detDobCell">05 APRIL 1990</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td">Rank / Capacity</td>
+                                    <td class="colon-td">:</td>
+                                    <td class="value-td">Chief Mate / Chief Officer</td>
+                                </tr>
+                                <tr>
+                                    <td class="label-td">CDC Status</td>
+                                    <td class="colon-td">:</td>
+                                    <td class="value-td" style="color: green; font-weight: bold;"><i class="fa-solid fa-circle-check"></i> Active & Verified</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                
-                <p><strong>CDC Number:</strong> <span id="detCdcNo"></span></p>
-                <p><strong>CDC Number Cell:</strong> <span id="detCdcNumCell"></span></p>
-                <p><strong>Date of Birth:</strong> <span id="detDobCell"></span></p>
-                
-                <button type="button" onclick="showSearchView()" class="btn-search" style="margin-top: 20px;">Back to Search</button>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="main-footer">
+                <p>&copy; 2026 Government Shipping Office, Government of the People's Republic of Bangladesh. All Rights Reserved.</p>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript Section -->
+    <!-- JavaScript Logic -->
     <script>
         function generateCaptcha() {
             var randomNum = Math.floor(100000 + Math.random() * 900000);
-            document.getElementById('captchaDisplay').innerText = randomNum;
+            var captchaElem = document.getElementById('captchaDisplay');
+            if(captchaElem) {
+                captchaElem.innerText = randomNum;
+            }
         }
 
         window.onload = function() {
             generateCaptcha();
             var profileImg = document.getElementById('profileImage');
             var savedImage = localStorage.getItem('gsoProfileImage');
-            
             if(savedImage && profileImg) {
                 profileImg.src = savedImage;
             }
         };
 
-        document.getElementById('verificationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            var userCaptcha = document.getElementById('captchaInput').value.trim();
-            var actualCaptcha = document.getElementById('captchaDisplay').innerText.trim();
-
-            if(userCaptcha !== actualCaptcha) {
-                alert("Invalid Verification Code! Please enter the exact code shown above.");
-                generateCaptcha();
-                document.getElementById('captchaInput').value = "";
-                return;
-            }
-
-            var currentCdc = document.getElementById('certificateNo').value.trim().toUpperCase();
-            var currentDob = document.getElementById('dateOfBirth').value;
-
-            var tableBody = document.getElementById('resultTableBody');
-            tableBody.innerHTML = "";
-
-            var validCdb = "C/O/6628";
-            var validCdc = "C/O/6628";
-            var validDob = "1990-04-05";
-
-            if (currentCdc === validCdc && currentDob === validDob) {
-                var formattedDob = "05-04-1990";
+        var verificationForm = document.getElementById('verificationForm');
+        if(verificationForm) {
+            verificationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                var rowHTML = `
-                    <tr>
-                        <td>1</td>
-                        <td>MD KHALILUR RAHMAN</td>
-                        <td>${formattedDob}</td>
-                        <td>${currentCdc}</td>
-                        <td>29 Jan 2024</td>
-                        <td>29 Jan 2034</td>
-                        <td>CHATTOGRAM</td>
-                        <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
-                    </tr>
-                `;
-                tableBody.innerHTML = rowHTML;
+                var userCaptcha = document.getElementById('captchaInput').value.trim();
+                var actualCaptcha = document.getElementById('captchaDisplay').innerText.trim();
 
-                document.getElementById('detCdcNo').innerText = currentCdc;
-                document.getElementById('detCdcNumCell').innerText = currentCdc;
-                document.getElementById('detDobCell').innerText = "05 APRIL 1990";
-            } else {
-                tableBody.innerHTML = `<tr><td colspan="8" class="no-data-msg" style="color: red; padding: 10px;">No Data Found for the given CDC Number and Date of Birth!</td></tr>`;
-            }
+                if(userCaptcha !== actualCaptcha) {
+                    alert("Invalid Verification Code! Please enter the exact numbers shown above.");
+                    generateCaptcha();
+                    document.getElementById('captchaInput').value = "";
+                    return;
+                }
 
-            document.getElementById('resultBox').style.display = 'block';
-        });
+                var currentCdc = document.getElementById('certificateNo').value.trim().toUpperCase();
+                var currentDob = document.getElementById('dateOfBirth').value;
+
+                var tableBody = document.getElementById('resultTableBody');
+                tableBody.innerHTML = "";
+
+                var validCdc = "C/O/6628";
+                var validDob = "1990-04-05";
+
+                if (currentCdc === validCdc && currentDob === validDob) {
+                    var formattedDob = "05-04-1990";
+                    
+                    var rowHTML = `
+                        <tr>
+                            <td>1</td>
+                            <td>MD KHALILUR RAHMAN</td>
+                            <td>${formattedDob}</td>
+                            <td>${currentCdc}</td>
+                            <td>29 Jan 2024</td>
+                            <td>29 Jan 2034</td>
+                            <td>CHATTOGRAM</td>
+                            <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML = rowHTML;
+
+                    var detCdcNo = document.getElementById('detCdcNo');
+                    var detDobCell = document.getElementById('detDobCell');
+                    if(detCdcNo) detCdcNo.innerText = currentCdc;
+                    if(detDobCell) detDobCell.innerText = "05 APRIL 1990";
+                } else {
+                    tableBody.innerHTML = `<tr><td colspan="8" class="no-data-msg" style="color: red; padding: 15px; font-weight: bold;">No Data Found for the given CDC Number and Date of Birth!</td></tr>`;
+                }
+
+                document.getElementById('resultBox').style.display = 'block';
+            });
+        }
 
         function showDetailsView() {
-            document.getElementById('searchView').style.display = 'none';
-            document.getElementById('detailsView').style.display = 'block';
+            var searchView = document.getElementById('searchView');
+            var detailsView = document.getElementById('detailsView');
+            if(searchView) searchView.style.display = 'none';
+            if(detailsView) detailsView.style.display = 'block';
         }
 
         function showSearchView() {
-            document.getElementById('detailsView').style.display = 'none';
-            document.getElementById('searchView').style.display = 'block';
+            var searchView = document.getElementById('searchView');
+            var detailsView = document.getElementById('detailsView');
+            if(detailsView) detailsView.style.display = 'none';
+            if(searchView) searchView.style.display = 'block';
             generateCaptcha();
-            document.getElementById('captchaInput').value = "";
+            var captchaInput = document.getElementById('captchaInput');
+            if(captchaInput) captchaInput.value = "";
         }
 
         function previewFile(input) {
@@ -187,7 +245,8 @@
             if (file) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('profileImage').src = e.target.result;
+                    var profileImg = document.getElementById('profileImage');
+                    if(profileImg) profileImg.src = e.target.result;
                     localStorage.setItem('gsoProfileImage', e.target.result);
                 }
                 reader.readAsDataURL(file);
