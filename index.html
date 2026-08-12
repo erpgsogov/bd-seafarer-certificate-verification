@@ -226,11 +226,18 @@
             document.getElementById('captchaDisplay').innerText = captcha;
         }
 
-        window.onload = function() {
+       window.onload = function() {
             generateCaptcha();
+            
+            // তোমার প্রোফাইল ছবি সরাসরি ফিক্সড করার জন্য
+            var profileImg = document.getElementById('profileImage');
             var savedImage = localStorage.getItem('gsoProfileImage');
+            
             if(savedImage) {
-                document.getElementById('profileImage').src = savedImage;
+                profileImg.src = savedImage;
+            } else {
+                // যদি লোকাল স্টোরেজে ছবি না থাকে, তবে ডিফল্টভাবে তোমার একটি স্থায়ী ছবির লিংক বা প্লেসহোল্ডার এখানে বসাতে পারো
+                profileImg.src = "https://via.placeholder.com/75x95?text=Photo"; 
             }
         };
 
