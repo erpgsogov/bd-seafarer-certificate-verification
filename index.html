@@ -219,13 +219,16 @@
     </div>
 
     <script>
-        function generateCaptcha() {
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    function generateCaptcha() {
+            var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var captcha = "";
             for (var i = 0; i < 6; i++) {
-                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+                // একটু র‍্যান্ডমাইজেশন আরও নিখুঁত করার জন্য
+                var randomIndex = Math.floor(Math.random() * chars.length);
+                captcha += chars[randomIndex];
             }
             document.getElementById('captchaDisplay').innerText = captcha;
+        }
         }
 
        window.onload = function() {
