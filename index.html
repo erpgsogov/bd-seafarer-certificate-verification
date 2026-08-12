@@ -12,7 +12,7 @@
 <body>
 
     <div class="page-wrapper">
-        <!-- Left Panel / Branding -->
+        <!-- Left Panel with bg-ship.png watermark background (Visible on Desktop) -->
         <div class="left-panel">
             <div class="brand-content">
                 <div class="logo-circle">
@@ -25,6 +25,19 @@
 
         <!-- Right Content Panel -->
         <div class="right-panel">
+            <!-- Mobile Top logo & Header (Only visible on mobile/QR scan) -->
+            <div class="mobile top-header">
+                <div class="logo-circle">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Seal">
+                </div>
+                <div class="top-contact-info">
+                    <div class="time-alert"><i class="fa-regular fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</div>
+                    <div class="hotline-row"><i class="fa-brands fa-whatsapp"></i> Hotline : 01972 380 814, 01972 380 821</div>
+                    <div class="email-row"><i class="fa-regular fa-envelope"></i> Email : support@gso.gov.bd</div>
+                </div>
+            </div>
+
+            <!-- Search View -->
             <div id="searchView">
                 <div class="form-container">
                     <h2>CDC Verification</h2>
@@ -41,9 +54,9 @@
                         
                         <div class="form-group">
                             <label>Verification Code *</label>
-                            <div class="captcha-flex" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                                <span id="captchaDisplay" style="font-size: 22px; font-weight: bold; background: #eef2f7; padding: 5px 15px; letter-spacing: 3px; border: 1px dashed #ccc;">703215</span>
-                                <button type="button" onclick="generateCaptcha()" style="padding: 8px 12px; cursor: pointer;"><i class="fa-solid fa-rotate-right"></i></button>
+                            <div class="captcha-box">
+                                <span id="captchaDisplay">703215</span>
+                                <button type="button" onclick="generateCaptcha()"><i class="fa-solid fa-rotate-right"></i></button>
                             </div>
                             <input type="text" id="captchaInput" placeholder="Please enter the numbers displayed above" required>
                         </div>
@@ -55,7 +68,7 @@
                     <div id="resultBox" style="display: none; margin-top: 20px;">
                         <table border="1" width="100%" style="border-collapse: collapse; text-align: center;">
                             <thead>
-                                <tr style="background: #f4f6f9;">
+                                <tr>
                                     <th>SL</th>
                                     <th>Name</th>
                                     <th>Date of Birth</th>
@@ -75,7 +88,7 @@
             <!-- Details View -->
             <div id="detailsView" style="display: none;">
                 <h2>Seafarer Details</h2>
-                <div class="profile-section" style="text-align: center; margin-bottom: 20px;">
+                <div class="profile-section">
                     <img id="profileImage" src="https://via.placeholder.com/75x95?text=Photo" alt="Seafarer Photo" width="95" height="115" style="object-fit: cover; border: 1px solid #ddd;">
                     <br>
                     <input type="file" id="imageLoader" accept="image/*" onchange="previewFile(this)" style="margin-top: 10px;">
@@ -94,8 +107,7 @@
     <script>
         function generateCaptcha() {
             var randomNum = Math.floor(100000 + Math.random() * 900000);
-            var captchaElem = document.getElementById('captchaDisplay');
-            if(captchaElem) captchaElem.innerText = randomNum;
+            document.getElementById('captchaDisplay').innerText = randomNum;
         }
 
         window.onload = function() {
@@ -108,57 +120,54 @@
             }
         };
 
-        var vForm = document.getElementById('verificationForm');
-        if(vForm) {
-            vForm.addEventListener('submit', function(e) {
-                e.preventDefault();
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var userCaptcha = document.getElementById('captchaInput').value.trim();
+            var actualCaptcha = document.getElementById('captchaDisplay').innerText.trim();
+
+            if(userCaptcha !== actualCaptcha) {
+                alert("Invalid Verification Code! Please enter the exact code shown above.");
+                generateCaptcha();
+                document.getElementById('captchaInput').value = "";
+                return;
+            }
+
+            var currentCdc = document.getElementById('certificateNo').value.trim().toUpperCase();
+            var currentDob = document.getElementById('dateOfBirth').value;
+
+            var tableBody = document.getElementById('resultTableBody');
+            tableBody.innerHTML = "";
+
+            var validCdc = "C/O/6628";
+            var validDob = "1990-04-05";
+
+            if (currentCdc === validCdc && currentDob === validDob) {
+                var formattedDob = "05-04-1990";
                 
-                var userCaptcha = document.getElementById('captchaInput').value.trim();
-                var actualCaptcha = document.getElementById('captchaDisplay').innerText.trim();
+                var rowHTML = `
+                    <tr>
+                        <td>1</td>
+                        <td>MD KHALILUR RAHMAN</td>
+                        <td>${formattedDob}</td>
+                        <td>${currentCdc}</td>
+                        <td>29 Jan 2024</td>
+                        <td>29 Jan 2034</td>
+                        <td>CHATTOGRAM</td>
+                        <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
+                    </tr>
+                `;
+                tableBody.innerHTML = rowHTML;
 
-                if(userCaptcha !== actualCaptcha) {
-                    alert("Invalid Verification Code! Please enter the exact code shown above.");
-                    generateCaptcha();
-                    document.getElementById('captchaInput').value = "";
-                    return;
-                }
+                document.getElementById('detCdcNo').innerText = currentCdc;
+                document.getElementById('detCdcNumCell').innerText = currentCdc;
+                document.getElementById('detDobCell').innerText = "05 APRIL 1990";
+            } else {
+                tableBody.innerHTML = `<tr><td colspan="8" class="no-data-msg" style="color: red; padding: 10px;">No Data Found for the given CDC Number and Date of Birth!</td></tr>`;
+            }
 
-                var currentCdc = document.getElementById('certificateNo').value.trim().toUpperCase();
-                var currentDob = document.getElementById('dateOfBirth').value;
-
-                var tableBody = document.getElementById('resultTableBody');
-                tableBody.innerHTML = "";
-
-                var validCdc = "C/O/6628";
-                var validDob = "1990-04-05";
-
-                if (currentCdc === validCdc && currentDob === validDob) {
-                    var formattedDob = "05-04-1990";
-                    
-                    var rowHTML = `
-                        <tr>
-                            <td>1</td>
-                            <td>MD KHALILUR RAHMAN</td>
-                            <td>${formattedDob}</td>
-                            <td>${currentCdc}</td>
-                            <td>29 Jan 2024</td>
-                            <td>29 Jan 2034</td>
-                            <td>CHATTOGRAM</td>
-                            <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
-                        </tr>
-                    `;
-                    tableBody.innerHTML = rowHTML;
-
-                    document.getElementById('detCdcNo').innerText = currentCdc;
-                    document.getElementById('detCdcNumCell').innerText = currentCdc;
-                    document.getElementById('detDobCell').innerText = "05 APRIL 1990";
-                } else {
-                    tableBody.innerHTML = `<tr><td colspan="8" class="no-data-msg" style="color: red; padding: 10px;">No Data Found for the given CDC Number and Date of Birth!</td></tr>`;
-                }
-
-                document.getElementById('resultBox').style.display = 'block';
-            });
-        }
+            document.getElementById('resultBox').style.display = 'block';
+        });
 
         function showDetailsView() {
             document.getElementById('searchView').style.display = 'none';
