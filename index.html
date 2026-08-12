@@ -314,6 +314,288 @@
                 reader.readAsDataURL(file);
             }
         }
+   <script>
+        // ক্যাপচাতে ছোট হাতের, বড় হাতের অক্ষর এবং সংখ্যা মিলিয়ে আসার কোড
+        function generateCaptcha() {
+            var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var captcha = "";
+            for (var i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('captchaDisplay').innerText = captcha;
+        }
+
+        window.onload = function() {
+            generateCaptcha();
+            var profileImg = document.getElementById('profileImage');
+            var savedImage = localStorage.getItem('gsoProfileImage');
+            
+            if(savedImage) {
+                profileImg.src = savedImage;
+            } else {
+                profileImg.src = "https://via.placeholder.com/75x95?text=Photo"; 
+            }
+        };
+
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var userCaptcha = document.getElementById('captchaInput').value.trim();
+            var actualCaptcha = document.getElementById('captchaDisplay').innerText;
+
+            // এখানে হুবহু ম্যাচ করতে হবে (ছোট ও বড় হাতের অক্ষর মিলে কিনা চেক করবে)
+            if(userCaptcha !== actualCaptcha) {
+                alert("Invalid Verification Code! Please enter the exact code shown above.");
+                generateCaptcha();
+                document.getElementById('captchaInput').value = "";
+                return;
+            }
+
+            var currentCdc = document.getElementById('certificateNo').value.trim().toUpperCase();
+            var currentDob = document.getElementById('dateOfBirth').value;
+
+            var tableBody = document.getElementById('resultTableBody');
+            tableBody.innerHTML = "";
+
+            var validCdc = "C/O/6628";
+            var validDob = "1990-04-05";
+
+            if (currentCdc === validCdc && currentDob === validDob) {
+                var formattedDob = "05-04-1990";
+                
+                var rowHTML = `
+                    <tr>
+                        <td>1</td>
+                        <td>MD KHALILUR RAHMAN</td>
+                        <td>${formattedDob}</td>
+                        <td>${currentCdc}</td>
+                        <td>29 Jan 2024</td>
+                        <td>29 Jan 2034</td>
+                        <td>CHATTOGRAM</td>
+                        <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
+                    </tr>
+                `;
+                tableBody.innerHTML = rowHTML;
+
+                document.getElementById('detCdcNo').innerText = currentCdc;
+                document.getElementById('detCdcNumCell').innerText = currentCdc;
+                document.getElementById('detDobCell').innerText = "05 APRIL 1990";
+            } else {
+                tableBody.innerHTML = `<tr><td colspan="8" class="no-data-msg">No Data Found for the given CDC Number and Date of Birth!</td></tr>`;
+            }
+
+            document.getElementById('resultBox').style.display = 'block';
+        });
+
+        function showDetailsView() {
+            document.getElementById('searchView').style.display = 'none';
+            document.getElementById('detailsView').style.display = 'block';
+        }
+
+        function showSearchView() {
+            document.getElementById('detailsView').style.display = 'none';
+            document.getElementById('searchView').style.display = 'block';
+            generateCaptcha();
+            document.getElementById('captchaInput').value = "";
+        }
+
+        function previewFile(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                    localStorage.setItem('gsoProfileImage', e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    <script>
+        // ক্যাপচাতে ছোট হাতের, বড় হাতের অক্ষর এবং সংখ্যা মিলিয়ে আসার কোড
+        function generateCaptcha() {
+            var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var captcha = "";
+            for (var i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('captchaDisplay').innerText = captcha;
+        }
+
+        window.onload = function() {
+            generateCaptcha();
+            var profileImg = document.getElementById('profileImage');
+            var savedImage = localStorage.getItem('gsoProfileImage');
+            
+            if(savedImage) {
+                profileImg.src = savedImage;
+            } else {
+                profileImg.src = "https://via.placeholder.com/75x95?text=Photo"; 
+            }
+        };
+
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var userCaptcha = document.getElementById('captchaInput').value.trim();
+            var actualCaptcha = document.getElementById('captchaDisplay').innerText;
+
+            // এখানে হুবহু ম্যাচ করতে হবে (ছোট ও বড় হাতের অক্ষর মিলে কিনা চেক করবে)
+            if(userCaptcha !== actualCaptcha) {
+                alert("Invalid Verification Code! Please enter the exact code shown above.");
+                generateCaptcha();
+                document.getElementById('captchaInput').value = "";
+                return;
+            }
+
+            var currentCdc = document.getElementById('certificateNo').value.trim().toUpperCase();
+            var currentDob = document.getElementById('dateOfBirth').value;
+
+            var tableBody = document.getElementById('resultTableBody');
+            tableBody.innerHTML = "";
+
+            var validCdc = "C/O/6628";
+            var validDob = "1990-04-05";
+
+            if (currentCdc === validCdc && currentDob === validDob) {
+                var formattedDob = "05-04-1990";
+                
+                var rowHTML = `
+                    <tr>
+                        <td>1</td>
+                        <td>MD KHALILUR RAHMAN</td>
+                        <td>${formattedDob}</td>
+                        <td>${currentCdc}</td>
+                        <td>29 Jan 2024</td>
+                        <td>29 Jan 2034</td>
+                        <td>CHATTOGRAM</td>
+                        <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
+                    </tr>
+                `;
+                tableBody.innerHTML = rowHTML;
+
+                document.getElementById('detCdcNo').innerText = currentCdc;
+                document.getElementById('detCdcNumCell').innerText = currentCdc;
+                document.getElementById('detDobCell').innerText = "05 APRIL 1990";
+            } else {
+                tableBody.innerHTML = `<tr><td colspan="8" class="no-data-msg">No Data Found for the given CDC Number and Date of Birth!</td></tr>`;
+            }
+
+            document.getElementById('resultBox').style.display = 'block';
+        });
+
+        function showDetailsView() {
+            document.getElementById('searchView').style.display = 'none';
+            document.getElementById('detailsView').style.display = 'block';
+        }
+
+        function showSearchView() {
+            document.getElementById('detailsView').style.display = 'none';
+            document.getElementById('searchView').style.display = 'block';
+            generateCaptcha();
+            document.getElementById('captchaInput').value = "";
+        }
+
+        function previewFile(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                    localStorage.setItem('gsoProfileImage', e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        <script>
+        // ক্যাপচাতে ছোট হাতের, বড় হাতের অক্ষর এবং সংখ্যা মিলিয়ে আসার কোড
+        function generateCaptcha() {
+            var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var captcha = "";
+            for (var i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('captchaDisplay').innerText = captcha;
+        }
+
+        window.onload = function() {
+            generateCaptcha();
+            var profileImg = document.getElementById('profileImage');
+            var savedImage = localStorage.getItem('gsoProfileImage');
+            
+            if(savedImage) {
+                profileImg.src = savedImage;
+            } else {
+                profileImg.src = "https://via.placeholder.com/75x95?text=Photo"; 
+            }
+        };
+
+        document.getElementById('verificationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var userCaptcha = document.getElementById('captchaInput').value.trim();
+            var actualCaptcha = document.getElementById('captchaDisplay').innerText;
+
+            // এখানে হুবহু ম্যাচ করতে হবে (ছোট ও বড় হাতের অক্ষর মিলে কিনা চেক করবে)
+            if(userCaptcha !== actualCaptcha) {
+                alert("Invalid Verification Code! Please enter the exact code shown above.");
+                generateCaptcha();
+                document.getElementById('captchaInput').value = "";
+                return;
+            }
+
+            var currentCdc = document.getElementById('certificateNo').value.trim().toUpperCase();
+            var currentDob = document.getElementById('dateOfBirth').value;
+
+            var tableBody = document.getElementById('resultTableBody');
+            tableBody.innerHTML = "";
+
+            var validCdc = "C/O/6628";
+            var validDob = "1990-04-05";
+
+            if (currentCdc === validCdc && currentDob === validDob) {
+                var formattedDob = "05-04-1990";
+                
+                var rowHTML = `
+                    <tr>
+                        <td>1</td>
+                        <td>MD KHALILUR RAHMAN</td>
+                        <td>${formattedDob}</td>
+                        <td>${currentCdc}</td>
+                        <td>29 Jan 2024</td>
+                        <td>29 Jan 2034</td>
+                        <td>CHATTOGRAM</td>
+                        <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
+                    </tr>
+                `;
+                tableBody.innerHTML = rowHTML;
+
+                document.getElementById('detCdcNo').innerText = currentCdc;
+                document.getElementById('detCdcNumCell').innerText = currentCdc;
+                document.getElementById('detDobCell').innerText = "05 APRIL 1990";
+            } else {
+                tableBody.innerHTML = `<tr><td colspan="8" class="no-data-msg">No Data Found for the given CDC Number and Date of Birth!</td></tr>`;
+            }
+
+            document.getElementById('resultBox').style.display = 'block';
+        });
+
+        function showDetailsView() {
+            document.getElementById('searchView').style.display = 'none';
+            document.getElementById('detailsView').style.display = 'block';
+        }
+
+        function showSearchView() {
+            document.getElementById('detailsView').style.display = 'none';
+            document.getElementById('searchView').style.display = 'block';
+            generateCaptcha();
+            document.getElementById('captchaInput').value = "";
+        }
+
+        function previewFile(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                    localStorage.setItem('gsoProfileImage', e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
-</body>
-</html>
