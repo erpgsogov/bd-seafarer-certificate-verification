@@ -10,7 +10,7 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6;
+    background-color: #edfif5;
     overflow-x: hidden;
 }
 
@@ -22,29 +22,50 @@ html, body {
 }
 
 .left-panel {
-    flex: 1;
-    background: linear-gradient(135deg, #006a4e 0%, #004d37 100%);
-    color: white;
+    flex: 45%;
+    min-height: 100vh;
+    background: url('https://i.ibb.co/HDn2mh4r/login-left-bg-1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    color: #ffffff;
     text-align: center;
+    padding: 20px;
 }
 
 .right-panel {
-    flex: 1.2;
-    background: #ffffff;
+    flex: 55%;
+    min-height: 100vh;
+    background: #edfif5;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
+    justify-content: space-between;
+    padding: 30px 20px;
     overflow-y: auto;
 }
 
 .form-container {
     width: 100%;
     max-width: 450px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 900px) {
+    .page-wrapper {
+        flex-direction: column !important;
+    }
+    .left-panel {
+        min-height: auto;
+        padding: 30px 20px;
+    }
+    .right-panel {
+        padding: 30px 20px;
+    }
 }
