@@ -578,7 +578,39 @@ html, body {
 
     .captcha-box-wrap {
         width: 100% !important;
-    }
+    } .left-panel .brand-content .logo-circle {
+    width: 80px !important;
+    height: 80px !important;
+    background: #ffffff !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 12px auto !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.left-panel .brand-content .logo-circle img {
+    width: 55px !important;
+    height: 55px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 !important;
+}
+
+.left-panel .brand-content h1 {
+    font-size: 20px !important;
+    font-weight: bold !important;
+    margin-bottom: 6px !important;
+    color: #ffffff !important;
+}
+
+.left-panel .brand-content p {
+    font-size: 11px !important;
+    opacity: 0.95 !important;
+    color: #ffffff !important;
+}
 
     .details-container {
         padding: 10px !important;
