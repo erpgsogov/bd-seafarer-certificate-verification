@@ -506,21 +506,27 @@ html, body {
     }
 
     .form-row input, 
-   .captcha-container {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 10px !important;
-}
+    .captcha-container {
+        width: 100% !important;
+    }
 
-.captcha-container input, 
-.captcha-container .form-row {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-} .captcha-container {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 10px !important;
+    .captcha-box-wrap {
+        width: 100% !important;
+    }
+
+    .details-container {
+        padding: 10px !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+    }
+
+    .info-table td.label-cell {
+        width: 40% !important;
+        font-size: 11px !important;
+    }
+
+    .info-table td {
+        font-size: 11px !important;
+        word-break: break-word;
+    }
 }
