@@ -597,3 +597,10 @@ html, body {
     width: 100vw !important;
     min-height: 100vh !important;
 }
+.page-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100vw !important;
+    min-height: 100vh !important;
+    overflow-x: hidden !important;
+}
