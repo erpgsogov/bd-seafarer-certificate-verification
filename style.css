@@ -27,9 +27,10 @@ html, body {
 .left-panel {
     width: 45%;
     min-height: 100vh;
-  background: url('https://i.ibb.co.com/qYJSrMwC/bg-ship-png.png');
-    background-size: cover;
+  background: url('https://i.ibb.co.com/zHP0pMLN/login-left-bg.jpg');
+    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
