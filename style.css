@@ -1,3 +1,4 @@
+/* General Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -10,77 +11,130 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #edfif5;
+    background-color: #edf1f5;
     overflow-x: hidden;
 }
 
+/* Page Layout */
 .page-wrapper {
-    display: flex !important;
-    flex-direction: row !important;
-    width: 100vw !important;
-    min-height: 100vh !important;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 100vh;
 }
 
+/* Left Panel - Branding */
 .left-panel {
     flex: 45%;
     min-height: 100vh;
-    background: url('https://i.ibb.co/HDn2mh4r/login-left-bg-1.png');
+    background: url('https://i.ibb.co/HDn2mh4r/login-left-bg-1.png') no-repeat center center;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
     text-align: center;
-    padding: 20px;
+    padding: 40px;
+    border-right: 5px solid #006630;
 }
 
+.brand-content {
+    width: 100%;
+    max-width: 600px;
+}
+
+.logo-circle {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo-circle img {
+    width: 80%;
+    height: auto;
+}
+
+.brand-content h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+/* Right Panel - Form */
 .right-panel {
     flex: 55%;
     min-height: 100vh;
-    background: #edfif5;
+    background: #edf1f5;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 30px 20px;
+    padding: 30px 50px;
     overflow-y: auto;
+}
+
+.top-contact-info {
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .form-container {
     width: 100%;
-    max-width: 650px;
+    max-width: 500px;
     margin: 0 auto;
     background: #ffffff;
-    padding: 30px;
-    border-radius: 4px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.form-header {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0073aa;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #dce3e8;
+    padding-bottom: 10px;
+}
+
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
 .captcha-container {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 10px !important;
-    width: 100% !important;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
 }
 
-.captcha-container img, 
-.captcha-container .btn-refresh,
-.captcha-container button {
-    display: inline-block !important;
-    vertical-align: middle !important;
-}
-
+/* Responsive Design */
 @media (max-width: 900px) {
     .page-wrapper {
-        flex-direction: column !important;
+        flex-direction: column;
     }
     .left-panel {
         min-height: auto;
-        padding: 30px 20px;
+        padding: 30px;
+        border-right: none;
     }
     .right-panel {
-        padding: 30px 20px;
+        padding: 20px;
     }
 }
