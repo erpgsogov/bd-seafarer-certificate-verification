@@ -25,25 +25,59 @@ html, body {
 }
 
 .left-panel {
-        width: 45%;
-        min-height: 100vh;
-        background: url('https://i.ibb.co.com/HDn2mh4r/login-left-bg-1.png');
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #ffffff;
-        text-align: center;
-        padding: 20px;
-        border-right: 5px solid #006630;
-    }
-    .brand-content img {
-        width: 75px;
-        height: auto;
-        margin-bottom: 12px;
-    }
+    width: 45%;
+    min-height: 100vh;
+    background: url('https://i.ibb.co.com/HDn2mh4r/login-left-bg-1.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    border-right: 5px solid #006630;
+}
+
+.brand-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-content .logo-circle {
+    width: 90px;
+    height: 90px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.brand-content img {
+    width: 65px;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
+.brand-content h1 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.brand-content p {
+    font-size: 12px;
+    opacity: 0.95;
+    color: #ffffff;
+}
 
     .brand-content h1 {
         font-size: 22px;
