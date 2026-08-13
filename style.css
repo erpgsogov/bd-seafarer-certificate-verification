@@ -1,4 +1,4 @@
-* {
+ {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -27,7 +27,7 @@ html, body {
 .left-panel {
     width: 45%;
     min-height: 100vh;
-  background: url('https://i.ibb.co.com/1FCFVq14/government-ship-png.jpg'); 
+    background: linear-gradient(rgba(0, 107, 63, 0.85), rgba(0, 88, 51, 0.85)), url('https://raw.githubusercontent.com/erpgsogov/bd-seafarer-certificate-verification/main/bg-ship.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
