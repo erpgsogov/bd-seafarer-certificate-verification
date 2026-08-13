@@ -27,7 +27,7 @@ html, body {
 .left-panel {
         width: 45%;
         min-height: 100vh;
-        background: url('https://i.ibb.co.com/7t30SGWH/login-left-bg-png.png');
+        background: url('https://i.ibb.co.com/84X49B3/bg-ship.png');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -39,7 +39,6 @@ html, body {
         padding: 20px;
         border-right: 5px solid #006630;
     }
-
     .brand-content img {
         width: 75px;
         height: auto;
