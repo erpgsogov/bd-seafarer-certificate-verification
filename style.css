@@ -1,0 +1,4 @@
+body { background: #edfif5; font-family: Arial, sans-serif; }
+.page-wrapper { display: flex; width: 100vw; min-height: 100vh; }
+.left-panel { flex: 45%; background: #006a4e; color: white; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.right-panel { flex: 55%; background: #edfif5; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
