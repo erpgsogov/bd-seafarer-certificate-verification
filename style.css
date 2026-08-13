@@ -25,21 +25,20 @@ html, body {
 }
 
 .left-panel {
-    width: 45%;
+    flex: 45%;
     min-height: 100vh;
-   background: url('https://i.ibb.co/HDn2mh4r/login-left-bg-1.png')
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: #006630 url('https://i.ibb.co/HDn2mh4r/login-left-bg-1.png') !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
     text-align: center;
-    padding: 40px 10px;
+    padding: 20px;
     border-right: 5px solid #006630;
 }
-
 .brand-content {
     width: 100%;
     max-width: 600px;
