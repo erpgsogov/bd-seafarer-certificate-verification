@@ -27,8 +27,9 @@ html, body {
 .left-panel {
     flex: 45%;
     min-height: 100vh;
-    background: #006630 url('https://i.ibb.co/HDn2mh4r/login-left-bg-1.png') !important;
-    background-size: contain !important;
+    background-color: #006630 !important;
+    background-image: url('https://i.ibb.co/HDn2mh4r/login-left-bg-1.png') !important;
+    background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     display: flex;
@@ -37,7 +38,6 @@ html, body {
     color: #ffffff;
     text-align: center;
     padding: 20px;
-    border-right: 5px solid #006630;
 }
 .brand-content {
     width: 100%;
