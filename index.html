@@ -1,313 +1,598 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Shipping Office - CDC Verification</title>
-    
-    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <meta name="description" content="Official portal for verification of Bangladesh Seafarer certificates. Ensure authenticity with ease.">
-<meta property="og:image" content="https://i.ibb.co.com/WvJD0MD4/dg-logo.jpg">
-</head>
-<body>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
-    <div class="page-wrapper">
-        <!-- Left Panel with bg-ship.png watermark background (Visible on Desktop) -->
-   <div class="left-panel">
-            <div class="brand-content">
-                <div class="logo-circle">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Seal">
-                </div>
-                <h1>Government Shipping Office</h1>
-                <p>(Online Application for CDC, Roster, eArticle & SignOn/SignOff)</p>
-            </div>
-        </div>
-            </div>
-        </div> 
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #edf1f5;
+    overflow-x: hidden;
+}
 
-        <!-- Right Content Panel -->
-        <div class="right-panel">
-            <!-- Mobile Top Logo & Header (Only visible on mobile/QR scan) -->
-            <div class="mobile-top-header">
-                <div class="logo-circle">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_Seal_of_Bangladesh.svg" alt="Seal">
-                </div>
-                <div class="top-contact-info">
-                    <div class="time-alert"><i class="fa-regular fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</div>
-                    <div class="hotline-row"><i class="fa-brands fa-whatsapp"></i> Hotline : 01972 380 814, 01972 380 821</div>
-                    <div class="email-row"><i class="fa-regular fa-envelope"></i> Email : support@gso.gov.bd</div>
-                </div>
-            </div>
+.page-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 100vh;
+}
 
-            <!-- Search View -->
-            <div id="searchView">
-                <div class="top-contact-info desktop-contact">
-                    <div class="time-alert"><i class="fa-regular fa-bell"></i> (Get in Touch : 9 AM to 6 PM)</div>
-                    <div class="hotline-row"><i class="fa-brands fa-whatsapp"></i> Hotline : 01972 380 814, 01972 380 821</div>
-                    <div class="email-row"><i class="fa-regular fa-envelope"></i> Email : support@gso.gov.bd</div>
-                </div>
+.left-panel {
+    width: 45%;
+    min-height: 100vh;
+    background: url('https://i.ibb.co.com/HDn2mh4r/login-left-bg-1.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    border-right: 5px solid #006630;
+}
 
-                <div class="form-card">
-                    <div class="form-header">
-                        <i class="fa-regular fa-compass"></i> CDC VERIFICATION
-                    </div>
+.brand-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-                    <form id="verificationForm">
-                        <div class="form-row">
-                            <label for="certificateNo">CDC Number <span>*</span></label>
-                            <input type="text" id="certificateNo" placeholder="Enter CDC Number" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="dateOfBirth">Date of Birth <span>*</span></label>
-                            <input type="date" id="dateOfBirth" required>
-                        </div>
-                        <div class="form-row">
-                            <label for="captchaInput">Verification Code <span>*</span></label>
-                            <div class="captcha-container">
-                                <div class="captcha-box-wrap">
-                                    <div class="captcha-box" id="captchaDisplay">703215</div>
-                                    <button type="button" class="btn-refresh" id="refreshCaptcha" onclick="generateCaptcha()" title="Refresh Code">
-                                        <i class="fa-solid fa-rotate-right"></i>
-                                    </button>
-                                </div>
-                                <input type="text" id="captchaInput" placeholder="Please enter the numbers displayed above" required>
-                            </div>
-                        </div>
-                        <div class="form-row button-row">
-                            <label></label>
-                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-                        </div>
-                    </form>
+.brand-content .logo-circle {
+    width: 90px;
+    height: 90px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-                    <div id="resultBox" class="result-box">
-                        <div class="result-header">CDC VERIFICATION RESULT</div>
-                        <div class="table-responsive">
-                            <table class="gso-result-table">
-                                <thead>
-                                    <tr>
-                                        <th>SERIAL NO</th>
-                                        <th>NAME</th>
-                                        <th>DATE OF BIRTH</th>
-                                        <th>CDC NUMBER <i class="fa-solid fa-sort"></i></th>
-                                        <th>DATE OF ISSUE</th>
-                                        <th>DATE OF EXPIRE</th>
-                                        <th>PLACE OF ISSUE</th>
-                                        <th>DETAILS</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="resultTableBody">
-                                    <!-- Dynamic content -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+.brand-content img {
+    width: 65px;
+    height: auto;
+    display: block;
+    margin: 0;
+}
 
-            <!-- Details View -->
-            <div id="detailsView" class="details-container">
-                <div class="top-title-bar">
-                    <h2>CDC INFORMATION OF - <span id="detCdcNo">C/O/6628</span></h2>
-                    <button class="btn-back" onclick="showSearchView()">Back</button>
-                </div>
+.brand-content h1 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
 
-                <table class="info-table">
-                    <tr><td class="label-cell">STATUS</td><td class="status-active">ACTIVE+</td></tr>
-                    <tr><td class="label-cell">CDC NUMBER</td><td id="detCdcNumCell">C/O/6628</td></tr>
-                    <tr><td class="label-cell">NAME</td><td>MD KHALILUR RAHMAN</td></tr>
-                    <tr><td class="label-cell">FATHER'S NAME</td><td>MD ROBIUL ISLAM</td></tr>
-                    <tr><td class="label-cell">MOTHER'S NAME</td><td>KHADIZA BEGUJM</td></tr>
-                    <tr><td class="label-cell">RANK/RATING</td><td>DECK OFFICER (CLASS-1)</td></tr>
-                    <tr><td class="label-cell">DATE OF ISSUE</td><td>29 JAN 2024</td></tr>
-                    <tr><td class="label-cell">DATE OF EXPIRE</td><td>29 JAN 2034</td></tr>
-                    <tr><td class="label-cell">PLACE OF ISSUE</td><td>CHATTOGRAM</td></tr>
-                    <tr><td class="label-cell">CELL PHONE</td><td>+8801602449628</td></tr>
-                    <tr><td class="label-cell">EMAIL</td><td>marinertito1362@gmail.com</td></tr>
-                    <tr><td class="label-cell">RELIGION</td><td>ISLAM</td></tr>
-                    <tr><td class="label-cell">DATE OF BIRTH</td><td id="detDobCell">05 APRIL 1990</td></tr>
-                    <tr><td class="label-cell">PLACE OF BIRTH</td><td>JASHORE</td></tr>
-                    <tr><td class="label-cell">NATIONALITY</td><td>BANGLADESHI</td></tr>
-                    
-                    <tr>
-                        <td class="label-cell">PICTURE</td>
-                        <td>
-                            <div class="picture-cell-content">
-                                <input type="file" id="imageUploader" accept="image/*" style="display:none;" onchange="previewFile(this)">
-                                <img id="profileImage" src="https://i.ibb.co.com/LLN2vwy/MD-KHALILUR-RAHMAN.png" alt="Photo" class="profile-img">
-                                <button class="btn-change-photo" onclick="document.getElementById('imageUploader').click();">
-                                    <i class="fa-solid fa-camera"></i> Change Photo
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+.brand-content p {
+    font-size: 12px;
+    opacity: 0.95;
+    color: #ffffff;
+}
 
-                    <tr><td class="label-cell">PASSPORT NUMBER</td><td>A08611931</td></tr>
-                    <tr><td class="label-cell">HEIGHT METRE</td><td>1</td></tr>
-                    <tr><td class="label-cell">HEIGHT CM</td><td>74</td></tr>
-                    <tr><td class="label-cell">COLOUR OF EYES</td><td>BLACK</td></tr>
-                    <tr><td class="label-cell">COLOUR OF HAIR</td><td>BLACK</td></tr>
-                    <tr><td class="label-cell">COMPLEXION</td><td>FAIR</td></tr>
-                    <tr><td class="label-cell">DISTINGUISHING MARKS</td><td>NIL</td></tr>
-                    <tr><td class="label-cell">VILLAGE</td><td>SWRUPDHA</td></tr>
-                    <tr><td class="label-cell">POST OFFICE</td><td>CHAUGACHHA</td></tr>
-                    <tr><td class="label-cell">THANA</td><td>CHAUGACHHA</td></tr>
-                    <tr><td class="label-cell">DISTRICT</td><td>JASHORE</td></tr>
-                </table>
+    .brand-content h1 {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
 
-                <div class="blue-banner-header">Medical Information</div>
-                <table class="detail-data-table" style="margin-bottom: 15px;">
-                    <thead>
-                        <tr>
-                            <th>Doctor Registration No.</th>
-                            <th>Doctor Name</th>
-                            <th>Hospital Name</th>
-                            <th>Medical Fitness No.</th>
-                            <th>Issue Date</th>
-                            <th>Expire Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>A-68208</td>
-                            <td>Dr. SABRINA MOSTAFA</td>
-                            <td>BMDC</td>
-                            <td>08.240314</td>
-                            <td>2024-02-10</td>
-                            <td>2026-02-09</td>
-                        </tr>
-                    </tbody>
-                </table>
+    .brand-content p {
+        font-size: 12px;
+        opacity: 0.95;
+    }
+    .brand-content img {
+        width: 70px; /* লোগোর সাইজ ছোট করার জন্য */
+        height: auto;
+        margin-bottom: 10px;
+    }
 
-                <div class="blue-banner-header">Voyage Endorsement Information</div>
-                <table class="detail-data-table">
-                    <thead>
-                        <tr>
-                            <th>Serial No</th>
-                            <th>Ship Name</th>
-                            <th>Capacity</th>
-                            <th>IMO Number</th>
-                            <th>Date of Engagement</th>
-                            <th>Date of Discharge</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>1</td><td>MV. WORLD REI</td><td>DECK CADET</td><td>9890850</td><td>03 FEB 2014</td><td>05 NOV 2014</td></tr>
-                        <tr><td>2</td><td>WENCHE VICTORY</td><td>DECK CADET</td><td>9288825</td><td>04 DEC 2014</td><td>05 SEP 2015</td></tr>
-                        <tr><td>3</td><td>MT. IVER BITUMEN</td><td>DECK CADET</td><td>9438949</td><td>02 OCT 2015</td><td>06 JUL 2016</td></tr>
-                        <tr><td>4</td><td>MT. GREEN POINT</td><td>DECK CADET</td><td>1042926</td><td>05 AUG 2016</td><td>07 MAY 2017</td></tr>
-                        <tr><td>5</td><td>MT. RONG CHI</td><td>3RD OFFICER</td><td>9611620</td><td>03 AUG 2017</td><td>06 FEB 2018</td></tr>
-                        <tr><td>6</td><td>CHAN HANG ZHEN ZHU</td><td>3RD OFFICER</td><td>9583299</td><td>01 MAR 2018</td><td>03 SEP 2018</td></tr>
-                        <tr><td>7</td><td>MT. BAHIR DAR</td><td>3RD OFFICER</td><td>9617442</td><td>06 OCT 2018</td><td>09 APR 2019</td></tr>
-                        <tr><td>8</td><td>MV. GLORY CHALLENGER</td><td>2ND OFFICER</td><td>9675042</td><td>04 MAY 2019</td><td>05 NOV 2019</td></tr>
-                        <tr><td>9</td><td>MT. SPRING</td><td>2ND OFFICER</td><td>9416812</td><td>01 DEC 2019</td><td>04 JUN 2020</td></tr>
-                        <tr><td>10</td><td>MV. SANDRA</td><td>2ND OFFICER</td><td>9549669</td><td>10 JUL 2020</td><td>12 JAN 2021</td></tr>
-                        <tr><td>11</td><td>MT. PONTUS</td><td>CHIEF OFFICER</td><td>9511179</td><td>03 JUN 2021</td><td>05 MAR 2022</td></tr>
-                        <tr><td>12</td><td>MT. AMALTHIA</td><td>CHIEF OFFICER</td><td>9145023</td><td>20 OCT 2022</td><td>24 JUL 2023</td></tr>
-                        <tr><td>13</td><td>MV. FENG DA</td><td>CHIEF OFFICER</td><td>8658499</td><td>04 FEB 2024</td><td>07 AUG 2024</td></tr>
-                        <tr><td>14</td><td>MT. HAKKASAN</td><td>CHIEF OFFICER</td><td>9474369</td><td>02 OCT 2024</td><td>05 APR 2025</td></tr>
-                        <tr><td>15</td><td>MT. COSTANA H</td><td>CHIEF OFFICER</td><td>9321457</td><td>06 MAY 2025</td><td>07 NOV 2025</td></tr>
-                        <tr><td>16</td><td>MT. ASPHALT CARRIER</td><td>CHIEF OFFICER</td><td>9293545</td><td>28 DEC 2025</td><td>30 JUN 2026</td></tr>
-                    </tbody>
-                </table>
-            </div>
+    .brand-content h1 {
+        font-size: 20px; /* লেখা ছোট করার জন্য যাতে না কাটে */
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
 
-            <footer class="site-footer">
-                <p>Copyright © 2021-2022 Government Shipping Office, Chattogram. All Rights Reserved.</p>
-                <p style="margin-top: 3px;">Maintenance By : TechSparkIT Limited</p>
-            </footer>
-        </div>
-    </div>
+    .brand-content p {
+        font-size: 12px; /* সাবটাইটেল ছোট করার জন্য */
+        opacity: 0.9;
+    }
+}
 
-    <script>
-        function generateCaptcha() {
-            var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            var captcha = "";
-            for (var i = 0; i < 6; i++) {
-                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            document.getElementById('captchaDisplay').innerText = captcha;
-        }
+.brand-content {
+    width: 100%;
+    max-width: 600px;
+}
 
-        window.onload = function() {
-            generateCaptcha();
-            var savedImage = localStorage.getItem('gsoProfileImage');
-            if(savedImage) {
-                document.getElementById('profileImage').src = savedImage;
-            }
-        };
+.logo-circle {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 4px;
+}
 
-        document.getElementById('verificationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var userCaptcha = document.getElementById('captchaInput').value.trim();
-            var actualCaptcha = document.getElementById('captchaDisplay').innerText;
+.logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
-            if(userCaptcha.toUpperCase() !== actualCaptcha) {
-                alert("Invalid Verification Code! Please try again.");
-                generateCaptcha();
-                document.getElementById('captchaInput').value = "";
-                return;
-            }
+.brand-content h1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #ffffff;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
 
-            var currentCdc = document.getElementById('certificateNo').value.trim().toUpperCase();
-            var currentDob = document.getElementById('dateOfBirth').value;
+.brand-content p {
+    font-size: 13px;
+    color: #ffffff;
+    opacity: 0.95;
+    line-height: 1.4;
+    font-weight: 400;
+}
 
-            var tableBody = document.getElementById('resultTableBody');
-            tableBody.innerHTML = "";
+.right-panel {
+    width: 55%;
+    min-height: 100vh;
+    background-color: #edf1f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 20px;
+    overflow-y: auto;
+}
 
-            var validCdc = "C/O/6628";
-            var validDob = "1990-04-05";
+.top-contact-info {
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-weight: bold;
+}
 
-            if (currentCdc === validCdc && currentDob === validDob) {
-                var formattedDob = "05-04-1990";
-                
-                var rowHTML = `
-                    <tr>
-                        <td>1</td>
-                        <td>MD KHALILUR RAHMAN</td>
-                        <td>${formattedDob}</td>
-                        <td>${currentCdc}</td>
-                        <td>29 Jan 2024</td>
-                        <td>29 Jan 2034</td>
-                        <td>CHATTOGRAM</td>
-                        <td><button class="btn-details" onclick="showDetailsView()"><i class="fa-solid fa-eye"></i> Details</button></td>
-                    </tr>
-                `;
-                tableBody.innerHTML = rowHTML;
+.top-contact-info .time-alert {
+    color: #ff9900;
+    margin-bottom: 2px;
+}
 
-                document.getElementById('detCdcNo').innerText = currentCdc;
-                document.getElementById('detCdcNumCell').innerText = currentCdc;
-                document.getElementById('detDobCell').innerText = "05 APRIL 1990";
-            } else {
-                tableBody.innerHTML = `<tr><td colspan="8" class="no-data-msg">No Data Found for the given CDC Number and Date of Birth!</td></tr>`;
-            }
+.top-contact-info .hotline-row {
+    color: #4a154b;
+    margin-bottom: 2px;
+}
 
-            document.getElementById('resultBox').style.display = 'block';
-        });
+.top-contact-info .email-row {
+    color: #0088cc;
+}
 
-        function showDetailsView() {
-            document.getElementById('searchView').style.display = 'none';
-            document.getElementById('detailsView').style.display = 'block';
-        }
+.mobile-top-header {
+    display: none;
+}
 
-        function showSearchView() {
-            document.getElementById('detailsView').style.display = 'none';
-            document.getElementById('searchView').style.display = 'block';
-            generateCaptcha();
-            document.getElementById('captchaInput').value = "";
-        }
+.form-card {
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    border: 1px solid #dce3e8;
+}
 
-        function previewFile(input) {
-            var file = input.files[0];
-            if (file) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profileImage').src = e.target.result;
-                    localStorage.setItem('gsoProfileImage', e.target.result);
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-    </script>
-</body>
-</html>
+.form-header {
+    font-size: 15px;
+    font-weight: bold;
+    color: #0073aa;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.form-row label {
+    width: 140px;
+    font-size: 13px;
+    color: #333;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 15px;
+    white-space: nowrap;
+}
+
+.form-row label span {
+    color: red;
+}
+
+.form-row input {
+    flex: 1;
+    height: 36px;
+    padding: 6px 12px;
+    border: 1px solid #bce8f1;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+.captcha-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 6px;
+}
+
+.captcha-box-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.captcha-box {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 26px;
+    font-weight: bold;
+    color: #1a0dab;
+    letter-spacing: 5px;
+    background: #f9f9f9;
+    padding: 4px 12px;
+    border: 1px dashed #ccc;
+    display: inline-block;
+    width: fit-content;
+}
+
+.btn-refresh {
+    background: none;
+    border: none;
+    color: #0073aa;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+    transition: transform 0.3s;
+}
+
+.btn-refresh:hover {
+    transform: rotate(180deg);
+}
+
+.form-row button {
+    background-color: #00a2ed;
+    color: white;
+    border: none;
+    padding: 8px 22px;
+    font-size: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.result-box {
+    margin-top: 25px;
+    width: 100%;
+    display: none;
+}
+
+.result-header {
+    font-size: 15px;
+    font-weight: bold;
+    color: #0073aa;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    background: #ffffff;
+    border: 1px solid #dce3e8;
+}
+
+.gso-result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    text-align: left;
+}
+
+.gso-result-table th, .gso-result-table td {
+    padding: 12px 15px;
+    border: 1px solid #dce3e8;
+    white-space: nowrap;
+    color: #333;
+}
+
+.gso-result-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #00a2ed;
+}
+
+.btn-details {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-details:hover {
+    background-color: #449d44;
+}
+
+.no-data-msg {
+    padding: 15px;
+    text-align: center;
+    color: #d9534f;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.details-container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    background: #ffffff;
+    border: 1px solid #dce3e8;
+    border-radius: 4px;
+    padding: 20px;
+    display: none;
+}
+
+.top-title-bar {
+    background-color: #ffffff;
+    border-bottom: 2px solid #2b7bb9;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.top-title-bar h2 {
+    font-size: 14px;
+    color: #00a2ed !important;
+    font-weight: bold;
+}
+
+.btn-back {
+    background-color: #00a2ed;
+    color: white;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.info-table td {
+    padding: 2px 6px;
+    border: 1px solid #e0e0e0;
+    color: #333;
+}
+
+.info-table td.label-cell {
+    font-weight: bold;
+    text-align: right;
+    width: 35%;
+    background-color: #f9f9f9;
+}
+
+.status-active {
+    color: #00a2ed !important;
+    font-weight: bold;
+}
+
+.picture-cell-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2px 0 2px 5px;
+}
+
+.profile-img {
+    width: 75px;
+    height: 95px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    display: block;
+    margin: 0 0 2px 0;
+}
+
+.btn-change-photo {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    font-size: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+}
+
+.btn-change-photo:hover {
+    background-color: #c9302c;
+}
+
+.blue-banner-header {
+    background-color: #00a2ed;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px 12px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.detail-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    text-align: center;
+}
+
+.detail-data-table th, .detail-data-table td {
+    padding: 7px 5px;
+    border: 1px solid #dce3e8;
+    color: #333;
+}
+
+.detail-data-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.site-footer {
+    text-align: center;
+    font-size: 11px;
+    color: #444;
+    margin-top: auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-top: 1px solid #eee;
+}
+
+/* ==========================================
+   MOBILE & QR SCAN RESPONSIVE STYLES
+   ========================================== */
+@media screen and (max-width: 900px) {
+    .page-wrapper {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+
+    .left-panel {
+        display: none !important;
+    }
+
+    .desktop-contact {
+        display: none !important;
+    }
+
+    .right-panel {
+        width: 100% !important;
+        min-height: 100vh !important;
+        padding: 15px 10px !important;
+    }
+
+    .mobile-top-header {
+        display: block !important;
+        text-align: center;
+        margin-bottom: 15px;
+        background: #ffffff;
+        padding: 15px 10px;
+        border: 1px solid #dce3e8;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .mobile-top-header .logo-circle {
+        width: 80px !important;
+        height: 80px !important;
+        margin: 0 auto 10px auto !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ffffff;
+        border-radius: 50%;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        padding: 3px;
+    }
+
+    .mobile-top-header .logo-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .form-card {
+        padding: 15px 10px !important;
+        max-width: 100% !important;
+    }
+
+    .form-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        margin-bottom: 15px !important;
+    }
+
+    .form-row label {
+        width: 100% !important;
+        text-align: left !important;
+        padding-right: 0 !important;
+        margin-bottom: 5px !important;
+    }
+
+    .form-row input, 
+    .captcha-container {
+        width: 100% !important;
+    }
+
+    .captcha-box-wrap {
+        width: 100% !important;
+    } .left-panel .brand-content .logo-circle {
+    width: 80px !important;
+    height: 80px !important;
+    background: #ffffff !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 12px auto !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+.page-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100vw !important;
+    min-height: 100vh !important;
+}
