@@ -28,9 +28,10 @@ html, body {
         width: 45%;
         min-height: 100vh;
         background: url('https://i.ibb.co.com/zHP0pMLN/login-left-bg.jpg');
-        background-size: 100% 100%;
+        background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
+        background-color: #006630; /* ব্যাকগ্রাউন্ডের সবুজ কালার ম্যাচ করার জন্য */
         display: flex;
         justify-content: center;
         align-items: center;
