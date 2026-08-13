@@ -28,17 +28,16 @@ html, body {
         width: 45%;
         min-height: 100vh;
         background: url('https://i.ibb.co.com/zHP0pMLN/login-left-bg.jpg');
-        background-size: contain;
-        background-position: center;
+        background-size: cover;
+        background-position: center center;
         background-repeat: no-repeat;
-        background-color: #007626;
         display: flex;
         justify-content: center;
         align-items: center;
         color: #ffffff;
         text-align: center;
         padding: 40px 10px;
-        border-right: 5px solid #00551c;
+        border-right: 5px solid #006630;
     }
 }
 
