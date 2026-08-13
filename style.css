@@ -1,4 +1,4 @@
- {
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -27,17 +27,84 @@ html, body {
 .left-panel {
     width: 45%;
     min-height: 100vh;
-    background: linear-gradient(rgba(0, 107, 63, 0.85), rgba(0, 88, 51, 0.85)), url('https://raw.githubusercontent.com/erpgsogov/bd-seafarer-certificate-verification/main/bg-ship.png');
+    background: url('https://i.ibb.co.com/HDn2mh4r/login-left-bg-1.png');
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
     text-align: center;
-    padding: 40px 10px;
+    padding: 20px;
     border-right: 5px solid #006630;
+}
+
+.brand-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-content .logo-circle {
+    width: 90px;
+    height: 90px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.brand-content img {
+    width: 65px;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
+.brand-content h1 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.brand-content p {
+    font-size: 12px;
+    opacity: 0.95;
+    color: #ffffff;
+}
+
+    .brand-content h1 {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    .brand-content p {
+        font-size: 12px;
+        opacity: 0.95;
+    }
+    .brand-content img {
+        width: 70px; /* লোগোর সাইজ ছোট করার জন্য */
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .brand-content h1 {
+        font-size: 20px; /* লেখা ছোট করার জন্য যাতে না কাটে */
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .brand-content p {
+        font-size: 12px; /* সাবটাইটেল ছোট করার জন্য */
+        opacity: 0.9;
+    }
 }
 
 .brand-content {
@@ -511,21 +578,15 @@ html, body {
 
     .captcha-box-wrap {
         width: 100% !important;
-    }
-
-    .details-container {
-        padding: 10px !important;
-        max-width: 100% !important;
-        overflow-x: auto !important;
-    }
-
-    .info-table td.label-cell {
-        width: 40% !important;
-        font-size: 11px !important;
-    }
-
-    .info-table td {
-        font-size: 11px !important;
-        word-break: break-word;
-    }
+    } .left-panel .brand-content .logo-circle {
+    width: 80px !important;
+    height: 80px !important;
+    background: #ffffff !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 auto 12px auto !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
